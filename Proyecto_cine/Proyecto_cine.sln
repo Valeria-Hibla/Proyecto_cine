@@ -13,15 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Pruebas unitarias", "4. 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solucion", "Elementos de la solucion", "{7DD0D16D-9287-4469-AD92-46471D70C2AD}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-		..\..\Users\User\source\repos\Proyecto_cine\secrets.json = ..\..\Users\User\source\repos\Proyecto_cine\secrets.json
+		secrets.json = secrets.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_dominio", "..\..\Users\User\source\repos\Proyecto_cine\lid_dominio\lib_dominio.csproj", "{875BCF10-E858-40D4-987D-EEF9E58ABC57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_dominio", "lid_dominio\lib_dominio.csproj", "{875BCF10-E858-40D4-987D-EEF9E58ABC57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_repositorios", "..\..\Users\User\source\repos\Proyecto_cine\lib_repositorios\lib_repositorios.csproj", "{A2110283-3C19-4566-AB77-1986CCA72189}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_repositorios", "lib_repositorios\lib_repositorios.csproj", "{A2110283-3C19-4566-AB77-1986CCA72189}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ut_presentacion", "..\..\Users\User\source\repos\Proyecto_cine\ut_presentacion\ut_presentacion.csproj", "{B4D927F1-E7B1-46C8-90A3-75EEBB60E078}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ut_presentacion", "ut_presentacion\ut_presentacion.csproj", "{B4D927F1-E7B1-46C8-90A3-75EEBB60E078}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
