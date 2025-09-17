@@ -1,5 +1,6 @@
 ﻿//se usa para declarar las variables de la entidad clienteproducto
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lib_dominio.Entidades
 {
@@ -8,7 +9,7 @@ namespace lib_dominio.Entidades
         [Key]public int IdClienteProducto { get; set; }
         public DateTime FechaCompra { get; set; }
         public decimal Monto { get; set; }
-        public int IdProductos { get; set; }
-        public int IdCliente { get; set; }
+        [ForeignKey("Productos")] public int IdProductos { get; set; }
+        [ForeignKey("Clientes")] public int IdCliente { get; set; }
     }
 }
