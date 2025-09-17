@@ -105,7 +105,7 @@ namespace ut_presentacion.Nucleo
             entidadEmpleados.Cedula = 000000;
             entidadEmpleados.Nombre = "Pruebas Empleados -" + DateTime.Now.ToString("yyyyMMddhhmmss");
             entidadEmpleados.FechaContratacion = DateTime.Now;
-            entidadEmpleados.IdSucursal = 9;
+            entidadEmpleados.IdSucursal = 3;
             return entidadEmpleados;
         }
         public static HorariosEmpleados? HorariosEmpleados()

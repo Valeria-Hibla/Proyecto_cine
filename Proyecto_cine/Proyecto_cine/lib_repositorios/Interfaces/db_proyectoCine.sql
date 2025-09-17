@@ -8,7 +8,7 @@ GO
 CREATE TABLE Sucursales
 (
 	IdSucursal INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
-	Nombre NVARCHAR(40) NOT NULL,
+	Nombre NVARCHAR(50) NOT NULL,
 	Direccion NVARCHAR(50) NOT NULL,
 	Ciudad NVARCHAR(30) NOT NULL
 )
@@ -237,11 +237,11 @@ INSERT INTO Membresias (Nombre, IdCliente) VALUES
 
 INSERT INTO Boletos (Asiento, Precio, IdCliente, IdSalas) VALUES
 ('32A', 300.00, 5, 1),
-(15, 150.00, 1, 1),  
-(22, 180.00, 2, 2),
-(7, 200.00, 3, 1),  
-(12, 250.00, 4, 3),  
-(30, 300.00, 5, 1)
+('15F', 150.00, 1, 1),  
+('22C', 180.00, 2, 2),
+('7G', 200.00, 3, 1),  
+('12H', 250.00, 4, 3),  
+('30E', 300.00, 5, 1)
 
 
 INSERT INTO ClienteProducto (Monto, IdProductos, IdCliente) VALUES
@@ -287,3 +287,28 @@ INSERT INTO Tecnicos (Cedula, Nombre, Especialidad, IdEquipos) VALUES
 (500600700, 'Jorge Castillo', 'Climatización y Refrigeración', 7)
 
 ALTER TABLE Boletos ALTER COLUMN Asiento NVARCHAR(10) NOT NULL;
+ALTER TABLE Sucursales ALTER COLUMN Nombre NVARCHAR(MAX);
+ALTER TABLE Peliculas ALTER COLUMN Titulo NVARCHAR(MAX);
+ALTER TABLE Clientes ALTER COLUMN Nombre NVARCHAR(MAX);
+ALTER TABLE Membresias ALTER COLUMN Nombre NVARCHAR(MAX);
+ALTER TABLE Proveedores ALTER COLUMN Nombre NVARCHAR(MAX);
+ALTER TABLE Empleados ALTER COLUMN Nombre NVARCHAR(MAX);
+ALTER TABLE Equipos ALTER COLUMN Marca NVARCHAR(MAX);
+ALTER TABLE Tecnicos ALTER COLUMN Nombre NVARCHAR(MAX);
+ALTER TABLE Clasificaciones ALTER COLUMN Categoria NVARCHAR(MAX);
+
+Select *from Boletos
+Select *from Clasificaciones
+Select *from ClienteProducto
+Select *from Clientes
+Select *from Empleados
+Select *from Equipos
+Select *from HorariosEmpleados
+Select *from HorariosFuncion
+Select *from Membresias
+Select *from Peliculas
+Select *from Productos
+Select *from Proveedores
+Select *from Salas
+select * from Sucursales
+select * from Tecnicos
