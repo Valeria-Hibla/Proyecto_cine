@@ -44,7 +44,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Modificar()
         {
-            this.entidadTecnicos!.Especialidad = "Prueba unitaria #1 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            this.entidadTecnicos!.Especialidad = "Prueba unitaria #1 -" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             var entry = this.iConexion!.Entry<Tecnicos>(this.entidadTecnicos);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();

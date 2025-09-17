@@ -10,15 +10,15 @@ namespace ut_presentacion.Repositorios
     [TestClass]
     public class PruebaTecnicos2
     {
-        private readonly ISucursalesAplicacion? iSucursalesAplicacion;
-        private List<Sucursales>? lista;
-        private Sucursales? entidadSucursales;
+        private readonly ITecnicosAplicacion? iTecnicosAplicacion;
+        private List<Tecnicos>? lista;
+        private Tecnicos? entidadTecnicos;
         private Conexion iConexion = new Conexion();
 
         public PruebaTecnicos2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iSucursalesAplicacion = new CineAplicacion(iConexion);
+            iTecnicosAplicacion = new CineAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,22 +31,22 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Sucursales!.ToList();
+            this.lista = this.iConexion!.Tecnicos!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadSucursales = EntidadesNucleo.Sucursales()!;
-            this.iConexion!.Sucursales!.Add(this.entidadSucursales);
+            this.entidadTecnicos = EntidadesNucleo.Tecnicos()!;
+            this.iConexion!.Tecnicos!.Add(this.entidadTecnicos);
             this.iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadSucursales!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Sucursales>(this.entidadSucursales);
+            this.entidadTecnicos!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = this.iConexion!.Entry<Tecnicos>(this.entidadTecnicos);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();
             return true;
@@ -54,7 +54,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Borrar()
         {
-            this.iConexion!.Sucursales!.Remove(this.entidadSucursales!);
+            this.iConexion!.Tecnicos!.Remove(this.entidadTecnicos!);
             this.iConexion!.SaveChanges();
             return true;
         }

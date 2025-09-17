@@ -44,7 +44,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Modificar()
         {
-            this.entidadHorariosEmpleados!.IdEmpleados=1;
+            this.entidadHorariosEmpleados!.IdEmpleados=4;
             var entry = this.iConexion!.Entry<HorariosEmpleados>(this.entidadHorariosEmpleados);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();

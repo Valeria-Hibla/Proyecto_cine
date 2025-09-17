@@ -45,7 +45,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Modificar()
         {
-            this.entidadBoletos!.Asiento = "Test";
+            this.entidadBoletos!.Asiento = "Test #1";
             var entry = this.iConexion!.Entry<Boletos>(this.entidadBoletos);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();

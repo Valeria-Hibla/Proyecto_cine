@@ -44,7 +44,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Modificar()
         {
-            this.entidadPeliculas!.Titulo= "Prueba unitaria #1 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            this.entidadPeliculas!.Titulo= "Prueba unitaria #1 -" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             var entry = this.iConexion!.Entry<Peliculas>(this.entidadPeliculas);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();

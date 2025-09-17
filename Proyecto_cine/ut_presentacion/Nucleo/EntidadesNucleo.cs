@@ -112,7 +112,7 @@ namespace ut_presentacion.Nucleo
         {
 ;            var entidadHorariosEmpleados = new HorariosEmpleados();
             entidadHorariosEmpleados.Fecha = DateTime.Now;
-            entidadHorariosEmpleados.HoraInicio = TimeOnly.MinValue;
+            entidadHorariosEmpleados.HoraInicio = TimeOnly.FromDateTime(DateTime.Now);
             entidadHorariosEmpleados.HoraFin = TimeOnly.MaxValue;
             entidadHorariosEmpleados.IdEmpleados = 8;
             return entidadHorariosEmpleados;
