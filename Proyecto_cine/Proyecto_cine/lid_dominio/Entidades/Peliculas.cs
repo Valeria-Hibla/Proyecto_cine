@@ -1,5 +1,6 @@
 ﻿//se usa para declarar las variables de la entidad peliculas
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lib_dominio.Entidades
 {
@@ -9,6 +10,6 @@ namespace lib_dominio.Entidades
         public string? Titulo { get; set; }
         public TimeSpan Duracion { get; set; }
         public string? Genero { get; set; }
-        public int IdClasificacion { get; set; }
+        [ForeignKey("Clasificaciones")] public int IdClasificacion { get; set; }
     }
 }

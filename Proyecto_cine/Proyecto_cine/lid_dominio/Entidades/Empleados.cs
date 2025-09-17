@@ -1,5 +1,6 @@
 ﻿//se usa para declarar las variables de la entidad empleados
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lib_dominio.Entidades
 {
@@ -9,6 +10,6 @@ namespace lib_dominio.Entidades
         public int Cedula { get; set; }
         public string? Nombre { get; set; }
         public DateTime FechaContratacion { get; set; }
-        public int IdSucursal { get; set; }
+        [ForeignKey("Sucursal")] public int IdSucursal { get; set; }
     }
 }

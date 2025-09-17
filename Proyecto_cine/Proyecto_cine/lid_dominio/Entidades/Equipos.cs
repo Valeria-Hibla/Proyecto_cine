@@ -1,5 +1,6 @@
 ﻿//se usa para declarar las variables de la entidad equipos
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lib_dominio.Entidades
 {
@@ -10,6 +11,6 @@ namespace lib_dominio.Entidades
         public string? Marca { get; set; }
         public bool Estado { get; set; }
 
-        public int IdSucursal { get; set; }
+        [ForeignKey("Sucursal")] public int IdSucursal { get; set; }
     }
 }

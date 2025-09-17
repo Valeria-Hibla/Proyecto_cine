@@ -1,5 +1,6 @@
 ﻿//se usa para declarar las variables de la entidad membresias
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lib_dominio.Entidades
 {
@@ -8,6 +9,6 @@ namespace lib_dominio.Entidades
         [Key] public int IdMembresias { get; set; }
         public string? Nombre { get; set; }
         public DateTime FechaInicio { get; set; }
-        public int IdCliente { get; set; }
+        [ForeignKey("Clientes")] public int IdCliente { get; set; }
     }
 }
