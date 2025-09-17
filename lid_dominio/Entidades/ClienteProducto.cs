@@ -1,0 +1,15 @@
+﻿//se usa para declarar las variables de la entidad clienteproducto
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace lib_dominio.Entidades
+{
+    public class ClienteProducto
+    {
+        [Key]public int IdClienteProducto { get; set; }
+        public DateTime FechaCompra { get; set; }
+        public decimal Monto { get; set; }
+        [ForeignKey ("Productos")]public int IdProductos { get; set; }
+        [ForeignKey("Cliente")] public int IdCliente { get; set; }
+    }
+}
