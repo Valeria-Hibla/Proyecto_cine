@@ -8,6 +8,7 @@ namespace lib_dominio.Entidades
     {
         [Key] public int IdHorariosFuncion { get; set; }
         public DateTime Fecha { get; set; }
+        public TimeSpan Hora {  get; set; }
         [ForeignKey("Salas")] public int IdSalas { get; set; }
         [ForeignKey("Peliculas")] public int IdPelicula { get; set; }
     }

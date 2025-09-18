@@ -42,7 +42,7 @@ namespace ut_presentacion.Repositorios
             this.iConexion!.SaveChanges();
             return true;
         }
-
+        
         public bool Modificar()
         {
             this.entidadTecnicos!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");

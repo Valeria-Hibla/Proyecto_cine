@@ -15,7 +15,7 @@ namespace ut_presentacion.Nucleo
         public static Tecnicos? Tecnicos()
         {
             var entidadTecnicos = new Tecnicos();
-            entidadTecnicos.Nombre = "Pruebas Tecnicos -" + DateTime.Now.ToString("yyyyMMddhhmmss");
+            entidadTecnicos.Nombre = "Carlos Mendoza";
             entidadTecnicos.Cedula= 000000;
             entidadTecnicos.Especialidad= "Programacion de Software";
             entidadTecnicos.IdEquipos = 6;
@@ -44,6 +44,7 @@ namespace ut_presentacion.Nucleo
             entidadProductos.Nombre = "Pruebas Productos";
             entidadProductos.Descripcion = "Programacion de Software";
             entidadProductos.Precio = 1500.00m;
+            entidadProductos.IdProveedor = 6;
             return entidadProductos;
         }
         public static Proveedores? Proveedores()
@@ -52,7 +53,7 @@ namespace ut_presentacion.Nucleo
             var entidadProveedores = new Proveedores();
             entidadProveedores.Nombre = "Pruebas Proveedores -" + DateTime.Now.ToString("yyyyMMddhhmmss");
             entidadProveedores.Cedula = 000000;
-            entidadProveedores.IdProductos = 9;
+            entidadProveedores.Edad = 38;
             return entidadProveedores;
         }
         public static Clasificaciones? Clasificaciones()
@@ -95,6 +96,7 @@ namespace ut_presentacion.Nucleo
 
             var entidadHorariosFuncion = new HorariosFuncion();
             entidadHorariosFuncion.Fecha =DateTime.Now;
+            entidadHorariosFuncion.Hora = new TimeSpan(11,30,00);
             entidadHorariosFuncion.IdSalas = 1;
             entidadHorariosFuncion.IdPelicula = 5;
             return entidadHorariosFuncion;

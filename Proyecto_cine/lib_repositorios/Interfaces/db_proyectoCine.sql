@@ -3,6 +3,8 @@ GO
 USE db_proyectoCine
 GO
 
+drop table ClienteProducto
+drop table Productos
 -- Creacion de tablas
 
 CREATE TABLE Sucursales
@@ -35,7 +37,8 @@ CREATE TABLE Productos
 	IdProductos INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	Nombre NVARCHAR(20) NOT NULL,
 	Descripcion NVARCHAR(40),
-	Precio DECIMAL(6, 2) NOT NULL
+	Precio DECIMAL(6, 2) NOT NULL,
+	IdProveedor INT
 )
 
 CREATE TABLE Membresias
@@ -51,7 +54,7 @@ CREATE TABLE Proveedores
 	IdProveedores INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	Cedula INT NOT NULL,
 	Nombre NVARCHAR(50) NOT NULL,
-	IdProductos INT
+	Edad INT
 )
 
 CREATE TABLE Salas
@@ -93,7 +96,8 @@ CREATE TABLE HorariosEmpleados
 CREATE TABLE HorariosFuncion
 (
 	IdHorariosFuncion INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
-	Fecha SMALLDATETIME DEFAULT GETDATE(),
+	Fecha DATE DEFAULT GETDATE(),
+	Hora TIME(0) NOT NULL,
 	IdSalas INT NOT NULL,
 	IdPelicula INT NOT NULL
 )
@@ -150,8 +154,8 @@ REFERENCES Productos
 ALTER TABLE ClienteProducto ADD FOREIGN KEY(IdCliente)
 REFERENCES Clientes
 
-ALTER TABLE Proveedores ADD FOREIGN KEY(IdProductos)
-REFERENCES Productos
+ALTER TABLE Productos ADD FOREIGN KEY(IdProveedor)
+REFERENCES Proveedores
 
 ALTER TABLE Empleados ADD FOREIGN KEY(IdSucursal)
 REFERENCES Sucursales
@@ -193,12 +197,12 @@ INSERT INTO Clientes (Cedula, Nombre, Edad) VALUES
 (1098765432, 'Ana Gómez', 28),
 (1023456789, 'Luis Rodríguez', 41)
 
-INSERT INTO Productos (Nombre, Descripcion, Precio) VALUES
-('Crispetas', 'Crispetas saladas', 2000.00),
-('Vaso', 'Vaso de Superman', 1500.50),
-('Gaseosa', 'Bebida tamaño mediano', 3500.00),
-('Nachos', 'Nachos con queso', 5000.00),
-('Chocolate', 'Barra de chocolate', 2500.00)
+INSERT INTO Productos (Nombre, Descripcion, Precio, IdProveedor) VALUES
+('Crispetas', 'Crispetas saladas', 2000.00, 1),
+('Vaso', 'Vaso de Superman', 1500.50, 2),
+('Gaseosa', 'Bebida tamaño mediano', 3500.00, 3),
+('Nachos', 'Nachos con queso', 5000.00, 4),
+('Chocolate', 'Barra de chocolate', 2500.00, 5)
 
 INSERT INTO Empleados (Cedula, Nombre, IdSucursal) VALUES
 (1001234567, 'Andres Villa', 1),  
@@ -221,12 +225,12 @@ INSERT INTO Salas (NumeroSala, Capacidad, Estado, IdSucursal) VALUES
 (404, 60, 1, 4),
 (505, 100, 1, 5)
 
-INSERT INTO Proveedores (Cedula, Nombre, IdProductos) VALUES
-(123456789, 'Jose Rodriguez', 2),
-(987654321, 'Monica Rivera', 3),
-(555444333, 'Carlos Pérez', 1),
-(222333444, 'Laura Martínez', 4),
-(999888777, 'Sofía Gómez', 5)
+INSERT INTO Proveedores (Cedula, Nombre, Edad) VALUES
+(123456789, 'Jose Rodriguez', 32),
+(987654321, 'Monica Rivera', 33),
+(555444333, 'Carlos Pérez', 41),
+(222333444, 'Laura Martínez', 45),
+(999888777, 'Sofía Gómez', 50)
 
 INSERT INTO Membresias (Nombre, IdCliente) VALUES
 ('Premium', 1),
@@ -265,12 +269,12 @@ INSERT INTO Peliculas (Titulo, Duracion, Genero, IdClasificacion) VALUES
 ('Deadpool', '01:48:00', 'Comedia', 4),          
 ('50 Sombras', '02:05:00', 'Romance', 5)
 
-INSERT INTO HorariosFuncion (IdSalas, IdPelicula) VALUES
-(1, 4),  
-(2, 4),  
-(1, 5),  
-(2, 6),  
-(1, 7)
+INSERT INTO HorariosFuncion (Hora, IdSalas, IdPelicula) VALUES
+('12:00:00',1, 4),  
+('18:30:00', 2, 4),  
+('15:00:00', 1, 5),  
+('20:00:00',2, 2),  
+('11:20:00', 2, 3)
 
 INSERT INTO Equipos (Tipo, Marca, Estado, IdSucursal) VALUES
 ('Proyector Digital', 'Sony', 1, 1),     

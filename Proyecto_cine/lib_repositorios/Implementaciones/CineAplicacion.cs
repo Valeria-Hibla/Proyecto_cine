@@ -1,4 +1,5 @@
 ﻿using lib_dominio.Entidades;
+
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 namespace lib_repositorios.Implementaciones
@@ -35,13 +36,20 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-
-        public Tecnicos? Guardar(Tecnicos? entidad)
+        public Tecnicos? Guardar(Tecnicos? entidad)//logica de negocio
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
+
+            if (string.IsNullOrWhiteSpace(entidad.Nombre))
+                throw new Exception("lbNombreRequerido");
+
+            if (this.IConexion!.Tecnicos!.Any(t => t.Nombre == entidad.Nombre))
+                throw new Exception("lbNombreDuplicado");
+
             if (entidad.IdTecnicos != 0)
                 throw new Exception("lbYaSeGuardo");
+
             this.IConexion!.Tecnicos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
@@ -64,6 +72,7 @@ namespace lib_repositorios.Implementaciones
 
 
 
+
         //Sucursales
         public Sucursales? Borrar(Sucursales? entidad)
         {
@@ -72,17 +81,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdSucursal == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Sucursales!.Remove(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Sucursales? Guardar(Sucursales? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdSucursal != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Sucursales!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -101,6 +99,24 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public Sucursales? Guardar(Sucursales? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (string.IsNullOrWhiteSpace(entidad.Direccion))
+                throw new Exception("lbDireccionRequerido");
+
+            if (this.IConexion!.Sucursales!.Any(t => t.Direccion == entidad.Direccion))
+                throw new Exception("lbDireccionDuplicado");
+
+            if (entidad.IdSucursal != 0)
+                throw new Exception("lbYaSeGuardo");
+
+            this.IConexion!.Sucursales!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
 
 
 
@@ -116,17 +132,6 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-
-        public Salas? Guardar(Salas? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdSalas != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Salas!.Add(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
         public List<Salas> ListarSalas()
         {
             return this.IConexion!.Salas!.Take(20).ToList();
@@ -139,6 +144,21 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Salas>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+        public Salas? Guardar(Salas? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if ((entidad.Capacidad)<0)
+                throw new Exception("lbCapacidadRequerida");
+
+            if (entidad.IdSalas != 0)
+                throw new Exception("lbYaSeGuardo");
+
+            this.IConexion!.Salas!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -196,17 +216,6 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-
-        public Productos? Guardar(Productos? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdProductos != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Productos!.Add(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
         public List<Productos> ListarProductos()
         {
             return this.IConexion!.Productos!.Take(20).ToList();
@@ -222,6 +231,27 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public Productos? Guardar(Productos? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (string.IsNullOrWhiteSpace(entidad.Nombre))
+                throw new Exception("lbNombreRequerido");
+            
+            if ((entidad.Precio)<0)
+                throw new Exception("lbPrecioInvalido");
+
+            if (entidad.IdProveedor ==0) {
+                throw new Exception("lbProveedorNoExiste");
+            }
+            if (entidad.IdProductos != 0)
+                throw new Exception("lbYaSeGuardo");
+
+            this.IConexion!.Productos!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
 
 
 
@@ -233,17 +263,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdPelicula== 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Peliculas!.Remove(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Peliculas? Guardar(Peliculas? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdPelicula != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Peliculas!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -262,6 +281,29 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public Peliculas? Guardar(Peliculas? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (string.IsNullOrWhiteSpace(entidad.Titulo))
+                throw new Exception("lbNombreRequerido");
+
+            if ((entidad.Duracion.TotalHours > 5))
+                throw new Exception("lbDuracionExcedida");
+
+            if (entidad.IdPelicula == 0)
+            {
+                throw new Exception("lbProveedorNoExiste");
+            }
+            if (entidad.IdPelicula != 0)
+                throw new Exception("lbYaSeGuardo");
+
+            this.IConexion!.Peliculas!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
 
 
         //Membresias
@@ -272,17 +314,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdMembresias == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Membresias!.Remove(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Membresias? Guardar(Membresias? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdMembresias != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Membresias!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -301,6 +332,27 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public Membresias? Guardar(Membresias? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (string.IsNullOrWhiteSpace(entidad.Nombre))
+                throw new Exception("lbNombreRequerido");
+
+
+            if (entidad.IdCliente == 0)
+            {
+                throw new Exception("lbClienteNoExiste");
+            }
+            if (entidad.IdMembresias != 0)
+                throw new Exception("lbYaSeGuardo");
+
+            this.IConexion!.Membresias!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
 
 
 
@@ -316,16 +368,6 @@ namespace lib_repositorios.Implementaciones
             return entidad;
         }
 
-        public HorariosFuncion? Guardar(HorariosFuncion? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdHorariosFuncion != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.HorariosFuncion!.Add(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
         public List<HorariosFuncion> ListarHorariosFuncion()
         {
             return this.IConexion!.HorariosFuncion!.Take(20).ToList();
@@ -341,6 +383,28 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public HorariosFuncion? Guardar(HorariosFuncion? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (entidad.Hora.TotalHours<=0 && entidad.Hora.TotalSeconds<=0 )
+                throw new Exception("lbHorarioDeFuncionNoValido");
+
+            if ((entidad.IdPelicula) ==0)
+                throw new Exception("lbNoExisteLaFuncion");
+
+            if (entidad.IdSalas == 0)
+                throw new Exception("lbNoExisteLaFuncion");
+
+            if (entidad.IdHorariosFuncion != 0)
+                throw new Exception("lbYaSeGuardo");
+
+            this.IConexion!.HorariosFuncion!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
 
 
 
@@ -352,17 +416,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdHorariosEmpleados == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.HorariosEmpleados!.Remove(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public HorariosEmpleados? Guardar(HorariosEmpleados? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdHorariosEmpleados != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.HorariosEmpleados!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -381,6 +434,21 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public HorariosEmpleados? Guardar(HorariosEmpleados? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (entidad.IdEmpleados==0)
+                throw new Exception("lbHorarioNoExite");
+
+            if ((entidad.HoraInicio.Hour)<8)
+                throw new Exception("lbHorarioNoExiste");
+
+            this.IConexion!.HorariosEmpleados!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
 
 
 
@@ -392,17 +460,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdEquipos == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Equipos!.Remove(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Equipos? Guardar(Equipos? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdEquipos != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Equipos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -421,6 +478,18 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public Equipos? Guardar(Equipos? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (entidad.IdSucursal==0)
+                throw new Exception("lbNoExisteElEquipo");
+
+            this.IConexion!.Equipos!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
 
 
 
@@ -432,17 +501,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdEmpleados == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Empleados!.Remove(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Empleados? Guardar(Empleados? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdEmpleados != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Empleados!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -458,6 +516,24 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Empleados>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+        public Empleados? Guardar(Empleados? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (entidad.IdSucursal==0)
+                throw new Exception("lbNoExisteElEmpleado");
+
+            if ((entidad.Cedula) == 0)
+                throw new Exception("lbNoExisteElEmpleado");
+
+            if (entidad.FechaContratacion > DateTime.Now)
+                throw new Exception("lbNoExisteElEmpleado");
+
+            this.IConexion!.Empleados!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -515,17 +591,6 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-
-        public ClienteProducto? Guardar(ClienteProducto? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdClienteProducto != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.ClienteProducto!.Add(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
         public List<ClienteProducto> ListarClienteProducto()
         {
             return this.IConexion!.ClienteProducto!.Take(20).ToList();
@@ -541,6 +606,25 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public ClienteProducto? Guardar(ClienteProducto? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (entidad.IdCliente==0)
+                throw new Exception("lbNoExisteLaFactura");
+
+            if ((entidad.IdProductos) == 0)
+                throw new Exception("lbNoExisteLaFactura");
+
+            if (entidad.Monto<=0)
+                throw new Exception("lbNoExisteLaFactura");
+
+            this.IConexion!.ClienteProducto!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
 
 
 
@@ -556,16 +640,6 @@ namespace lib_repositorios.Implementaciones
             return entidad;
         }
 
-        public Clasificaciones? Guardar(Clasificaciones? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdClasificacion != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Clasificaciones!.Add(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
         public List<Clasificaciones> ListarClasificaciones()
         {
             return this.IConexion!.Clasificaciones!.Take(20).ToList();
@@ -581,8 +655,23 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+        public Clasificaciones? Guardar(Clasificaciones? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
 
-        
+            if (entidad.EdadMinima<0)
+                throw new Exception("lbNoExisteLaClasificacion");
+
+            if ((entidad.Categoria!.Equals("PG-13") && entidad.EdadMinima<13))
+                throw new Exception("lbNoEstaPermitido");
+
+            this.IConexion!.Clasificaciones!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
+
 
         //Boletos
         public Boletos? Borrar(Boletos? entidad)
@@ -592,17 +681,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdBoletos == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Boletos!.Remove(entidad);
-            this.IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Boletos? Guardar(Boletos? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad.IdBoletos != 0)
-                throw new Exception("lbYaSeGuardo");
-            this.IConexion!.Boletos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -621,7 +699,25 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-        
+        public Boletos? Guardar(Boletos? entidad)//logica de negocio
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+
+            if (entidad.IdSalas==0)
+                throw new Exception("lbNoExistenLosBoletos");
+
+            if ((entidad.IdCliente) == 0)
+                throw new Exception("lbNoExistenLosBoletos");
+
+            if (entidad.Precio<=0)
+                throw new Exception("lbNoExistenLosBoletos");
+
+            this.IConexion!.Boletos!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
     }
 }
     

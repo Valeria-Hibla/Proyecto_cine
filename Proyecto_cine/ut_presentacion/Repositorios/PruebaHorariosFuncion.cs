@@ -45,6 +45,7 @@ namespace ut_presentacion.Repositorios
         public bool Modificar()
         {
             this.entidadHorariosFuncion!.Fecha= DateTime.Now;
+            this.entidadHorariosFuncion!.Hora = new TimeSpan(3, 3, 0);
             var entry = this.iConexion!.Entry<HorariosFuncion>(this.entidadHorariosFuncion);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();
