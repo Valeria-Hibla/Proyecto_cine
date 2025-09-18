@@ -9,6 +9,5 @@ namespace lib_dominio.Entidades
         [Key] public int IdProveedores { get; set; }
         public int Cedula { get; set; }
         public string? Nombre { get; set; }
-        [ForeignKey("Productos")] public int IdProductos { get; set; }
     }
 }
