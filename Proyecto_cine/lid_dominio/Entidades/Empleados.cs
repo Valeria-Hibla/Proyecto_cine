@@ -11,5 +11,6 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public DateTime FechaContratacion { get; set; }
         [ForeignKey("Sucursal")] public int IdSucursal { get; set; }
-    }
+        List<Sucursales>? _Sucursales { get; set; }
+}
 }

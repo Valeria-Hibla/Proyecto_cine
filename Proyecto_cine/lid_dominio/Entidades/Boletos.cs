@@ -12,6 +12,8 @@ namespace lib_dominio.Entidades
         public decimal Precio { get; set; }
         [ForeignKey("Clientes")] public int IdCliente { get; set; }
         [ForeignKey("Salas")] public int IdSalas { get; set; }
+        List<Clientes>? _Clientes { get; set; }
+        List<Salas>? _Salas { get; set; }
     }
     
 }

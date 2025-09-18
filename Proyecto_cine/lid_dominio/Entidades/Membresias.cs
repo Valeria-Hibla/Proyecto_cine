@@ -10,5 +10,6 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public DateTime FechaInicio { get; set; }
         [ForeignKey("Clientes")] public int IdCliente { get; set; }
+        List<Clientes>? _Clientes { get; set; }
     }
 }

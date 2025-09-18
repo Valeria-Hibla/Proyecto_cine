@@ -11,5 +11,6 @@ namespace lib_dominio.Entidades
         public int Capacidad { get; set; }
         public bool Estado { get; set; }
         [ForeignKey("Sucursal")] public int IdSucursal { get; set; }
+        List<Sucursales>? _Sucursales { get; set; }
     }
 }

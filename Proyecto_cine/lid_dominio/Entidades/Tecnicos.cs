@@ -11,5 +11,6 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public string? Especialidad { get; set; }
         [ForeignKey ("Equipos")]public int IdEquipos { get; set; }
+        List<Equipos>? _Equipos { get; set; }
     }
 }

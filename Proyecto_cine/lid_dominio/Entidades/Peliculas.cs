@@ -11,5 +11,6 @@ namespace lib_dominio.Entidades
         public TimeSpan Duracion { get; set; }
         public string? Genero { get; set; }
         [ForeignKey("Clasificaciones")] public int IdClasificacion { get; set; }
+        List<Clasificaciones>? _Clasificaciones { get; set; }
     }
 }

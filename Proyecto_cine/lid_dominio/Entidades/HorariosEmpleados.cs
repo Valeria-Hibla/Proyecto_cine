@@ -11,5 +11,6 @@ namespace lib_dominio.Entidades
         public TimeOnly HoraInicio { get; set; }
         public TimeOnly HoraFin { get; set; }
         [ForeignKey("Empleados")] public int IdEmpleados { get; set; }
+        List<Empleados>? _Empleados { get; set; }
     }
 }

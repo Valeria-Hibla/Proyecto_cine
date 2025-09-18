@@ -11,5 +11,7 @@ namespace lib_dominio.Entidades
         public decimal Monto { get; set; }
         [ForeignKey("Productos")] public int IdProductos { get; set; }
         [ForeignKey("Clientes")] public int IdCliente { get; set; }
+        List<Productos>? _Productos { get; set; }
+        List<Clientes>? _Clientes { get; set; }
     }
 }

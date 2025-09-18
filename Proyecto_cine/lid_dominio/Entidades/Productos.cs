@@ -11,6 +11,7 @@ namespace lib_dominio.Entidades
         public string? Descripcion { get; set; }
         public decimal Precio { get; set; }
         [ForeignKey("Proveedores")] public int IdProveedor { get; set; }
+        List<Proveedores>? _Proveedores { get; set; }
 
     }
 }
