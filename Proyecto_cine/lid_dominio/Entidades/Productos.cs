@@ -9,6 +9,7 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public string? Descripcion { get; set; }
         public decimal Precio { get; set; }
+        [Foreignkey ("Proveedores")] public int IdProveedores {get; set;}
 
     }
 }
