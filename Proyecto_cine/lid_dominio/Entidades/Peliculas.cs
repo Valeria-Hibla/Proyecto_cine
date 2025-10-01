@@ -10,7 +10,7 @@ namespace lib_dominio.Entidades
         public string? Titulo { get; set; }
         public TimeSpan Duracion { get; set; }
         public string? Genero { get; set; }
-        [ForeignKey("Clasificaciones")] public int IdClasificacion { get; set; }
+        [ForeignKey("Clasificaciones")] public int IdClasificaciones { get; set; }
         List<Clasificaciones>? _Clasificaciones { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace ut_presentacion.Nucleo
             entidadProductos.Nombre = "Pruebas Productos";
             entidadProductos.Descripcion = "Programacion de Software";
             entidadProductos.Precio = 1500.00m;
-            entidadProductos.IdProveedor = 6;
+            entidadProductos.IdProveedor = 5;
             return entidadProductos;
         }
         public static Proveedores? Proveedores()
@@ -71,7 +71,7 @@ namespace ut_presentacion.Nucleo
             entidadPeliculas.Titulo = "Titanic";
             entidadPeliculas.Duracion = new TimeSpan(2,30,00);
             entidadPeliculas.Genero = "Romance";
-            entidadPeliculas.IdClasificacion = 1;
+            entidadPeliculas.IdClasificaciones = 1;
             return entidadPeliculas;
         }
         public static Clientes? Clientes()
@@ -116,7 +116,7 @@ namespace ut_presentacion.Nucleo
             entidadHorariosEmpleados.Fecha = DateTime.Now;
             entidadHorariosEmpleados.HoraInicio = TimeOnly.FromDateTime(DateTime.Now);
             entidadHorariosEmpleados.HoraFin = TimeOnly.MaxValue;
-            entidadHorariosEmpleados.IdEmpleados = 8;
+            entidadHorariosEmpleados.IdEmpleados = 3;
             return entidadHorariosEmpleados;
         }
 

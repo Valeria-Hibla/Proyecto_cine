@@ -633,7 +633,7 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad!.IdClasificacion == 0)
+            if (entidad!.IdClasificaciones == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Clasificaciones!.Remove(entidad);
             this.IConexion.SaveChanges();
@@ -648,7 +648,7 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad!.IdClasificacion == 0)
+            if (entidad!.IdClasificaciones == 0)
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Clasificaciones>(entidad);
             entry.State = EntityState.Modified;
