@@ -3,13 +3,13 @@
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 namespace lib_repositorios.Implementaciones
+// ITecnicosAplicacion, ISucursalesAplicacion,ISalasAplicacion,IProveedoresAplicacion, IProductosAplicacion, 
+// IPeliculasAplicacion, IMembresiasAplicacion, IHorariosFuncionAplicacion, IHorariosEmpleadosAplicacion,
+// IEquiposAplicacion, IEmpleadosAplicacion, IClientesAplicacion, IClienteProductoAplicacion,
+// IClasificacionesAplicacion, IBoletosAplicacion
 {
-    public class CineAplicacion: ITecnicosAplicacion, 
-        ISucursalesAplicacion, ISalasAplicacion, IProveedoresAplicacion, 
-        IProductosAplicacion, IPeliculasAplicacion, IMembresiasAplicacion,
-        IHorariosFuncionAplicacion, IHorariosEmpleadosAplicacion,
-        IEquiposAplicacion, IEmpleadosAplicacion, IClientesAplicacion,
-        IClienteProductoAplicacion, IClasificacionesAplicacion, IBoletosAplicacion
+    public class CineAplicacion
+         
     {
         public IConexion? IConexion = null;
 
@@ -26,7 +26,7 @@ namespace lib_repositorios.Implementaciones
 
 
         //Tecnicos
-        public Tecnicos? Borrar(Tecnicos? entidad)
+        /*public Tecnicos? Borrar(Tecnicos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -68,13 +68,13 @@ namespace lib_repositorios.Implementaciones
             entry.State = EntityState.Modified;
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
 
         //Sucursales
-        public Sucursales? Borrar(Sucursales? entidad)
+        /*public Sucursales? Borrar(Sucursales? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -116,13 +116,13 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Sucursales!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
 
         //Salas
-        public Salas? Borrar(Salas? entidad)
+        /*public Salas? Borrar(Salas? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -161,12 +161,12 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Salas!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Proveedores
-        public Proveedores? Borrar(Proveedores? entidad)
+        /*public Proveedores? Borrar(Proveedores? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -201,12 +201,12 @@ namespace lib_repositorios.Implementaciones
             entry.State = EntityState.Modified;
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Productos
-        public Productos? Borrar(Productos? entidad)
+        /*public Productos? Borrar(Productos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -251,12 +251,12 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Productos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Peliculas
-        public Peliculas? Borrar(Peliculas? entidad)
+        /*public Peliculas? Borrar(Peliculas? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -302,12 +302,12 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Peliculas!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Membresias
-        public Membresias? Borrar(Membresias? entidad)
+        /*public Membresias? Borrar(Membresias? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -351,13 +351,13 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Membresias!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
 
         //HorariosFuncion
-        public HorariosFuncion? Borrar(HorariosFuncion? entidad)
+        /*public HorariosFuncion? Borrar(HorariosFuncion? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -403,13 +403,13 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.HorariosFuncion!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
 
         //HorariosEmpleados
-        public HorariosEmpleados? Borrar(HorariosEmpleados? entidad)
+        /*public HorariosEmpleados? Borrar(HorariosEmpleados? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -448,12 +448,12 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.HorariosEmpleados!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Equipos
-        public Equipos? Borrar(Equipos? entidad)
+        /*public Equipos? Borrar(Equipos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -489,12 +489,12 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Equipos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Empleados
-        public Empleados? Borrar(Empleados? entidad)
+        /*public Empleados? Borrar(Empleados? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -536,12 +536,12 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Empleados!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Clientes
-        public Clientes? Borrar(Clientes? entidad)
+        /*public Clientes? Borrar(Clientes? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -576,12 +576,12 @@ namespace lib_repositorios.Implementaciones
             entry.State = EntityState.Modified;
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //ClienteProducto
-        public ClienteProducto? Borrar(ClienteProducto? entidad)
+        /*public ClienteProducto? Borrar(ClienteProducto? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -623,13 +623,13 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.ClienteProducto!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
 
         //Clasificaciones
-        public Clasificaciones? Borrar(Clasificaciones? entidad)
+        /*public Clasificaciones? Borrar(Clasificaciones? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -669,12 +669,12 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Clasificaciones!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
 
 
         //Boletos
-        public Boletos? Borrar(Boletos? entidad)
+        /*public Boletos? Borrar(Boletos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -716,7 +716,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.Boletos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
-        }
+        }*/
 
     }
 }
