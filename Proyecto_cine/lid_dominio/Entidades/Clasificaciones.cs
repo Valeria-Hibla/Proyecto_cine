@@ -13,5 +13,6 @@ namespace lib_dominio.Entidades
         public string? Categoria { get; set; }
         public int EdadMinima { get; set; }
         public string? Descripcion { get; set; }
+        public List<Peliculas>? Peliculas { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using asp_servicios.Nucleo;
+﻿/*using asp_servicios.Nucleo;
 using lib_repositorios.Interfaces;
 using lib_repositorios.Implementaciones;
 using lib_dominio.Entidades;
@@ -38,7 +38,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarTecnicos();
                 respuesta["Respuesta"] = "OK";
@@ -63,7 +63,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Tecnicos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -90,7 +90,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Tecnicos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -117,7 +117,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Tecnicos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -146,7 +146,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarSucursales();
                 respuesta["Respuesta"] = "OK";
@@ -171,7 +171,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Sucursales>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -198,7 +198,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Sucursales>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -225,7 +225,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Sucursales>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -254,7 +254,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarSalas();
                 respuesta["Respuesta"] = "OK";
@@ -279,7 +279,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Salas>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -306,7 +306,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Salas>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -333,7 +333,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Salas>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -362,7 +362,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarProveedores();
                 respuesta["Respuesta"] = "OK";
@@ -387,7 +387,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                }
                 var entidad = JsonConversor.ConvertirAObjeto<Proveedores>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -414,7 +414,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Proveedores>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -441,7 +441,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Proveedores>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -470,7 +470,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarProductos();
                 respuesta["Respuesta"] = "OK";
@@ -495,7 +495,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Productos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -522,7 +522,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Productos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -549,7 +549,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Productos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -578,7 +578,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarPeliculas();
                 respuesta["Respuesta"] = "OK";
@@ -603,7 +603,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Peliculas>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -630,7 +630,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Peliculas>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -657,7 +657,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Peliculas>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -686,7 +686,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarMembresias();
                 respuesta["Respuesta"] = "OK";
@@ -711,7 +711,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Membresias>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -738,7 +738,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Membresias>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -765,7 +765,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Membresias>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -794,7 +794,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarHorariosFuncion();
                 respuesta["Respuesta"] = "OK";
@@ -819,7 +819,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<HorariosFuncion>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -846,7 +846,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<HorariosFuncion>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -873,7 +873,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<HorariosFuncion>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -902,7 +902,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarHorariosEmpleados();
                 respuesta["Respuesta"] = "OK";
@@ -927,7 +927,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<HorariosEmpleados>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -954,7 +954,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<HorariosEmpleados>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -981,7 +981,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<HorariosEmpleados>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1010,7 +1010,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarEquipos();
                 respuesta["Respuesta"] = "OK";
@@ -1035,7 +1035,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Equipos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1062,7 +1062,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Equipos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1089,7 +1089,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Equipos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1118,7 +1118,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarEmpleados();
                 respuesta["Respuesta"] = "OK";
@@ -1143,7 +1143,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Empleados>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1170,7 +1170,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Empleados>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1197,7 +1197,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Empleados>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1226,7 +1226,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarClientes();
                 respuesta["Respuesta"] = "OK";
@@ -1251,7 +1251,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Clientes>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1278,7 +1278,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Clientes>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1305,7 +1305,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Clientes>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1334,7 +1334,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarClienteProducto();
                 respuesta["Respuesta"] = "OK";
@@ -1359,7 +1359,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<ClienteProducto>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1386,7 +1386,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<ClienteProducto>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1413,7 +1413,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<ClienteProducto>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1442,7 +1442,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarClasificaciones();
                 respuesta["Respuesta"] = "OK";
@@ -1467,7 +1467,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Clasificaciones>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1494,7 +1494,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Clasificaciones>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1521,7 +1521,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Clasificaciones>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1550,7 +1550,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.ListarBoletos();
                 respuesta["Respuesta"] = "OK";
@@ -1575,7 +1575,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Boletos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1602,7 +1602,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Boletos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1629,7 +1629,7 @@ namespace asp_servicios.Controllers
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }*/
+                } 
                 var entidad = JsonConversor.ConvertirAObjeto<Boletos>(
                 JsonConversor.ConvertirAString(datos["Entidad"]));
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
@@ -1646,4 +1646,5 @@ namespace asp_servicios.Controllers
             }
         }
     }
-}
+} 
+*/

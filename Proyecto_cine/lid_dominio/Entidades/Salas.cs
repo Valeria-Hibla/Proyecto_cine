@@ -10,7 +10,9 @@ namespace lib_dominio.Entidades
         public int NumeroSala { get; set; }
         public int Capacidad { get; set; }
         public bool Estado { get; set; }
-        [ForeignKey("Sucursal")] public int IdSucursal { get; set; }
-        List<Sucursales>? _Sucursales { get; set; }
+        public int IdSucursal { get; set; }
+        [NotMapped] public Sucursales? _IdSucursal { get; set; }
+        public List<HorariosFunciones>? HorariosFunciones { get; set; }
+        public List<Boletos>? Boletos { get; set; }
     }
 }

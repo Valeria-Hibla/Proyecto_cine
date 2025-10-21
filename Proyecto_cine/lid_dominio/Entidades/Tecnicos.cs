@@ -7,10 +7,10 @@ namespace lib_dominio.Entidades
     public class Tecnicos
     {
         [Key] public int IdTecnicos { get; set; }
-        public int Cedula { get; set; }
+        public string? Cedula { get; set; }
         public string? Nombre { get; set; }
         public string? Especialidad { get; set; }
-        [ForeignKey ("Equipos")]public int IdEquipos { get; set; }
-        List<Equipos>? _Equipos { get; set; }
+        public int IdEquipos { get; set; }
+        [NotMapped] public Equipos? _IdEquipo { get; set; }
     }
 }

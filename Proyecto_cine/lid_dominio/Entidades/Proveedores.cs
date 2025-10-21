@@ -6,9 +6,11 @@ namespace lib_dominio.Entidades
 {
     public class Proveedores
     {
-        [Key] public int IdProveedores { get; set; }
-        public int Cedula { get; set; }
+        [Key] public int IdProveedor { get; set; }
+        public string? Cedula { get; set; }
         public string? Nombre { get; set; }
-        public int Edad {  get; set; }
+        public int IdProducto { get; set; }
+        [NotMapped] public Productos? _Producto { get; set; }
+
     }
 }

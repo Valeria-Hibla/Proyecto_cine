@@ -10,8 +10,8 @@ namespace lib_dominio.Entidades
         public string? Tipo { get; set; }
         public string? Marca { get; set; }
         public bool Estado { get; set; }
-
-        [ForeignKey("Sucursal")] public int IdSucursal { get; set; }
-        List<Sucursales>? _Sucursales { get; set; }
+        public int IdSucursal { get; set; }
+        [NotMapped] public Sucursales? _IdSucursal { get; set; }
+        public List<Tecnicos>? Tecnicos { get; set; }
     }
 }

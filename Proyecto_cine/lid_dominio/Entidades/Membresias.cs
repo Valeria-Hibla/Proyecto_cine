@@ -9,7 +9,7 @@ namespace lib_dominio.Entidades
         [Key] public int IdMembresias { get; set; }
         public string? Nombre { get; set; }
         public DateTime FechaInicio { get; set; }
-        [ForeignKey("Clientes")] public int IdCliente { get; set; }
-        List<Clientes>? _Clientes { get; set; }
+        public int IdCliente { get; set; }
+        [NotMapped] public Clientes? _IdCliente { get; set; }
     }
 }

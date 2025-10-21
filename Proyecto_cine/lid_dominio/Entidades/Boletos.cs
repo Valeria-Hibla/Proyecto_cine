@@ -10,10 +10,14 @@ namespace lib_dominio.Entidades
         [Key]public int IdBoletos { get; set; }
         public string? Asiento { get; set; }
         public decimal Precio { get; set; }
-        [ForeignKey("Clientes")] public int IdCliente { get; set; }
-        [ForeignKey("Salas")] public int IdSalas { get; set; }
-        List<Clientes>? _Clientes { get; set; }
-        List<Salas>? _Salas { get; set; }
+        public int IdCliente { get; set; }
+        [NotMapped] public Clientes? _IdCliente { get; set; }
+        public int IdSala { get; set; }
+        [NotMapped] public Salas? _IdSala { get; set; }
+        
+        /*List<Clientes>? _Clientes { get; set; }
+        List<Salas>? _Salas { get; set; }*/
+        // Las listas no se necesitan 
     }
     
 }

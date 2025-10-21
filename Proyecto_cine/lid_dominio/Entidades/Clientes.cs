@@ -10,5 +10,8 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public short Edad { get; set; }
 
+        public List<Boletos>? Boletos { get; set; }
+        public List<Membresias>? Membresias { get; set; }
+        public List<ClientesProductos>? ClientesProductos { get; set; }
     }
 }
