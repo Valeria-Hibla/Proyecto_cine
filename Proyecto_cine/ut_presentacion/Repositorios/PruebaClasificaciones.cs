@@ -6,15 +6,15 @@ using ut_presentacion.Nucleo;
 
 namespace ut_presentacion.Repositorios
 {
-    //Para hacer las pruebas unitarias de HorariosFuncion
+    //Para hacer las pruebas unitarias de Clasificaciones
     [TestClass]
-    public class PruebaHorariosFuncion
+    public class PruebaClasificaciones
     {
         private readonly IConexion? iConexion;
-        private List<HorariosFuncion>? lista;
-        private HorariosFuncion? entidadHorariosFuncion;
+        private List<Clasificaciones>? lista;
+        private Clasificaciones? entidadClasificaciones;
 
-        public PruebaHorariosFuncion()
+        public PruebaClasificaciones()
         {
             iConexion = new Conexion();
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
@@ -30,23 +30,22 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.HorariosFuncion!.ToList();
+            this.lista = this.iConexion!.Clasificaciones!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadHorariosFuncion = EntidadesNucleo.HorariosFuncion()!;
-            this.iConexion!.HorariosFuncion!.Add(this.entidadHorariosFuncion);
+            this.entidadClasificaciones = EntidadesNucleo.Clasificaciones()!;
+            this.iConexion!.Clasificaciones!.Add(this.entidadClasificaciones);
             this.iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadHorariosFuncion!.Fecha= DateTime.Now;
-            this.entidadHorariosFuncion!.Hora = new TimeSpan(3, 3, 0);
-            var entry = this.iConexion!.Entry<HorariosFuncion>(this.entidadHorariosFuncion);
+            this.entidadClasificaciones!.Categoria= "Prueba unitaria #1 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = this.iConexion!.Entry<Clasificaciones>(this.entidadClasificaciones);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();
             return true;
@@ -54,7 +53,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Borrar()
         {
-            this.iConexion!.HorariosFuncion!.Remove(this.entidadHorariosFuncion!);
+            this.iConexion!.Clasificaciones!.Remove(this.entidadClasificaciones!);
             this.iConexion!.SaveChanges();
             return true;
         }

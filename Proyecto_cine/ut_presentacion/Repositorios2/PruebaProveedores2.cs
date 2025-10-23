@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaHorariosEmpleados2
+    public class PruebaProveedores2
     {
-        private readonly IHorariosEmpleadosAplicacion? iHorariosEmpleadosAplicacion;
-        private List<HorariosEmpleados>? lista;
-        private HorariosEmpleados? entidadHorariosEmpleados;
+        private readonly IProveedoresAplicacion? iProveedoresAplicacion;
+        private List<Proveedores>? lista;
+        private Proveedores? entidadProveedores;
         private Conexion iConexion = new Conexion();
 
-        public PruebaHorariosEmpleados2()
+        public PruebaProveedores2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iHorariosEmpleadosAplicacion = new CineAplicacion(iConexion);
+            iProveedoresAplicacion = new ProveedoresAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.HorariosEmpleados!.ToList();
+            lista = iConexion!.Proveedores!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadHorariosEmpleados = EntidadesNucleo.HorariosEmpleados()!;
-            this.iConexion!.HorariosEmpleados!.Add(this.entidadHorariosEmpleados);
-            this.iConexion!.SaveChanges();
+            entidadProveedores = EntidadesNucleo.Proveedores()!;
+            iConexion!.Proveedores!.Add(entidadProveedores);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadHorariosEmpleados!.IdEmpleados = 1;
-            var entry = this.iConexion!.Entry<HorariosEmpleados>(this.entidadHorariosEmpleados);
+            entidadProveedores!.Nombre= "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = iConexion!.Entry(entidadProveedores);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.HorariosEmpleados!.Remove(this.entidadHorariosEmpleados!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Proveedores!.Remove(entidadProveedores!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

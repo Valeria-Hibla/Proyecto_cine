@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaClienteProducto2
+    public class PruebaSucursales2
     {
-        private readonly IClienteProductoAplicacion? iClienteProductoAplicacion;
-        private List<ClienteProducto>? lista;
-        private ClienteProducto? entidadClienteProducto;
+        private readonly ISucursalesAplicacion? iSucursalesAplicacion;
+        private List<Sucursales>? lista;
+        private Sucursales? entidadSucursales;
         private Conexion iConexion = new Conexion();
 
-        public PruebaClienteProducto2()
+        public PruebaSucursales2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iClienteProductoAplicacion = new CineAplicacion(iConexion);
+            iSucursalesAplicacion = new SucursalesAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.ClienteProducto!.ToList();
+            lista = iConexion!.Sucursales!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadClienteProducto = EntidadesNucleo.ClienteProducto()!;
-            this.iConexion!.ClienteProducto!.Add(this.entidadClienteProducto);
-            this.iConexion!.SaveChanges();
+            entidadSucursales = EntidadesNucleo.Sucursales()!;
+            iConexion!.Sucursales!.Add(entidadSucursales);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadClienteProducto!.Monto = 89.99m;
-            var entry = this.iConexion!.Entry<ClienteProducto>(this.entidadClienteProducto);
+            entidadSucursales!.Nombre= "Prueba unitaria #2 -"+DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = iConexion!.Entry(entidadSucursales);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.ClienteProducto!.Remove(this.entidadClienteProducto!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Sucursales!.Remove(entidadSucursales!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

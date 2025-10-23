@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaSalas2
+    public class PruebaEmpleados2
     {
-        private readonly ISalasAplicacion? iSalasAplicacion;
-        private List<Salas>? lista;
-        private Salas? entidadSalas;
+        private readonly IEmpleadosAplicacion? iEmpleadosAplicacion;
+        private List<Empleados>? lista;
+        private Empleados? entidadEmpleados;
         private Conexion iConexion = new Conexion();
 
-        public PruebaSalas2()
+        public PruebaEmpleados2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iSalasAplicacion = new CineAplicacion(iConexion);
+            iEmpleadosAplicacion = new EmpleadosAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Salas!.ToList();
+            lista = iConexion!.Empleados!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadSalas = EntidadesNucleo.Salas()!;
-            this.iConexion!.Salas!.Add(this.entidadSalas);
-            this.iConexion!.SaveChanges();
+            entidadEmpleados = EntidadesNucleo.Empleados()!;
+            iConexion!.Empleados!.Add(entidadEmpleados);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadSalas!.Capacidad = 43;
-            var entry = this.iConexion!.Entry<Salas>(this.entidadSalas);
+            entidadEmpleados!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = iConexion!.Entry(entidadEmpleados);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Salas!.Remove(this.entidadSalas!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Empleados!.Remove(entidadEmpleados!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

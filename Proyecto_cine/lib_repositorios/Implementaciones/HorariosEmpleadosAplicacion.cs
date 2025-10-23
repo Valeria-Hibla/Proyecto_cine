@@ -48,8 +48,6 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad.IdEmpleados == 0)
-                throw new Exception("lbHorarioNoExite");
 
             if ((entidad.HoraInicio.Hour) < 8)
                 throw new Exception("lbHorarioNoExiste");

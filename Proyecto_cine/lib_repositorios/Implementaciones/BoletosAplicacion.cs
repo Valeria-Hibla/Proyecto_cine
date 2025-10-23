@@ -48,7 +48,7 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad.IdSalas == 0)
+            if (entidad.IdSala == 0)
                 throw new Exception("lbNoExistenLosBoletos");
 
             if ((entidad.IdCliente) == 0)

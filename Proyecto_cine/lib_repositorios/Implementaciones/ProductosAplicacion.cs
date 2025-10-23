@@ -54,10 +54,6 @@ namespace lib_repositorios.Implementaciones
             if ((entidad.Precio) < 0)
                 throw new Exception("lbPrecioInvalido");
 
-            if (entidad.IdProveedor == 0)
-            {
-                throw new Exception("lbProveedorNoExiste");
-            }
             if (entidad.IdProductos != 0)
                 throw new Exception("lbYaSeGuardo");
 

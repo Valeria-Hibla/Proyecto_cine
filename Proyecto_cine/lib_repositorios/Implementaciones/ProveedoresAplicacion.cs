@@ -22,7 +22,7 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad!.IdProveedores == 0)
+            if (entidad!.IdProveedor == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Proveedores!.Remove(entidad);
             this.IConexion.SaveChanges();
@@ -33,7 +33,7 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad.IdProveedores != 0)
+            if (entidad.IdProveedor != 0)
                 throw new Exception("lbYaSeGuardo");
             this.IConexion!.Proveedores!.Add(entidad);
             this.IConexion.SaveChanges();
@@ -47,7 +47,7 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad!.IdProveedores == 0)
+            if (entidad!.IdProveedor == 0)
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Proveedores>(entidad);
             entry.State = EntityState.Modified;

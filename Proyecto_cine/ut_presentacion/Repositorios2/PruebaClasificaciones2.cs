@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias #2 de clasificaciones
     [TestClass]
-    public class PruebaClasificacion2
+    public class PruebaClasificaciones2
     {
         private readonly IClasificacionesAplicacion? iClasificacionesAplicacion;
         private List<Clasificaciones>? lista;
         private Clasificaciones? entidadClasificaciones;
         private Conexion iConexion = new Conexion();
 
-        public PruebaClasificacion2()
+        public PruebaClasificaciones2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iClasificacionesAplicacion = new CineAplicacion(iConexion);
+            iClasificacionesAplicacion = new ClasificacionesAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Clasificaciones!.ToList();
+            lista = iConexion!.Clasificaciones!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadClasificaciones = EntidadesNucleo.Clasificaciones()!;
-            this.iConexion!.Clasificaciones!.Add(this.entidadClasificaciones);
-            this.iConexion!.SaveChanges();
+            entidadClasificaciones = EntidadesNucleo.Clasificaciones()!;
+            iConexion!.Clasificaciones!.Add(entidadClasificaciones);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadClasificaciones!.Categoria= "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Clasificaciones>(this.entidadClasificaciones);
+            entidadClasificaciones!.Categoria= "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = iConexion!.Entry(entidadClasificaciones);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Clasificaciones!.Remove(this.entidadClasificaciones!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Clasificaciones!.Remove(entidadClasificaciones!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

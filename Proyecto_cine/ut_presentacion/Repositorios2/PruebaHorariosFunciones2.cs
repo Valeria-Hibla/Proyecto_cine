@@ -4,22 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
-    
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaBoletos2
+    public class PruebaHorariosFunciones2
     {
-        private readonly IBoletosAplicacion? iBoletosAplicacion;
-        private List<Boletos>? lista;
-        private Boletos? entidadBoletos;
+        private readonly IHorariosFuncionesAplicacion? iHorariosFuncionesAplicacion;
+        private List<HorariosFunciones>? lista;
+        private HorariosFunciones? entidadHorariosFunciones;
         private Conexion iConexion = new Conexion();
 
-        public PruebaBoletos2()
+        public PruebaHorariosFunciones2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iBoletosAplicacion = new CineAplicacion(iConexion);
+            iHorariosFuncionesAplicacion = new HorariosFuncionesAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -32,33 +31,32 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Boletos!.ToList();
+            lista = iConexion!.HorariosFunciones!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadBoletos = EntidadesNucleo.Boletos()!;
-            this.iConexion!.Boletos!.Add(this.entidadBoletos);
-            this.iConexion!.SaveChanges();
+            entidadHorariosFunciones = EntidadesNucleo.HorariosFunciones()!;
+            iConexion!.HorariosFunciones!.Add(entidadHorariosFunciones);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadBoletos!.Asiento= "Test #2";
-            var entry = this.iConexion!.Entry<Boletos>(this.entidadBoletos);
+            entidadHorariosFunciones!.Fecha=DateTime.Now;
+            var entry = iConexion!.Entry(entidadHorariosFunciones);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Boletos!.Remove(this.entidadBoletos!);
-            this.iConexion!.SaveChanges();
+            iConexion!.HorariosFunciones!.Remove(entidadHorariosFunciones!);
+            iConexion!.SaveChanges();
             return true;
         }
     }
-    
 }

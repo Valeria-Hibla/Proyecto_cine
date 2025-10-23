@@ -22,7 +22,7 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad!.IdEmpleados == 0)
+            if (entidad!.IdEmpleado == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Empleados!.Remove(entidad);
             this.IConexion.SaveChanges();
@@ -36,7 +36,7 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad!.IdEmpleados == 0)
+            if (entidad!.IdEmpleado == 0)
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Empleados>(entidad);
             entry.State = EntityState.Modified;
@@ -49,9 +49,6 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
 
             if (entidad.IdSucursal == 0)
-                throw new Exception("lbNoExisteElEmpleado");
-
-            if ((entidad.Cedula) == 0)
                 throw new Exception("lbNoExisteElEmpleado");
 
             if (entidad.FechaContratacion > DateTime.Now)

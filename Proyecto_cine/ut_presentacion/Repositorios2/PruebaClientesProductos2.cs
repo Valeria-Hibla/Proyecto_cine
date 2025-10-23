@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaProveedores2
+    public class PruebaClientesProductos2
     {
-        private readonly IProveedoresAplicacion? iProveedoresAplicacion;
-        private List<Proveedores>? lista;
-        private Proveedores? entidadProveedores;
+        private readonly IClientesProductosAplicacion? iClientesProductosAplicacion;
+        private List<ClientesProductos>? lista;
+        private ClientesProductos? entidadClientesProductos;
         private Conexion iConexion = new Conexion();
 
-        public PruebaProveedores2()
+        public PruebaClientesProductos2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iProveedoresAplicacion = new CineAplicacion(iConexion);
+            iClientesProductosAplicacion = new ClientesProductosAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Proveedores!.ToList();
+            lista = iConexion!.ClientesProductos!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadProveedores = EntidadesNucleo.Proveedores()!;
-            this.iConexion!.Proveedores!.Add(this.entidadProveedores);
-            this.iConexion!.SaveChanges();
+            entidadClientesProductos = EntidadesNucleo.ClientesProductos()!;
+            iConexion!.ClientesProductos!.Add(entidadClientesProductos);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadProveedores!.Nombre= "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Proveedores>(this.entidadProveedores);
+            entidadClientesProductos!.Monto = 89.99m;
+            var entry = iConexion!.Entry(entidadClientesProductos);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Proveedores!.Remove(this.entidadProveedores!);
-            this.iConexion!.SaveChanges();
+            iConexion!.ClientesProductos!.Remove(entidadClientesProductos!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

@@ -4,7 +4,7 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
@@ -18,7 +18,7 @@ namespace ut_presentacion.Repositorios
         public PruebaEquipos2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iEquiposAplicacion = new CineAplicacion(iConexion);
+            iEquiposAplicacion = new EquiposAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Equipos!.ToList();
+            lista = iConexion!.Equipos!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadEquipos = EntidadesNucleo.Equipos()!;
-            this.iConexion!.Equipos!.Add(this.entidadEquipos);
-            this.iConexion!.SaveChanges();
+            entidadEquipos = EntidadesNucleo.Equipos()!;
+            iConexion!.Equipos!.Add(entidadEquipos);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadEquipos!.Marca="Samsung";
-            var entry = this.iConexion!.Entry<Equipos>(this.entidadEquipos);
+            entidadEquipos!.Marca="Samsung";
+            var entry = iConexion!.Entry(entidadEquipos);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Equipos!.Remove(this.entidadEquipos!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Equipos!.Remove(entidadEquipos!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

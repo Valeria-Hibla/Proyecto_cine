@@ -6,15 +6,15 @@ using ut_presentacion.Nucleo;
 
 namespace ut_presentacion.Repositorios
 {
-    //Para hacer las pruebas unitarias de Clasificaciones
+    //Para hacer las pruebas unitarias de Tecnicos
     [TestClass]
-    public class PruebaClasificacion
+    public class PruebaClientesProductos
     {
         private readonly IConexion? iConexion;
-        private List<Clasificaciones>? lista;
-        private Clasificaciones? entidadClasificaciones;
+        private List<ClientesProductos>? lista;
+        private ClientesProductos? entidadClientesProductos;
 
-        public PruebaClasificacion()
+        public PruebaClientesProductos()
         {
             iConexion = new Conexion();
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
@@ -30,22 +30,22 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Clasificaciones!.ToList();
+            this.lista = this.iConexion!.ClientesProductos!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadClasificaciones = EntidadesNucleo.Clasificaciones()!;
-            this.iConexion!.Clasificaciones!.Add(this.entidadClasificaciones);
+            this.entidadClientesProductos = EntidadesNucleo.ClientesProductos()!;
+            this.iConexion!.ClientesProductos!.Add(this.entidadClientesProductos);
             this.iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadClasificaciones!.Categoria= "Prueba unitaria #1 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Clasificaciones>(this.entidadClasificaciones);
+            this.entidadClientesProductos!.Monto= 120.00m;
+            var entry = this.iConexion!.Entry<ClientesProductos>(this.entidadClientesProductos);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();
             return true;
@@ -53,7 +53,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Borrar()
         {
-            this.iConexion!.Clasificaciones!.Remove(this.entidadClasificaciones!);
+            this.iConexion!.ClientesProductos!.Remove(this.entidadClientesProductos!);
             this.iConexion!.SaveChanges();
             return true;
         }

@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaProductos2
+    public class PruebaHorariosEmpleados2
     {
-        private readonly IProductosAplicacion? iProductosAplicacion;
-        private List<Productos>? lista;
-        private Productos? entidadProductos;
+        private readonly IHorariosEmpleadosAplicacion? iHorariosEmpleadosAplicacion;
+        private List<HorariosEmpleados>? lista;
+        private HorariosEmpleados? entidadHorariosEmpleados;
         private Conexion iConexion = new Conexion();
 
-        public PruebaProductos2()
+        public PruebaHorariosEmpleados2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iProductosAplicacion = new CineAplicacion(iConexion);
+            iHorariosEmpleadosAplicacion = new HorariosEmpleadosAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Productos!.ToList();
+            lista = iConexion!.HorariosEmpleados!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadProductos = EntidadesNucleo.Productos()!;
-            this.iConexion!.Productos!.Add(this.entidadProductos);
-            this.iConexion!.SaveChanges();
+            entidadHorariosEmpleados = EntidadesNucleo.HorariosEmpleados()!;
+            iConexion!.HorariosEmpleados!.Add(entidadHorariosEmpleados);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadProductos!.Nombre = "Test";
-            var entry = this.iConexion!.Entry<Productos>(this.entidadProductos);
+            entidadHorariosEmpleados!.Fecha =DateTime.Now;
+            var entry = iConexion!.Entry(entidadHorariosEmpleados);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Productos!.Remove(this.entidadProductos!);
-            this.iConexion!.SaveChanges();
+            iConexion!.HorariosEmpleados!.Remove(entidadHorariosEmpleados!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

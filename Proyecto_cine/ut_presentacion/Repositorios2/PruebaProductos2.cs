@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaClientes2
+    public class PruebaProductos2
     {
-        private readonly IClientesAplicacion? iClientesAplicacion;
-        private List<Clientes>? lista;
-        private Clientes? entidadClientes;
+        private readonly IProductosAplicacion? iProductosAplicacion;
+        private List<Productos>? lista;
+        private Productos? entidadProductos;
         private Conexion iConexion = new Conexion();
 
-        public PruebaClientes2()
+        public PruebaProductos2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iClientesAplicacion = new CineAplicacion(iConexion);
+            iProductosAplicacion = new ProductosAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Clientes!.ToList();
+            lista = iConexion!.Productos!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadClientes = EntidadesNucleo.Clientes()!;
-            this.iConexion!.Clientes!.Add(this.entidadClientes);
-            this.iConexion!.SaveChanges();
+            entidadProductos = EntidadesNucleo.Productos()!;
+            iConexion!.Productos!.Add(entidadProductos);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadClientes!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Clientes>(this.entidadClientes);
+            entidadProductos!.Nombre = "Test";
+            var entry = iConexion!.Entry(entidadProductos);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Clientes!.Remove(this.entidadClientes!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Productos!.Remove(entidadProductos!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

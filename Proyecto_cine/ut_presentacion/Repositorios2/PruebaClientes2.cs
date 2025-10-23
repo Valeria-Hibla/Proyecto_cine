@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaEmpleados2
+    public class PruebaClientes2
     {
-        private readonly IEmpleadosAplicacion? iEmpleadosAplicacion;
-        private List<Empleados>? lista;
-        private Empleados? entidadEmpleados;
+        private readonly IClientesAplicacion? iClientesAplicacion;
+        private List<Clientes>? lista;
+        private Clientes? entidadClientes;
         private Conexion iConexion = new Conexion();
 
-        public PruebaEmpleados2()
+        public PruebaClientes2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iEmpleadosAplicacion = new CineAplicacion(iConexion);
+            iClientesAplicacion = new ClientesAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Empleados!.ToList();
+            lista = iConexion!.Clientes!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadEmpleados = EntidadesNucleo.Empleados()!;
-            this.iConexion!.Empleados!.Add(this.entidadEmpleados);
-            this.iConexion!.SaveChanges();
+            entidadClientes = EntidadesNucleo.Clientes()!;
+            iConexion!.Clientes!.Add(entidadClientes);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadEmpleados!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Empleados>(this.entidadEmpleados);
+            entidadClientes!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = iConexion!.Entry(entidadClientes);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Empleados!.Remove(this.entidadEmpleados!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Clientes!.Remove(entidadClientes!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaHorariosFuncion2
+    public class PruebaPeliculas2
     {
-        private readonly IHorariosFuncionAplicacion? iHorariosFuncionAplicacion;
-        private List<HorariosFuncion>? lista;
-        private HorariosFuncion? entidadHorariosFuncion;
+        private readonly IPeliculasAplicacion? iPeliculasAplicacion;
+        private List<Peliculas>? lista;
+        private Peliculas? entidadPeliculas;
         private Conexion iConexion = new Conexion();
 
-        public PruebaHorariosFuncion2()
+        public PruebaPeliculas2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iHorariosFuncionAplicacion = new CineAplicacion(iConexion);
+            iPeliculasAplicacion = new PeliculasAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.HorariosFuncion!.ToList();
+            lista = iConexion!.Peliculas!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadHorariosFuncion = EntidadesNucleo.HorariosFuncion()!;
-            this.iConexion!.HorariosFuncion!.Add(this.entidadHorariosFuncion);
-            this.iConexion!.SaveChanges();
+            entidadPeliculas = EntidadesNucleo.Peliculas()!;
+            iConexion!.Peliculas!.Add(entidadPeliculas);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadHorariosFuncion!.Fecha=DateTime.Now;
-            var entry = this.iConexion!.Entry<HorariosFuncion>(this.entidadHorariosFuncion);
+            entidadPeliculas!.Titulo = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = iConexion!.Entry(entidadPeliculas);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.HorariosFuncion!.Remove(this.entidadHorariosFuncion!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Peliculas!.Remove(entidadPeliculas!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

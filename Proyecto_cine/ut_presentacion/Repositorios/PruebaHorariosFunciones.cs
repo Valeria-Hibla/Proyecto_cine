@@ -6,15 +6,15 @@ using ut_presentacion.Nucleo;
 
 namespace ut_presentacion.Repositorios
 {
-    //Para hacer las pruebas unitarias de Tecnicos
+    //Para hacer las pruebas unitarias de HorariosFunciones
     [TestClass]
-    public class PruebaClienteProducto
+    public class PruebaHorariosFunciones
     {
         private readonly IConexion? iConexion;
-        private List<ClienteProducto>? lista;
-        private ClienteProducto? entidadClienteProducto;
+        private List<HorariosFunciones>? lista;
+        private HorariosFunciones? entidadHorariosFunciones;
 
-        public PruebaClienteProducto()
+        public PruebaHorariosFunciones()
         {
             iConexion = new Conexion();
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
@@ -30,22 +30,22 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.ClienteProducto!.ToList();
+            this.lista = this.iConexion!.HorariosFunciones!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadClienteProducto = EntidadesNucleo.ClienteProducto()!;
-            this.iConexion!.ClienteProducto!.Add(this.entidadClienteProducto);
+            this.entidadHorariosFunciones = EntidadesNucleo.HorariosFunciones()!;
+            this.iConexion!.HorariosFunciones!.Add(this.entidadHorariosFunciones);
             this.iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadClienteProducto!.Monto= 120.00m;
-            var entry = this.iConexion!.Entry<ClienteProducto>(this.entidadClienteProducto);
+            this.entidadHorariosFunciones!.Fecha= DateTime.Now;
+            var entry = this.iConexion!.Entry<HorariosFunciones>(this.entidadHorariosFunciones);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();
             return true;
@@ -53,7 +53,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Borrar()
         {
-            this.iConexion!.ClienteProducto!.Remove(this.entidadClienteProducto!);
+            this.iConexion!.HorariosFunciones!.Remove(this.entidadHorariosFunciones!);
             this.iConexion!.SaveChanges();
             return true;
         }

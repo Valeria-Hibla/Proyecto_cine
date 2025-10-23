@@ -5,11 +5,11 @@ using System.Diagnostics.Metrics;
 
 namespace lib_repositorios.Implementaciones
 {
-    public class ClienteProductoAplicacion : IClienteProductoAplicacion
+    public class ClientesProductosAplicacion : IClientesProductosAplicacion
     {
         private IConexion? IConexion = null;
 
-        public ClienteProductoAplicacion(IConexion iConexion)
+        public ClientesProductosAplicacion(IConexion iConexion)
         {
             this.IConexion = iConexion;
         }
@@ -18,32 +18,32 @@ namespace lib_repositorios.Implementaciones
         {
             this.IConexion!.StringConexion = StringConexion;
         }
-        public ClienteProducto? Borrar(ClienteProducto? entidad)
+        public ClientesProductos? Borrar(ClientesProductos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdClienteProducto == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.ClienteProducto!.Remove(entidad);
+            this.IConexion!.ClientesProductos!.Remove(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<ClienteProducto> ListarClienteProducto()
+        public List<ClientesProductos> ListarClientesProductos()
         {
-            return this.IConexion!.ClienteProducto!.Take(20).ToList();
+            return this.IConexion!.ClientesProductos!.Take(20).ToList();
         }
-        public ClienteProducto? Modificar(ClienteProducto? entidad)
+        public ClientesProductos? Modificar(ClientesProductos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdClienteProducto == 0)
                 throw new Exception("lbNoSeGuardo");
-            var entry = this.IConexion!.Entry<ClienteProducto>(entidad);
+            var entry = this.IConexion!.Entry<ClientesProductos>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public ClienteProducto? Guardar(ClienteProducto? entidad)//logica de negocio
+        public ClientesProductos? Guardar(ClientesProductos? entidad)//logica de negocio
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
@@ -51,13 +51,13 @@ namespace lib_repositorios.Implementaciones
             if (entidad.IdCliente == 0)
                 throw new Exception("lbNoExisteLaFactura");
 
-            if ((entidad.IdProductos) == 0)
+            if ((entidad.IdProducto) == 0)
                 throw new Exception("lbNoExisteLaFactura");
 
             if (entidad.Monto <= 0)
                 throw new Exception("lbNoExisteLaFactura");
 
-            this.IConexion!.ClienteProducto!.Add(entidad);
+            this.IConexion!.ClientesProductos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }

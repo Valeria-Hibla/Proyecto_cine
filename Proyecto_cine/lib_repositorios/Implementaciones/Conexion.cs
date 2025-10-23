@@ -18,12 +18,12 @@ namespace lib_repositorios.Implementaciones
         public DbSet<Productos>? Productos { get; set; }
         public DbSet<Peliculas>? Peliculas { get; set; }
         public DbSet<Membresias>? Membresias { get; set; }
-        public DbSet<HorariosFuncion>? HorariosFuncion { get; set; }
+        public DbSet<HorariosFunciones>? HorariosFunciones { get; set; }
         public DbSet<HorariosEmpleados>? HorariosEmpleados { get; set; }
         public DbSet<Equipos>? Equipos { get; set; }
         public DbSet<Empleados>? Empleados { get; set; }
         public DbSet<Clientes>? Clientes { get; set; }
-        public DbSet<ClienteProducto>? ClienteProducto { get; set; }
+        public DbSet<ClientesProductos>? ClientesProductos { get; set; }
         public DbSet<Clasificaciones>? Clasificaciones { get; set; }
         public DbSet<Boletos>? Boletos { get; set; }
     }

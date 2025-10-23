@@ -4,21 +4,21 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaPeliculas2
+    public class PruebaTecnicos2
     {
-        private readonly IPeliculasAplicacion? iPeliculasAplicacion;
-        private List<Peliculas>? lista;
-        private Peliculas? entidadPeliculas;
+        private readonly ITecnicosAplicacion? iTecnicosAplicacion;
+        private List<Tecnicos>? lista;
+        private Tecnicos? entidadTecnicos;
         private Conexion iConexion = new Conexion();
 
-        public PruebaPeliculas2()
+        public PruebaTecnicos2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iPeliculasAplicacion = new CineAplicacion(iConexion);
+            iTecnicosAplicacion = new TecnicosAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,31 +31,31 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Peliculas!.ToList();
+            lista = iConexion!.Tecnicos!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadPeliculas = EntidadesNucleo.Peliculas()!;
-            this.iConexion!.Peliculas!.Add(this.entidadPeliculas);
-            this.iConexion!.SaveChanges();
+            entidadTecnicos = EntidadesNucleo.Tecnicos()!;
+            iConexion!.Tecnicos!.Add(entidadTecnicos);
+            iConexion!.SaveChanges();
             return true;
         }
-
+        
         public bool Modificar()
         {
-            this.entidadPeliculas!.Titulo = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Peliculas>(this.entidadPeliculas);
+            entidadTecnicos!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            var entry = iConexion!.Entry(entidadTecnicos);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Peliculas!.Remove(this.entidadPeliculas!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Tecnicos!.Remove(entidadTecnicos!);
+            iConexion!.SaveChanges();
             return true;
         }
     }

@@ -16,7 +16,7 @@ namespace ut_presentacion.Nucleo
         {
             var entidadTecnicos = new Tecnicos();
             entidadTecnicos.Nombre = "Carlos Mendoza";
-            entidadTecnicos.Cedula= 000000;
+            entidadTecnicos.Cedula= "7735472";
             entidadTecnicos.Especialidad= "Programacion de Software";
             entidadTecnicos.IdEquipos = 6;
             return entidadTecnicos;
@@ -44,7 +44,6 @@ namespace ut_presentacion.Nucleo
             entidadProductos.Nombre = "Pruebas Productos";
             entidadProductos.Descripcion = "Programacion de Software";
             entidadProductos.Precio = 1500.00m;
-            entidadProductos.IdProveedor = 5;
             return entidadProductos;
         }
         public static Proveedores? Proveedores()
@@ -52,8 +51,8 @@ namespace ut_presentacion.Nucleo
 
             var entidadProveedores = new Proveedores();
             entidadProveedores.Nombre = "Pruebas Proveedores -" + DateTime.Now.ToString("yyyyMMddhhmmss");
-            entidadProveedores.Cedula = 000000;
-            entidadProveedores.Edad = 38;
+            entidadProveedores.Cedula = "7735472";
+            entidadProveedores.IdProducto = 1;
             return entidadProveedores;
         }
         public static Clasificaciones? Clasificaciones()
@@ -71,7 +70,7 @@ namespace ut_presentacion.Nucleo
             entidadPeliculas.Titulo = "Titanic";
             entidadPeliculas.Duracion = new TimeSpan(2,30,00);
             entidadPeliculas.Genero = "Romance";
-            entidadPeliculas.IdClasificaciones = 1;
+            entidadPeliculas.IdClasificacion = 1;
             return entidadPeliculas;
         }
         public static Clientes? Clientes()
@@ -91,20 +90,19 @@ namespace ut_presentacion.Nucleo
             entidadMembresias.IdCliente = 1;
             return entidadMembresias;
         }
-        public static HorariosFuncion? HorariosFuncion()
+        public static HorariosFunciones? HorariosFunciones()
         {
 
-            var entidadHorariosFuncion = new HorariosFuncion();
-            entidadHorariosFuncion.Fecha =DateTime.Now;
-            entidadHorariosFuncion.Hora = new TimeSpan(11,30,00);
-            entidadHorariosFuncion.IdSalas = 1;
-            entidadHorariosFuncion.IdPelicula = 5;
-            return entidadHorariosFuncion;
+            var entidadHorariosFunciones = new HorariosFunciones();
+            entidadHorariosFunciones.Fecha =DateTime.Now;
+            entidadHorariosFunciones.IdSala = 1;
+            entidadHorariosFunciones.IdPelicula = 5;
+            return entidadHorariosFunciones;
         }
         public static Empleados? Empleados()
         {
             var entidadEmpleados = new Empleados();
-            entidadEmpleados.Cedula = 7735472;
+            entidadEmpleados.Cedula = "7735472";
             entidadEmpleados.Nombre = "Santiago Osorio";
             entidadEmpleados.FechaContratacion = DateTime.Now;
             entidadEmpleados.IdSucursal = 5;
@@ -116,18 +114,17 @@ namespace ut_presentacion.Nucleo
             entidadHorariosEmpleados.Fecha = DateTime.Now;
             entidadHorariosEmpleados.HoraInicio = TimeOnly.FromDateTime(DateTime.Now);
             entidadHorariosEmpleados.HoraFin = TimeOnly.MaxValue;
-            entidadHorariosEmpleados.IdEmpleados = 3;
             return entidadHorariosEmpleados;
         }
 
-        public static ClienteProducto? ClienteProducto()
+        public static ClientesProductos? ClientesProductos()
         {
-            var entidadClienteProducto = new ClienteProducto();
-            entidadClienteProducto.FechaCompra= DateTime.Now;
-            entidadClienteProducto.Monto = 500.00m;
-            entidadClienteProducto.IdProductos = 4;
-            entidadClienteProducto.IdCliente = 3;
-            return entidadClienteProducto;
+            var entidadClientesProductos = new ClientesProductos();
+            entidadClientesProductos.FechaCompra= DateTime.Now;
+            entidadClientesProductos.Monto = 500.00m;
+            entidadClientesProductos.IdProducto = 4;
+            entidadClientesProductos.IdCliente = 3;
+            return entidadClientesProductos;
         }
 
         public static Boletos? Boletos()
@@ -135,8 +132,8 @@ namespace ut_presentacion.Nucleo
             var entidadBoletos = new Boletos();
             entidadBoletos.Asiento = "32A";
             entidadBoletos.Precio = 200.00m;
-            entidadBoletos.IdCliente = 3;
-            entidadBoletos.IdSalas = 5;
+            entidadBoletos.IdCliente = 1;
+            entidadBoletos.IdSala = 1;
             return entidadBoletos;
         }
     }

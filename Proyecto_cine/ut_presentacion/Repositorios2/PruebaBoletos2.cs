@@ -4,21 +4,22 @@ using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
 
-namespace ut_presentacion.Repositorios
+namespace ut_presentacion.Repositorios2
 {
+    
     //Para hacer las pruebas unitarias
     [TestClass]
-    public class PruebaMembresias2
+    public class PruebaBoletos2
     {
-        private readonly IMembresiasAplicacion? iMembresiasAplicacion;
-        private List<Membresias>? lista;
-        private Membresias? entidadMembresias;
+        private readonly IBoletosAplicacion? iBoletosAplicacion;
+        private List<Boletos>? lista;
+        private Boletos? entidadBoletos;
         private Conexion iConexion = new Conexion();
 
-        public PruebaMembresias2()
+        public PruebaBoletos2()
         {
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iMembresiasAplicacion = new CineAplicacion(iConexion);
+            iBoletosAplicacion = new BoletosAplicacion(iConexion);
         }
 
         [TestMethod]
@@ -31,32 +32,33 @@ namespace ut_presentacion.Repositorios
         }
         public bool Listar()
         {
-            this.lista = this.iConexion!.Membresias!.ToList();
+            lista = iConexion!.Boletos!.ToList();
             return lista.Count > 0;
         }
 
         public bool Guardar()
         {
-            this.entidadMembresias = EntidadesNucleo.Membresias()!;
-            this.iConexion!.Membresias!.Add(this.entidadMembresias);
-            this.iConexion!.SaveChanges();
+            entidadBoletos = EntidadesNucleo.Boletos()!;
+            iConexion!.Boletos!.Add(entidadBoletos);
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Modificar()
         {
-            this.entidadMembresias!.Nombre = "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
-            var entry = this.iConexion!.Entry<Membresias>(this.entidadMembresias);
+            entidadBoletos!.Asiento= "Test #2";
+            var entry = iConexion!.Entry(entidadBoletos);
             entry.State = EntityState.Modified;
-            this.iConexion!.SaveChanges();
+            iConexion!.SaveChanges();
             return true;
         }
 
         public bool Borrar()
         {
-            this.iConexion!.Membresias!.Remove(this.entidadMembresias!);
-            this.iConexion!.SaveChanges();
+            iConexion!.Boletos!.Remove(entidadBoletos!);
+            iConexion!.SaveChanges();
             return true;
         }
     }
+    
 }
