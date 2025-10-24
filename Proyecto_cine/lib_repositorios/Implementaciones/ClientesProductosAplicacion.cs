@@ -28,7 +28,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<ClientesProductos> ListarClientesProductos()
+        public List<ClientesProductos> Listar()
         {
             return this.IConexion!.ClientesProductos!.Take(20).ToList();
         }

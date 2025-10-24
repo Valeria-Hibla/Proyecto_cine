@@ -6,9 +6,9 @@ namespace lib_dominio.Entidades
     public class Clientes
     {
         [Key]public int IdCliente { get; set; }
-        public int Cedula { get; set; }
+        public string? Cedula { get; set; }
         public string? Nombre { get; set; }
-        public short Edad { get; set; }
+        public int Edad { get; set; }
 
         public List<Boletos>? Boletos { get; set; }
         public List<Membresias>? Membresias { get; set; }

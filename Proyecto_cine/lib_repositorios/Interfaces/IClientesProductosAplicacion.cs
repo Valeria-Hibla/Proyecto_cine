@@ -4,7 +4,7 @@ namespace lib_repositorios.Interfaces
 {
     public interface IClientesProductosAplicacion
     {
-        List<ClientesProductos> ListarClientesProductos();
+        List<ClientesProductos> Listar();
         ClientesProductos? Guardar(ClientesProductos? entidad);
         ClientesProductos? Modificar(ClientesProductos? entidad);
         ClientesProductos? Borrar(ClientesProductos? entidad);

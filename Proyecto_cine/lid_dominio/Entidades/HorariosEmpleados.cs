@@ -10,6 +10,6 @@ namespace lib_dominio.Entidades
         public DateTime Fecha { get; set; }
         public TimeOnly HoraInicio { get; set; }
         public TimeOnly HoraFin { get; set; }
-        List<Empleados>? _Empleados { get; set; }
+        public List<Empleados>? Empleados { get; set; }
     }
 }

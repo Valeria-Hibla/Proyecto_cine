@@ -6,7 +6,6 @@ using ut_presentacion.Nucleo;
 
 namespace ut_presentacion.Repositorios
 {
-    //Para hacer las pruebas unitarias de Equipos
     [TestClass]
     public class PruebaEquipos
     {

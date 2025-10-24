@@ -6,7 +6,7 @@ namespace ut_presentacion.Nucleo
         public static Equipos? Equipos()
         {
             var entidadEquipos = new Equipos();
-            entidadEquipos.Tipo = "Pruebas Equipos -" + DateTime.Now.ToString("yyyyMMddhhmmss");
+            entidadEquipos.Tipo = "Pruebas Equipos" + DateTime.Now.ToString("yyyyMMddhhmmss");
             entidadEquipos.Marca = "Programacion de Software";
             entidadEquipos.Estado = false;
             entidadEquipos.IdSucursal = 3;
@@ -76,7 +76,7 @@ namespace ut_presentacion.Nucleo
         public static Clientes? Clientes()
         {
             var entidadClientes = new Clientes();
-            entidadClientes.Cedula = 9002939;
+            entidadClientes.Cedula = "9002939";
             entidadClientes.Nombre = "Valentina Tamayo";
             entidadClientes.Edad = 24;
             return entidadClientes;
@@ -106,14 +106,15 @@ namespace ut_presentacion.Nucleo
             entidadEmpleados.Nombre = "Santiago Osorio";
             entidadEmpleados.FechaContratacion = DateTime.Now;
             entidadEmpleados.IdSucursal = 5;
+            entidadEmpleados.IdHorarioEmpleado = 1;
             return entidadEmpleados;
         }
         public static HorariosEmpleados? HorariosEmpleados()
         {
 ;            var entidadHorariosEmpleados = new HorariosEmpleados();
             entidadHorariosEmpleados.Fecha = DateTime.Now;
-            entidadHorariosEmpleados.HoraInicio = TimeOnly.FromDateTime(DateTime.Now);
-            entidadHorariosEmpleados.HoraFin = TimeOnly.MaxValue;
+            entidadHorariosEmpleados.HoraInicio = new TimeOnly(12, 30, 0);
+            entidadHorariosEmpleados.HoraFin = new TimeOnly(20, 30, 0);
             return entidadHorariosEmpleados;
         }
 

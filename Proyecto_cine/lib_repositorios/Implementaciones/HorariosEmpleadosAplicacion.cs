@@ -28,7 +28,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<HorariosEmpleados> ListarHorariosEmpleados()
+        public List<HorariosEmpleados> Listar()
         {
             return this.IConexion!.HorariosEmpleados!.Take(20).ToList();
         }

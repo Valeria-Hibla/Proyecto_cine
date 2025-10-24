@@ -10,9 +10,8 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public DateTime FechaContratacion { get; set; }
         public int IdSucursal { get; set; }
-        [NotMapped] public Sucursales? _IdSucursal { get; set; }
+        [ForeignKey("IdSucursal")] public Sucursales? _IdSucursal { get; set; }
         public int IdHorarioEmpleado { get; set; }
-        [NotMapped] public HorariosEmpleados? _IdHorarioEmpleado { get; set; }
-
+        [ForeignKey("IdHorarioEmpleado")] public HorariosEmpleados? _IdHorarioEmpleado { get; set; }
     }
 }
