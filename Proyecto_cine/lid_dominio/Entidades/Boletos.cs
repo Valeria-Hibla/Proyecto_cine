@@ -16,10 +16,6 @@ namespace lib_dominio.Entidades
         public int IdSala { get; set; }
         [ForeignKey("IdSala")] public Salas? _IdSala { get; set; }
         //[NotMapped] public Salas? _IdSala { get; set; }
-        
-        /*List<Clientes>? _Clientes { get; set; }
-        List<Salas>? _Salas { get; set; }*/
-        // Las listas no se necesitan 
     }
     
 }

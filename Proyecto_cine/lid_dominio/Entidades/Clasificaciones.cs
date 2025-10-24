@@ -9,7 +9,7 @@ namespace lib_dominio.Entidades
 {
     public class Clasificaciones
     {
-        [Key] public int IdClasificaciones { get; set; }
+        [Key] public int IdClasificacion { get; set; }
         public string? Categoria { get; set; }
         public int EdadMinima { get; set; }
         public string? Descripcion { get; set; }

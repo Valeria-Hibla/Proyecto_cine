@@ -28,7 +28,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<Boletos> ListarBoletos()
+        public List<Boletos> Listar()
         {
             return this.IConexion!.Boletos!.Take(20).ToList();
         }

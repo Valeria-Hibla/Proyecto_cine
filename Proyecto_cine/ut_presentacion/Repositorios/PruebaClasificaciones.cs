@@ -44,7 +44,7 @@ namespace ut_presentacion.Repositorios
 
         public bool Modificar()
         {
-            this.entidadClasificaciones!.Categoria= "Prueba unitaria #1 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            this.entidadClasificaciones!.Categoria= "Prueba";
             var entry = this.iConexion!.Entry<Clasificaciones>(this.entidadClasificaciones);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();
