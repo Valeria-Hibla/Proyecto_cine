@@ -8,9 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Servicios", "2. Servicios", "{F9B2C3B4-8C1D-4139-A8B9-632996CEC452}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Nucleo", "3. Nucleo", "{083A3482-C716-406E-9056-EA50A8DFA3D1}"
-	ProjectSection(SolutionItems) = preProject
-		lid_dominio\Entidades\Equipos.cs = lid_dominio\Entidades\Equipos.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Pruebas unitarias", "4. Pruebas unitarias", "{D1975A91-D771-4368-B0ED-D0F4A29E3A4B}"
 EndProject

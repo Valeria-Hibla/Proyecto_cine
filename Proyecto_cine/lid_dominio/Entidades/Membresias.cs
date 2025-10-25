@@ -8,8 +8,8 @@ namespace lib_dominio.Entidades
     {
         [Key] public int IdMembresias { get; set; }
         public string? Nombre { get; set; }
+        public string? Descripcion { get; set; }
         public DateTime FechaInicio { get; set; }
-        public int IdCliente { get; set; }
-        [ForeignKey("IdCliente")] public Clientes? _IdCliente { get; set; }
+        public List<Clientes>? Clientes{ get; set; }
     }
 }

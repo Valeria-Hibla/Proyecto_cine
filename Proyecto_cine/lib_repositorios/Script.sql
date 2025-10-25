@@ -1,6 +1,6 @@
-﻿CREATE DATABASE Proyecto_cine
+﻿CREATE DATABASE ProyectoCine
 GO
-USE Proyecto_cine
+USE ProyectoCine
 GO
 
 -- Creacion de tablas
@@ -29,7 +29,8 @@ CREATE TABLE Clientes
 	IdCliente INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	Cedula NVARCHAR(11) NOT NULL,
 	Nombre NVARCHAR(50) NOT NULL,
-	Edad INT NOT NULL
+	Edad INT NOT NULL,
+	IdMembresia INT NOT NULL
 )
 GO
 
@@ -46,8 +47,8 @@ CREATE TABLE Membresias
 (
 	IdMembresias INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	Nombre NVARCHAR(50) NOT NULL,
-	FechaInicio SMALLDATETIME DEFAULT GETDATE(),
-	IdCliente INT NOT NULL
+	Descripcion NVARCHAR(80),
+	FechaInicio SMALLDATETIME DEFAULT GETDATE()
 )
 GO
 
@@ -151,8 +152,8 @@ GO
 
 -- RELACIONES
 
-ALTER TABLE Membresias ADD FOREIGN KEY(IdCliente)
-REFERENCES Clientes
+ALTER TABLE Clientes ADD FOREIGN KEY(IdMembresia)
+REFERENCES Membresias
 GO
 
 ALTER TABLE Boletos ADD FOREIGN KEY(IdCliente)
@@ -226,12 +227,20 @@ INSERT INTO Sucursales (Nombre, Direccion, Ciudad) VALUES
 ('Cinemark', 'Av. Las Américas #33-21', 'Cartagena')
 GO
 
-INSERT INTO Clientes (Cedula, Nombre, Edad) VALUES
-(1002456789, 'Juan Henao', 19),
-(1009876543, 'María Lopez', 25),
-(1012345678, 'Carlos Pérez', 32),
-(1098765432, 'Ana Gómez', 28),
-(1023456789, 'Luis Rodríguez', 41)
+INSERT INTO Membresias (Nombre, Descripcion) VALUES
+('Premium', 'Descripcion1'),
+('Básica', 'Descripcion2'),
+('Gold', 'Descripcion3'),
+('Familiar', 'Descripcion4'),
+('Estudiante', 'Descripcion5')
+GO
+
+INSERT INTO Clientes (Cedula, Nombre, Edad, IdMembresia) VALUES
+(1002456789, 'Juan Henao', 19, 1),
+(1009876543, 'María Lopez', 25, 2),
+(1012345678, 'Carlos Pérez', 32, 3),
+(1098765432, 'Ana Gómez', 28, 4),
+(1023456789, 'Luis Rodríguez', 41, 5)
 GO
 
 INSERT INTO Productos (Nombre, Descripcion, Precio) VALUES
@@ -250,10 +259,6 @@ INSERT INTO Empleados (Cedula, Nombre, IdSucursal, IdHorarioEmpleado) VALUES
 (1007773333, 'Camila Torres', 4, 2)
 GO
 
-
-
-
-
 INSERT INTO Salas (NumeroSala, Capacidad, Estado, IdSucursal) VALUES
 (101, 50, 1, 1),  
 (202, 30, 0, 2),
@@ -268,14 +273,6 @@ INSERT INTO Proveedores (Cedula, Nombre, IdProducto) VALUES
 (555444333, 'Carlos Pérez', 1),
 (222333444, 'Laura Martínez', 4),
 (999888777, 'Sofía Gómez', 5)
-GO
-
-INSERT INTO Membresias (Nombre, IdCliente) VALUES
-('Premium', 1),
-('Básica', 2),
-('Gold', 3),
-('Familiar', 4),
-('Estudiante', 5)
 GO
 
 INSERT INTO Boletos (Asiento, Precio, IdCliente, IdSala) VALUES

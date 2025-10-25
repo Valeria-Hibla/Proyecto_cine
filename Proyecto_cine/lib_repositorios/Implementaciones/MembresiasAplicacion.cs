@@ -50,12 +50,6 @@ namespace lib_repositorios.Implementaciones
 
             if (string.IsNullOrWhiteSpace(entidad.Nombre))
                 throw new Exception("lbNombreRequerido");
-
-
-            if (entidad.IdCliente == 0)
-            {
-                throw new Exception("lbClienteNoExiste");
-            }
             if (entidad.IdMembresias != 0)
                 throw new Exception("lbYaSeGuardo");
 

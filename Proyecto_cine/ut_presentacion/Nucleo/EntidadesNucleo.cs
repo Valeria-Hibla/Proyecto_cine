@@ -79,6 +79,7 @@ namespace ut_presentacion.Nucleo
             entidadClientes.Cedula = "9002939";
             entidadClientes.Nombre = "Valentina Tamayo";
             entidadClientes.Edad = 24;
+            entidadClientes.IdMembresia = 1;
             return entidadClientes;
         }
         public static Membresias? Membresias()
@@ -86,8 +87,8 @@ namespace ut_presentacion.Nucleo
 
             var entidadMembresias = new Membresias();
             entidadMembresias.Nombre = "Gold";
+            entidadMembresias.Descripcion = "Prueba";
             entidadMembresias.FechaInicio =DateTime.Now;
-            entidadMembresias.IdCliente = 1;
             return entidadMembresias;
         }
         public static HorariosFunciones? HorariosFunciones()
