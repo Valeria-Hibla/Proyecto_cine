@@ -46,7 +46,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<Tecnicos> ListarTecnicos()
+        public List<Tecnicos> Listar()
         {
             return this.IConexion!.Tecnicos!.Take(20).ToList();
         }

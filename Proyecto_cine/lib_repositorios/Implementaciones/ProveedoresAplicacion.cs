@@ -39,7 +39,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<Proveedores> ListarProveedores()
+        public List<Proveedores> Listar()
         {
             return this.IConexion!.Proveedores!.Take(20).ToList();
         }

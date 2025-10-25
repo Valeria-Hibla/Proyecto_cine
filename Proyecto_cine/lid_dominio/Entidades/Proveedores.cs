@@ -10,7 +10,7 @@ namespace lib_dominio.Entidades
         public string? Cedula { get; set; }
         public string? Nombre { get; set; }
         public int IdProducto { get; set; }
-        [NotMapped] public Productos? _Producto { get; set; }
+        [ForeignKey("IdProducto")] public Productos? _Producto { get; set; }
 
     }
 }

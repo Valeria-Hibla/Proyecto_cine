@@ -8,9 +8,10 @@ namespace lib_dominio.Entidades
     {
         [Key] public int IdHorariosFuncion { get; set; }
         public DateTime Fecha { get; set; }
+        public TimeOnly? Hora { get; set; }
         public int IdSala { get; set; }
-        [NotMapped]public Salas? _Sala { get; set; }
+        [ForeignKey("IdSala")] public Salas? _IdSala { get; set; }
         public int IdPelicula { get; set; }
-        [NotMapped] public Peliculas? _Pelicula { get; set; }
+        [ForeignKey("IdPelicula")] public Peliculas? _IdPelicula { get; set; }
     }
 }

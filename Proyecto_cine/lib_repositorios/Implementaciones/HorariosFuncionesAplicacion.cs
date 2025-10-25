@@ -29,7 +29,7 @@ namespace lib_repositorios.Implementaciones
             return entidad;
         }
 
-        public List<HorariosFunciones> ListarHorariosFunciones()
+        public List<HorariosFunciones> Listar()
         {
             return this.IConexion!.HorariosFunciones!.Take(20).ToList();
         }

@@ -28,7 +28,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<Membresias> ListarMembresias()
+        public List<Membresias> Listar()
         {
             return this.IConexion!.Membresias!.Take(20).ToList();
         }

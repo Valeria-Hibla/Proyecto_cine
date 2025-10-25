@@ -18,7 +18,7 @@ namespace ut_presentacion.Nucleo
             entidadTecnicos.Nombre = "Carlos Mendoza";
             entidadTecnicos.Cedula= "7735472";
             entidadTecnicos.Especialidad= "Programacion de Software";
-            entidadTecnicos.IdEquipos = 6;
+            entidadTecnicos.IdEquipo = 2;
             return entidadTecnicos;
         }
         public static Sucursales? Sucursales()
@@ -95,6 +95,7 @@ namespace ut_presentacion.Nucleo
 
             var entidadHorariosFunciones = new HorariosFunciones();
             entidadHorariosFunciones.Fecha =DateTime.Now;
+            entidadHorariosFunciones.Hora = new TimeOnly(2, 10, 0);
             entidadHorariosFunciones.IdSala = 1;
             entidadHorariosFunciones.IdPelicula = 5;
             return entidadHorariosFunciones;
@@ -138,5 +139,5 @@ namespace ut_presentacion.Nucleo
             return entidadBoletos;
         }
     }
-    }
+}
 
