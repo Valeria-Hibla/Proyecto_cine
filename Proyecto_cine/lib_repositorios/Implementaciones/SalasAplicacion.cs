@@ -30,7 +30,10 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Salas> Listar()
         {
-            return this.IConexion!.Salas!.Take(20).ToList();
+            return this.IConexion!.Salas!.Take(20)
+                .Include(c => c.HorariosFunciones)
+                .Include(c => c.Boletos)
+                .ToList();
         }
         public Salas? Modificar(Salas? entidad)
         {

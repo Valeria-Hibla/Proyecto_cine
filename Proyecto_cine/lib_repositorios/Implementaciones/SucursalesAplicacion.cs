@@ -30,7 +30,11 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Sucursales> Listar()
         {
-            return this.IConexion!.Sucursales!.Take(20).ToList();
+            return this.IConexion!.Sucursales!.Take(20)
+                .Include(c => c.Empleados)
+                .Include(c => c.Salas)
+                .Include(c => c.Equipos)
+                .ToList();
         }
         public Sucursales? Modificar(Sucursales? entidad)
         {

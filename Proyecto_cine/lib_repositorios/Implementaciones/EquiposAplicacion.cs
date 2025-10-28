@@ -30,7 +30,9 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Equipos> Listar()
         {
-            return this.IConexion!.Equipos!.Take(20).ToList();
+            return this.IConexion!.Equipos!.Take(20)
+                .Include(c => c.Tecnicos)
+                .ToList();
         }
         public Equipos? Modificar(Equipos? entidad)
         {

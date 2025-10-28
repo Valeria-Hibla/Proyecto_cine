@@ -31,7 +31,10 @@ namespace lib_repositorios.Implementaciones
 
         public List<Clasificaciones> Listar()
         {
-            return this.IConexion!.Clasificaciones!.Take(20).ToList();
+            return this.IConexion!.Clasificaciones!.Take(20)
+                .Include(c => c.Peliculas)
+                .ToList();
+
         }
         public Clasificaciones? Modificar(Clasificaciones? entidad)
         {

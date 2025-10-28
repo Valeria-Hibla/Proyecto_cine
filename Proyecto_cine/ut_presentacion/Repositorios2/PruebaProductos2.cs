@@ -28,6 +28,7 @@ namespace ut_presentacion.Repositorios2
             Assert.AreEqual(true, Modificar());
             Assert.AreEqual(true, Listar());
             Assert.AreEqual(true, Borrar());
+            Assert.ThrowsException<Exception>(() => SacarExcepcion());
         }
         public bool Listar()
         {
@@ -57,6 +58,10 @@ namespace ut_presentacion.Repositorios2
             iConexion!.Productos!.Remove(entidadProductos!);
             iConexion!.SaveChanges();
             return true;
+        }
+        public void SacarExcepcion()
+        {
+            iProductosAplicacion!.Borrar(null);
         }
     }
 }

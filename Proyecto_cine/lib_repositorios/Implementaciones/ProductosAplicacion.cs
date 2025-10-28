@@ -30,7 +30,10 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Productos> Listar()
         {
-            return this.IConexion!.Productos!.Take(20).ToList();
+            return this.IConexion!.Productos!.Take(20)
+                .Include(c => c.Proveedores)
+                .Include(c => c.ClientesProductos)
+                .ToList();
         }
         public Productos? Modificar(Productos? entidad)
         {

@@ -30,7 +30,10 @@ namespace lib_repositorios.Implementaciones
         }
         public List<HorariosEmpleados> Listar()
         {
-            return this.IConexion!.HorariosEmpleados!.Take(20).ToList();
+            return this.IConexion!.HorariosEmpleados!.Take(20)
+
+                .Include(c => c.Empleados)
+                .ToList();
         }
         public HorariosEmpleados? Modificar(HorariosEmpleados? entidad)
         {

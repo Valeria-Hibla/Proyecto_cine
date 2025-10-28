@@ -41,7 +41,10 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Clientes> Listar()
         {
-            return this.IConexion!.Clientes!.Take(20).ToList();
+            return this.IConexion!.Clientes!.Take(20)
+                .Include(c => c.Boletos)
+                .Include(c => c.ClientesProductos)
+                .ToList();
         }
         public Clientes? Modificar(Clientes? entidad)
         {

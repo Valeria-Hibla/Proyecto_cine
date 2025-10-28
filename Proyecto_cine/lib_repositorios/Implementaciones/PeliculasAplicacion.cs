@@ -30,7 +30,9 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Peliculas> Listar()
         {
-            return this.IConexion!.Peliculas!.Take(20).ToList();
+            return this.IConexion!.Peliculas!.Take(20)
+                .Include(c => c.HorariosFunciones)
+                .ToList();
         }
         public Peliculas? Modificar(Peliculas? entidad)
         {

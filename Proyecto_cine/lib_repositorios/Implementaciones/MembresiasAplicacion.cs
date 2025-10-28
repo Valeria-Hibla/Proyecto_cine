@@ -30,7 +30,9 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Membresias> Listar()
         {
-            return this.IConexion!.Membresias!.Take(20).ToList();
+            return this.IConexion!.Membresias!.Take(20)
+                .Include (c => c.Clientes)
+                .ToList();
         }
         public Membresias? Modificar(Membresias? entidad)
         {
