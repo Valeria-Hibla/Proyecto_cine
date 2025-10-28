@@ -28,6 +28,7 @@ namespace ut_presentacion.Repositorios2
             Assert.AreEqual(true, Modificar());
             Assert.AreEqual(true, Listar());
             Assert.AreEqual(true, Borrar());
+            Assert.ThrowsException<Exception>(() => SacarExcepcion());
         }
         public bool Listar()
         {
@@ -45,7 +46,7 @@ namespace ut_presentacion.Repositorios2
 
         public bool Modificar()
         {
-            entidadClasificaciones!.Categoria= "Prueba unitaria #2 -" + DateTime.Now.ToString("yyyy-MM-dd");
+            entidadClasificaciones!.Categoria= "Prueba" ;
             var entry = iConexion!.Entry(entidadClasificaciones);
             entry.State = EntityState.Modified;
             iConexion!.SaveChanges();
@@ -57,6 +58,11 @@ namespace ut_presentacion.Repositorios2
             iConexion!.Clasificaciones!.Remove(entidadClasificaciones!);
             iConexion!.SaveChanges();
             return true;
+        }
+
+        public void SacarExcepcion()
+        {
+            iClasificacionesAplicacion!.Borrar(null);
         }
     }
 }
