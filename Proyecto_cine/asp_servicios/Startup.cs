@@ -23,7 +23,22 @@ namespace asp_servicios
             //services.AddSwaggerGen();
             // Repositorios
             services.AddScoped<IConexion, Conexion>();
-            services.AddScoped<CineAplicacion, CineAplicacion>();
+            //services.AddScoped<CineAplicacion, CineAplicacion>();
+            services.AddScoped<SalasAplicacion, SalasAplicacion>();
+            services.AddScoped<SucursalesAplicacion, SucursalesAplicacion>();
+            services.AddScoped<TecnicosAplicacion, TecnicosAplicacion>();
+            services.AddScoped<ProveedoresAplicacion, ProveedoresAplicacion>();
+            services.AddScoped<ProductosAplicacion, ProductosAplicacion>();
+            services.AddScoped<PeliculasAplicacion, PeliculasAplicacion>();
+            services.AddScoped<MembresiasAplicacion, MembresiasAplicacion>();
+            services.AddScoped<HorariosFuncionesAplicacion, HorariosFuncionesAplicacion>();
+            services.AddScoped<HorariosEmpleadosAplicacion, HorariosEmpleadosAplicacion>();
+            services.AddScoped<EquiposAplicacion, EquiposAplicacion>();
+            services.AddScoped<EmpleadosAplicacion, EmpleadosAplicacion>();
+            services.AddScoped<ClientesProductosAplicacion, ClientesProductosAplicacion>();
+            services.AddScoped<ClientesAplicacion, ClientesAplicacion>();
+            services.AddScoped<ClasificacionesAplicacion, ClasificacionesAplicacion>();
+            services.AddScoped<BoletosAplicacion, BoletosAplicacion>();
             // Controladores
             //services.AddScoped<TokenController, TokenController>();
             services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
