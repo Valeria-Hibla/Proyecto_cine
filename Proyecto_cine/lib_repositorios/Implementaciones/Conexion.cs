@@ -26,5 +26,6 @@ namespace lib_repositorios.Implementaciones
         public DbSet<ClientesProductos>? ClientesProductos { get; set; }
         public DbSet<Clasificaciones>? Clasificaciones { get; set; }
         public DbSet<Boletos>? Boletos { get; set; }
+        public DbSet<Usuarios>? Usuarios { get; set; }
     }
 }

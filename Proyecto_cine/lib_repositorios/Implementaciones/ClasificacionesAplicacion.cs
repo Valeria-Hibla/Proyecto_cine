@@ -13,7 +13,6 @@ namespace lib_repositorios.Implementaciones
         {
             this.IConexion = iConexion;
         }
-
         public void Configurar(string StringConexion)
         {
             this.IConexion!.StringConexion = StringConexion;

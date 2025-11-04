@@ -4,6 +4,7 @@ namespace lib_repositorios.Interfaces
 {
     public interface IMembresiasAplicacion
     {
+        void Configurar(string cadenaConexion);
         List<Membresias> Listar();
         Membresias? Guardar(Membresias? entidad);
         Membresias? Modificar(Membresias? entidad);

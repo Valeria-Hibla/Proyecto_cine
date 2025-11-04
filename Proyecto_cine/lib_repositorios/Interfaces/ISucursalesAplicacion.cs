@@ -4,6 +4,7 @@ namespace lib_repositorios.Interfaces
 {
     public interface ISucursalesAplicacion
     {
+        void Configurar(string cadenaConexion);
         List<Sucursales> Listar();
         Sucursales? Guardar(Sucursales? entidad);
         Sucursales? Modificar(Sucursales? entidad);

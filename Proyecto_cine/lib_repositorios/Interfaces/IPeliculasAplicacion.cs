@@ -4,6 +4,7 @@ namespace lib_repositorios.Interfaces
 {
     public interface IPeliculasAplicacion
     {
+        void Configurar(string cadenaConexion);
         List<Peliculas> Listar();
         Peliculas? Guardar(Peliculas? entidad);
         Peliculas? Modificar(Peliculas? entidad);
