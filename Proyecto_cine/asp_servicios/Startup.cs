@@ -1,4 +1,5 @@
 ﻿//using asp_servicios.Controllers;
+using asp_servicios.Controllers;
 using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -20,36 +21,32 @@ namespace asp_servicios
             services.Configure<IISServerOptions>(x => { x.AllowSynchronousIO = true; });
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            //services.AddSwaggerGen();
             // Repositorios
             services.AddScoped<IConexion, Conexion>();
-            //services.AddScoped<CineAplicacion, CineAplicacion>();
-            services.AddScoped<SalasAplicacion, SalasAplicacion>();
-            services.AddScoped<SucursalesAplicacion, SucursalesAplicacion>();
-            services.AddScoped<TecnicosAplicacion, TecnicosAplicacion>();
-            services.AddScoped<ProveedoresAplicacion, ProveedoresAplicacion>();
-            services.AddScoped<ProductosAplicacion, ProductosAplicacion>();
-            services.AddScoped<PeliculasAplicacion, PeliculasAplicacion>();
-            services.AddScoped<MembresiasAplicacion, MembresiasAplicacion>();
-            services.AddScoped<HorariosFuncionesAplicacion, HorariosFuncionesAplicacion>();
-            services.AddScoped<HorariosEmpleadosAplicacion, HorariosEmpleadosAplicacion>();
-            services.AddScoped<EquiposAplicacion, EquiposAplicacion>();
-            services.AddScoped<EmpleadosAplicacion, EmpleadosAplicacion>();
-            services.AddScoped<ClientesProductosAplicacion, ClientesProductosAplicacion>();
-            services.AddScoped<ClientesAplicacion, ClientesAplicacion>();
-            services.AddScoped<ClasificacionesAplicacion, ClasificacionesAplicacion>();
-            services.AddScoped<BoletosAplicacion, BoletosAplicacion>();
-            // Controladores
-            //services.AddScoped<TokenController, TokenController>();
+            services.AddScoped<ISalasAplicacion, SalasAplicacion>();
+            services.AddScoped<ISucursalesAplicacion, SucursalesAplicacion>();
+            services.AddScoped<ITecnicosAplicacion, TecnicosAplicacion>();
+            services.AddScoped<IProveedoresAplicacion, ProveedoresAplicacion>();
+            services.AddScoped<IProductosAplicacion, ProductosAplicacion>();
+            services.AddScoped<IPeliculasAplicacion, PeliculasAplicacion>();
+            services.AddScoped<IMembresiasAplicacion, MembresiasAplicacion>();
+            services.AddScoped<IHorariosFuncionesAplicacion, HorariosFuncionesAplicacion>();
+            services.AddScoped<IHorariosEmpleadosAplicacion, HorariosEmpleadosAplicacion>();
+            services.AddScoped<IEquiposAplicacion, EquiposAplicacion>();
+            services.AddScoped<IEmpleadosAplicacion, EmpleadosAplicacion>();
+            services.AddScoped<IClientesProductosAplicacion, ClientesProductosAplicacion>();
+            services.AddScoped<IClientesAplicacion, ClientesAplicacion>();
+            services.AddScoped<IClasificacionesAplicacion, ClasificacionesAplicacion>();
+            services.AddScoped<IBoletosAplicacion, BoletosAplicacion>();
+            services.AddScoped<TokenAplicacion, TokenAplicacion>();
+
+            // Controllers
+            services.AddScoped<TokenController, TokenController>();
             services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                //app.UseSwagger();
-                //app.UseSwaggerUI();
-            }
+
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();

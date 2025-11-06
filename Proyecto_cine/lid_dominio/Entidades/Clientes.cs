@@ -12,7 +12,7 @@ namespace lib_dominio.Entidades
         public int Edad { get; set; }
         public int IdMembresia { get; set; }
         [ForeignKey("IdMembresia")] public Membresias? _IdMembresia { get; set; }
-        public List<Boletos>? Boletos { get; set; }
-        public List<ClientesProductos>? ClientesProductos { get; set; }
+        [NotMapped] public List<Boletos>? Boletos { get; set; }
+        [NotMapped] public List<ClientesProductos>? ClientesProductos { get; set; }
     }
 }

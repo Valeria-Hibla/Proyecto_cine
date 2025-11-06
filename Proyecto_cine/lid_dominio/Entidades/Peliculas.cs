@@ -12,6 +12,6 @@ namespace lib_dominio.Entidades
         public string? Genero { get; set; }
         public int? IdClasificacion { get; set; }
         [ForeignKey("IdClasificacion")] public Clasificaciones? _IdClasificacion { get; set; }
-        public List<HorariosFunciones>? HorariosFunciones { get; set; }
+        [NotMapped] public List<HorariosFunciones>? HorariosFunciones { get; set; }
     }
 }

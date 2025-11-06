@@ -12,6 +12,6 @@ namespace lib_dominio.Entidades
         public bool Estado { get; set; }
         public int IdSucursal { get; set; }
         [ForeignKey("IdSucursal")] public Sucursales? _IdSucursal { get; set; }
-        public List<Tecnicos>? Tecnicos { get; set; }
+        [NotMapped] public List<Tecnicos>? Tecnicos { get; set; }
     }
 }

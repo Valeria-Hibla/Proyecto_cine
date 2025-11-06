@@ -12,10 +12,8 @@ namespace lib_dominio.Entidades
         public decimal Precio { get; set; }
         public int IdCliente { get; set; }
         [ForeignKey("IdCliente")] public Clientes? _IdCliente { get; set; }
-        //[NotMapped] public Clientes? _IdCliente { get; set; }
         public int IdSala { get; set; }
         [ForeignKey("IdSala")] public Salas? _IdSala { get; set; }
-        //[NotMapped] public Salas? _IdSala { get; set; }
     }
     
 }

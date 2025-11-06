@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,6 @@ namespace lib_dominio.Entidades
         public string? Categoria { get; set; }
         public int EdadMinima { get; set; }
         public string? Descripcion { get; set; }
-        public List<Peliculas>? Peliculas { get; set; }
+        [NotMapped] public List<Peliculas>? Peliculas { get; set; }
     }
 }

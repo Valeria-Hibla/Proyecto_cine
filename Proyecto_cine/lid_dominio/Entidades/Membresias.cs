@@ -10,6 +10,6 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public string? Descripcion { get; set; }
         public DateTime FechaInicio { get; set; }
-        public List<Clientes>? Clientes{ get; set; }
+        [NotMapped] public List<Clientes>? Clientes{ get; set; }
     }
 }
