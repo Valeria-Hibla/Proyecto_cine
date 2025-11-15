@@ -46,10 +46,18 @@ namespace lib_repositorios.Implementaciones
                 Fecha = DateTime.Now
             });
             return this.IConexion!.Clasificaciones!.Take(20)
-                .Include(c => c.Peliculas)
+                //.Include(c => c.Peliculas)
                 .ToList();
-
         }
+
+        public List<Clasificaciones> PorCategoria(Clasificaciones? entidad)
+        {
+            return this.IConexion!.Clasificaciones!
+                .Where(x => x.Categoria!.Contains(entidad!.Categoria!))
+                .Take(50)
+                .ToList();
+        }
+
         public Clasificaciones? Modificar(Clasificaciones? entidad)
         {
             if (entidad == null)

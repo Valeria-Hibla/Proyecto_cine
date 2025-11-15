@@ -6,6 +6,7 @@ namespace lib_repositorios.Interfaces
     {
         void Configurar(string StringConexion);
         List<Clasificaciones> Listar();
+        List<Clasificaciones> PorCategoria(Clasificaciones? entidad);
         Clasificaciones? Guardar(Clasificaciones? entidad);
         Clasificaciones? Modificar(Clasificaciones? entidad);
         Clasificaciones? Borrar(Clasificaciones? entidad);

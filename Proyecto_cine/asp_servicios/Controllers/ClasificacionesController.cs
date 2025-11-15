@@ -1,9 +1,10 @@
 using asp_servicios.Nucleo;
-using lib_repositorios.Interfaces;
 using lib_dominio.Entidades;
 using lib_dominio.Nucleo;
-using Microsoft.AspNetCore.Mvc;
 using lib_repositorios.Implementaciones;
+using lib_repositorios.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
 
 namespace asp_servicios.Controllers
 {
@@ -43,6 +44,35 @@ namespace asp_servicios.Controllers
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 
                 respuesta["Entidades"] = this.iAplicacion!.Listar();
+                respuesta["Respuesta"] = "OK";
+                respuesta["Fecha"] = DateTime.Now.ToString();
+                return JsonConversor.ConvertirAString(respuesta);
+            }
+            catch (Exception ex)
+            {
+                respuesta["Error"] = ex.Message.ToString();
+                respuesta["Respuesta"] = "Error";
+                return JsonConversor.ConvertirAString(respuesta);
+            }
+        }
+
+        [HttpPost]
+        public string PorCategoria()
+        {
+            var respuesta = new Dictionary<string, object>();
+            try
+            {
+                var datos = ObtenerDatos();
+                if (!iAplicacionToken!.Validar(datos))
+                {
+                    respuesta["Error"] = "lbNoAutenticacion";
+                    return JsonConversor.ConvertirAString(respuesta);
+                }
+                var entidad = JsonConversor.ConvertirAObjeto<Clasificaciones>(
+                JsonConversor.ConvertirAString(datos["Entidad"]));
+                this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
+
+                respuesta["Entidades"] = this.iAplicacion!.PorCategoria(entidad);
                 respuesta["Respuesta"] = "OK";
                 respuesta["Fecha"] = DateTime.Now.ToString();
                 return JsonConversor.ConvertirAString(respuesta);
