@@ -25,12 +25,26 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdBoletos == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Boletos!.Remove(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Boletos",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
         public List<Boletos> Listar()
         {
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Boletos",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.Boletos!.Take(20).ToList();
+
         }
         public Boletos? Modificar(Boletos? entidad)
         {
@@ -40,6 +54,13 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Boletos>(entidad);
             entry.State = EntityState.Modified;
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Boletos",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -58,6 +79,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoExistenLosBoletos");
 
             this.IConexion!.Boletos!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Boletos",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }

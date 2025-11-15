@@ -25,11 +25,24 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdClienteProducto == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.ClientesProductos!.Remove(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes-Productos",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
         public List<ClientesProductos> Listar()
         {
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes-Productos",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.ClientesProductos!.Take(20).ToList();
         }
         public ClientesProductos? Modificar(ClientesProductos? entidad)
@@ -40,6 +53,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<ClientesProductos>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes-Productos",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -58,6 +77,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoExisteLaFactura");
 
             this.IConexion!.ClientesProductos!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes-Productos",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }

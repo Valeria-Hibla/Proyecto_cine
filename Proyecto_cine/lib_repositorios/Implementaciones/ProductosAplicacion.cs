@@ -25,11 +25,23 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdProductos == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Productos!.Remove(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Productos",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
         public List<Productos> Listar()
         {
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Productos",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.Productos!.Take(20)
                 .Include(c => c.Proveedores)
                 .Include(c => c.ClientesProductos)
@@ -43,6 +55,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Productos>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Productos",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -61,6 +79,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbYaSeGuardo");
 
             this.IConexion!.Productos!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Productos",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }

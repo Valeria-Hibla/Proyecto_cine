@@ -25,11 +25,23 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdSucursal == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Sucursales!.Remove(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Sucursales",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
         public List<Sucursales> Listar()
         {
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Sucursales",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.Sucursales!.Take(20)
                 .Include(c => c.Empleados)
                 .Include(c => c.Salas)
@@ -51,6 +63,12 @@ namespace lib_repositorios.Implementaciones
 
             var entry = this.IConexion!.Entry<Sucursales>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Sucursales",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -72,6 +90,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbYaSeGuardo");
 
             this.IConexion!.Sucursales!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Sucursales",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }

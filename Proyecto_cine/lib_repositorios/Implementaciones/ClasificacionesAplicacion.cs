@@ -24,12 +24,27 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdClasificacion == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Clasificaciones!.Remove(entidad);
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clasificaciones",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
+
             return entidad;
         }
 
         public List<Clasificaciones> Listar()
         {
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clasificaciones",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.Clasificaciones!.Take(20)
                 .Include(c => c.Peliculas)
                 .ToList();
@@ -43,6 +58,13 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Clasificaciones>(entidad);
             entry.State = EntityState.Modified;
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clasificaciones",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -58,6 +80,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoEstaPermitido");
 
             this.IConexion!.Clasificaciones!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clasificaciones",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }

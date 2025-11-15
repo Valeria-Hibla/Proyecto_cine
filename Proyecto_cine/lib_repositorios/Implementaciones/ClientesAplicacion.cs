@@ -25,6 +25,12 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdCliente == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.Clientes!.Remove(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -36,11 +42,24 @@ namespace lib_repositorios.Implementaciones
             if (entidad.IdCliente != 0)
                 throw new Exception("lbYaSeGuardo");
             this.IConexion!.Clientes!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
         public List<Clientes> Listar()
         {
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.Clientes!.Take(20)
                 .Include(c => c.Boletos)
                 .Include(c => c.ClientesProductos)
@@ -54,6 +73,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<Clientes>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }

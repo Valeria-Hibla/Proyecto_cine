@@ -27,5 +27,6 @@ namespace lib_repositorios.Implementaciones
         public DbSet<Clasificaciones>? Clasificaciones { get; set; }
         public DbSet<Boletos>? Boletos { get; set; }
         public DbSet<Usuarios>? Usuarios { get; set; }
+        public DbSet<Auditorias>? Auditorias { get; set; }
     }
 }

@@ -25,11 +25,24 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdHorariosEmpleados == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.HorariosEmpleados!.Remove(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Empleados",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
         public List<HorariosEmpleados> Listar()
         {
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Empleados",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.HorariosEmpleados!.Take(20)
 
                 .Include(c => c.Empleados)
@@ -43,6 +56,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<HorariosEmpleados>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Empleados",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -56,6 +75,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbHorarioNoExiste");
 
             this.IConexion!.HorariosEmpleados!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Empleados",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }

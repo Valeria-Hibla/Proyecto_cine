@@ -25,12 +25,24 @@ namespace lib_repositorios.Implementaciones
             if (entidad!.IdHorariosFuncion == 0)
                 throw new Exception("lbNoSeGuardo");
             this.IConexion!.HorariosFunciones!.Remove(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Funciones",
+                Accion = "Borrar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
 
         public List<HorariosFunciones> Listar()
         {
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Funciones",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
             return this.IConexion!.HorariosFunciones!.Take(20).ToList();
         }
         public HorariosFunciones? Modificar(HorariosFunciones? entidad)
@@ -41,6 +53,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbNoSeGuardo");
             var entry = this.IConexion!.Entry<HorariosFunciones>(entidad);
             entry.State = EntityState.Modified;
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Funciones",
+                Accion = "Modificar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
@@ -59,6 +77,12 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbYaSeGuardo");
 
             this.IConexion!.HorariosFunciones!.Add(entidad);
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Horarios-Funciones",
+                Accion = "Guardar",
+                Fecha = DateTime.Now
+            });
             this.IConexion.SaveChanges();
             return entidad;
         }
