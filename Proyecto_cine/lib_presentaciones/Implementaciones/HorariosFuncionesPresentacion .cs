@@ -1,0 +1,97 @@
+﻿using System.Diagnostics.Metrics;
+using lib_dominio.Entidades;
+using lib_dominio.Nucleo;
+using lib_presentaciones.Interfaces;
+
+namespace lib_presentaciones.Implementaciones
+{
+    public class HorariosFuncionesPresentacion : IHorariosFuncionesPresentacion
+    {
+        private Comunicaciones? comunicaciones = null;
+
+        public async Task<List<HorariosFunciones>> Listar()
+        {
+            var lista = new List<HorariosFunciones>();
+            var datos = new Dictionary<string, object>();
+            
+            comunicaciones = new Comunicaciones();
+            datos = comunicaciones.ConstruirUrl(datos, "HorariosFunciones/Listar");
+            var respuesta = await comunicaciones!.Ejecutar(datos);
+            
+            if (respuesta.ContainsKey("Error"))
+            {
+                throw new Exception(respuesta["Error"].ToString()!);
+            }
+            lista = JsonConversor.ConvertirAObjeto<List<HorariosFunciones>>(
+                JsonConversor.ConvertirAString(respuesta["Entidades"]));
+            return lista;
+        }
+
+        public async Task<HorariosFunciones?> Guardar(HorariosFunciones? entidad)
+        {
+            if (entidad!.IdHorariosFuncion != 0)
+            {
+                throw new Exception("lbFaltaInformacion");
+            }
+            var datos = new Dictionary<string, object>();
+            datos["Entidad"] = entidad;
+            
+            comunicaciones = new Comunicaciones();
+            datos = comunicaciones.ConstruirUrl(datos, "HorariosFunciones/Guardar");
+            var respuesta = await comunicaciones!.Ejecutar(datos);
+            
+            if (respuesta.ContainsKey("Error"))
+            {
+                throw new Exception(respuesta["Error"].ToString()!);
+            }
+            entidad = JsonConversor.ConvertirAObjeto<HorariosFunciones>(
+                JsonConversor.ConvertirAString(respuesta["Entidad"]));
+            return entidad;
+        }
+
+        public async Task<HorariosFunciones?> Modificar(HorariosFunciones? entidad)
+        {
+            if (entidad!.IdHorariosFuncion == 0)
+            {
+                throw new Exception("lbFaltaInformacion");
+            }
+            var datos = new Dictionary<string, object>();
+            datos["Entidad"] = entidad;
+
+            comunicaciones = new Comunicaciones();
+            datos = comunicaciones.ConstruirUrl(datos, "HorariosFunciones/Modificar");
+            
+            var respuesta = await comunicaciones!.Ejecutar(datos);
+            if (respuesta.ContainsKey("Error"))
+            {
+                throw new Exception(respuesta["Error"].ToString()!);
+            }
+            entidad = JsonConversor.ConvertirAObjeto<HorariosFunciones>(
+                JsonConversor.ConvertirAString(respuesta["Entidad"]));
+            return entidad;
+        }
+
+        public async Task<HorariosFunciones?> Borrar(HorariosFunciones? entidad)
+        {
+            if (entidad!.IdHorariosFuncion == 0)
+            {
+                throw new Exception("lbFaltaInformacion");
+            }
+            var datos = new Dictionary<string, object>();
+            datos["Entidad"] = entidad;
+            
+            comunicaciones = new Comunicaciones();
+            datos = comunicaciones.ConstruirUrl(datos, "HorariosFunciones/Borrar");
+            var respuesta = await comunicaciones!.Ejecutar(datos);
+            
+            if (respuesta.ContainsKey("Error"))
+            {
+                throw new Exception(respuesta["Error"].ToString()!);
+            }
+            entidad = JsonConversor.ConvertirAObjeto<HorariosFunciones>(
+                JsonConversor.ConvertirAString(respuesta["Entidad"]));
+            return entidad;
+        }
+
+    }
+}
