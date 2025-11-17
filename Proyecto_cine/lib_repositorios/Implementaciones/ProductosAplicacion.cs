@@ -36,16 +36,31 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Productos> Listar()
         {
+
+            // FALTA LA LISTA DE CLIENTES_PRODUCTOS
+            var lista = this.IConexion!.Productos!
+                .Take(50).ToList();
+
+            foreach (var elemento in lista)
+            {
+                // Proveedores
+                elemento.Proveedores = this.IConexion!.Proveedores!
+                    .Where(x => x.IdProducto == elemento.IdProductos)
+                    .ToList();
+
+                // ClientesProductos
+                elemento.ClientesProductos = this.IConexion!.ClientesProductos!
+                    .Where(x => x.IdProducto == elemento.IdProductos)
+                    .ToList();
+
+            }
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Productos",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Productos!.Take(20)
-                .Include(c => c.Proveedores)
-                .Include(c => c.ClientesProductos)
-                .ToList();
+            return lista;
         }
         public Productos? Modificar(Productos? entidad)
         {

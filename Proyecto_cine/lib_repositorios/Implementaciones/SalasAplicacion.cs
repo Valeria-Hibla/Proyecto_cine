@@ -36,16 +36,30 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Salas> Listar()
         {
+            var lista = this.IConexion!.Salas!
+                .Take(50).ToList();
+
+            foreach (var elemento in lista)
+            {
+                //Bolettos
+                elemento.Boletos = this.IConexion!.Boletos!
+                    .Where(x => x.IdSala == elemento.IdSalas)
+                    .ToList();
+
+                //HorariosFunciones
+                elemento.HorariosFunciones = this.IConexion!.HorariosFunciones!
+                    .Where(x => x.IdSala == elemento.IdSalas)
+                    .ToList();
+
+            }
+
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Salas",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Salas!.Take(20)
-                .Include(c => c.HorariosFunciones)
-                .Include(c => c.Boletos)
-                .ToList();
+            return lista;
         }
         public Salas? Modificar(Salas? entidad)
         {

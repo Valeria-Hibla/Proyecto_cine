@@ -36,15 +36,23 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Membresias> Listar()
         {
+            var lista = this.IConexion!.Membresias!
+                .Take(50).ToList();
+
+            foreach (var elemento in lista)
+            {
+                elemento.Clientes = this.IConexion!.Clientes!
+                    .Where(x => x.IdMembresia == elemento.IdMembresias)
+                    .ToList();
+
+            }
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Membresias",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Membresias!.Take(20)
-                .Include (c => c.Clientes)
-                .ToList();
+            return lista;
         }
         public Membresias? Modificar(Membresias? entidad)
         {

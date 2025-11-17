@@ -36,17 +36,34 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Sucursales> Listar()
         {
+            var lista = this.IConexion!.Sucursales!
+                .Take(50).ToList();
+
+            foreach (var elemento in lista)
+            {
+                // Salas
+                elemento.Salas = this.IConexion!.Salas!
+                    .Where(x => x.IdSucursal == elemento.IdSucursal)
+                    .ToList();
+
+                // Empleados
+                elemento.Empleados = this.IConexion!.Empleados!
+                    .Where(x => x.IdSucursal == elemento.IdSucursal)
+                    .ToList();
+
+                // Equipos
+                elemento.Equipos = this.IConexion!.Equipos!
+                    .Where(x => x.IdSucursal == elemento.IdSucursal)
+                    .ToList();
+            }
+
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Sucursales",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Sucursales!.Take(20)
-                .Include(c => c.Empleados)
-                .Include(c => c.Salas)
-                .Include(c => c.Equipos)
-                .ToList();
+            return lista;
         }
         public Sucursales? Modificar(Sucursales? entidad)
         {

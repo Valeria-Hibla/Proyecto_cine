@@ -7,7 +7,7 @@ namespace lib_presentaciones
         private string? URL = string.Empty,
             llave = null;
 
-        public Comunicaciones(string url = "http://localhost:5080/")
+        public Comunicaciones(string url = "http://localhost:5026/")
         {
             URL = url;
         }

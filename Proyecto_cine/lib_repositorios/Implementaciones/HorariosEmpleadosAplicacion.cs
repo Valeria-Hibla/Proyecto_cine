@@ -36,17 +36,24 @@ namespace lib_repositorios.Implementaciones
         }
         public List<HorariosEmpleados> Listar()
         {
+            var lista = this.IConexion!.HorariosEmpleados!
+                .Take(50).ToList();
 
+            foreach (var elemento in lista)
+            {
+                elemento.Empleados = this.IConexion!.Empleados!
+                    .Where(x => x.IdHorarioEmpleado == elemento.IdHorariosEmpleados)
+                    .ToList();
+
+            }
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Horarios-Empleados",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.HorariosEmpleados!.Take(20)
 
-                .Include(c => c.Empleados)
-                .ToList();
+            return lista;
         }
         public HorariosEmpleados? Modificar(HorariosEmpleados? entidad)
         {

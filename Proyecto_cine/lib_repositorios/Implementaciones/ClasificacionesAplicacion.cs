@@ -38,6 +38,16 @@ namespace lib_repositorios.Implementaciones
 
         public List<Clasificaciones> Listar()
         {
+            var lista = this.IConexion!.Clasificaciones!
+                .Take(50).ToList();
+
+            foreach (var elemento in lista)
+            {
+                elemento.Peliculas = this.IConexion!.Peliculas!
+                    .Where(x => x.IdClasificacion == elemento.IdClasificacion)
+                    .ToList();
+
+            }
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -45,9 +55,8 @@ namespace lib_repositorios.Implementaciones
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Clasificaciones!.Take(20)
-                //.Include(c => c.Peliculas)
-                .ToList();
+
+            return Listar();
         }
 
         public List<Clasificaciones> PorCategoria(Clasificaciones? entidad)

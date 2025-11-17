@@ -53,17 +53,30 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Clientes> Listar()
         {
+            // FALTA LA LISTA DE CLIENTES_PRODUCTOS
+            var lista = this.IConexion!.Clientes!
+                .Take(50).ToList();
 
+            foreach (var elemento in lista)
+            {
+                //Boletos
+                elemento.Boletos = this.IConexion!.Boletos!
+                    .Where(x => x.IdCliente == elemento.IdCliente)
+                    .ToList();
+
+                // ClientesProductos
+                elemento.ClientesProductos = this.IConexion!.ClientesProductos!
+                    .Where(x => x.IdCliente == elemento.IdCliente)
+                    .ToList();
+
+            }
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Clientes",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Clientes!.Take(20)
-                .Include(c => c.Boletos)
-                .Include(c => c.ClientesProductos)
-                .ToList();
+            return lista;
         }
         public Clientes? Modificar(Clientes? entidad)
         {

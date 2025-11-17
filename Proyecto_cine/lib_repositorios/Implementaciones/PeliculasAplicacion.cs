@@ -36,15 +36,20 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Peliculas> Listar()
         {
-            this.IConexion!.Auditorias!.Add(new Auditorias()
+            var lista = this.IConexion!.Peliculas!
+                .Take(50).ToList();
+
+
+            foreach (var elemento in lista)
             {
-                Controlador = "Peliculas",
-                Accion = "Listar",
-                Fecha = DateTime.Now
-            });
-            return this.IConexion!.Peliculas!.Take(20)
-                .Include(c => c.HorariosFunciones)
-                .ToList();
+                elemento.HorariosFunciones = this.IConexion!.HorariosFunciones!
+                    .Where(x => x.IdPelicula == elemento.IdPelicula)
+                    .ToList();
+
+            }
+
+
+            return lista;
         }
         public Peliculas? Modificar(Peliculas? entidad)
         {

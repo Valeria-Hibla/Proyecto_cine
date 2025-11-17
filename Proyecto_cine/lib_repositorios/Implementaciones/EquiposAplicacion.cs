@@ -36,16 +36,23 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Equipos> Listar()
         {
+            var lista = this.IConexion!.Equipos!
+                .Take(50).ToList();
 
+            foreach (var elemento in lista)
+            {
+                elemento.Tecnicos = this.IConexion!.Tecnicos!
+                    .Where(x => x.IdEquipo == elemento.IdEquipos)
+                    .ToList();
+
+            }
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Equipos",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Equipos!.Take(20)
-                .Include(c => c.Tecnicos)
-                .ToList();
+            return lista;
         }
         public Equipos? Modificar(Equipos? entidad)
         {
