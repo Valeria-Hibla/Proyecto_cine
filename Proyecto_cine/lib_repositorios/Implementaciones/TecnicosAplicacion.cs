@@ -68,6 +68,24 @@ namespace lib_repositorios.Implementaciones
             });
             return this.IConexion!.Tecnicos!.Take(20).ToList();
         }
+
+        public List<Tecnicos> PorCedula(Tecnicos? entidad)
+        {
+            var lista = this.IConexion!.Tecnicos!
+                            .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
+                            .Take(50)
+                            .ToList();
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Tecnicos",
+                Accion = "PorCedula",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
+            return lista;
+        }
+
         public Tecnicos? Modificar(Tecnicos? entidad)
         {
             if (entidad == null)

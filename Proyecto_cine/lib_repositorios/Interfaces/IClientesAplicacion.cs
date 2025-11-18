@@ -6,6 +6,7 @@ namespace lib_repositorios.Interfaces
     {
         void Configurar(string StringConexion);
         List<Clientes> Listar();
+        List<Clientes> PorCedula(Clientes? entidad);
         Clientes? Guardar(Clientes? entidad);
         Clientes? Modificar(Clientes? entidad);
         Clientes? Borrar(Clientes? entidad);

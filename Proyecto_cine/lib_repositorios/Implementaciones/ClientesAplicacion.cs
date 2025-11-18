@@ -78,6 +78,23 @@ namespace lib_repositorios.Implementaciones
             });
             return lista;
         }
+
+        public List<Clientes> PorCedula(Clientes? entidad)
+        {
+            var lista = this.IConexion!.Clientes!
+                            .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
+                            .Take(50)
+                            .ToList();
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clientes",
+                Accion = "PorCedula",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
+            return lista;
+        }
         public Clientes? Modificar(Clientes? entidad)
         {
             if (entidad == null)

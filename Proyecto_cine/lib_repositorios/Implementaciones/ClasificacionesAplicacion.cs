@@ -2,6 +2,7 @@
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
+using System.Xml.Linq;
 
 namespace lib_repositorios.Implementaciones
 {
@@ -46,7 +47,6 @@ namespace lib_repositorios.Implementaciones
                 elemento.Peliculas = this.IConexion!.Peliculas!
                     .Where(x => x.IdClasificacion == elemento.IdClasificacion)
                     .ToList();
-
             }
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
@@ -56,15 +56,24 @@ namespace lib_repositorios.Implementaciones
                 Fecha = DateTime.Now
             });
 
-            return Listar();
+            return lista;
         }
 
         public List<Clasificaciones> PorCategoria(Clasificaciones? entidad)
         {
-            return this.IConexion!.Clasificaciones!
-                .Where(x => x.Categoria!.Contains(entidad!.Categoria!))
-                .Take(50)
-                .ToList();
+            var lista = this.IConexion!.Clasificaciones!
+                            .Where(x => x.Categoria!.Contains(entidad!.Categoria!))
+                            .Take(50)
+                            .ToList();
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Clasificaciones",
+                Accion = "PorCategoria",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
+            return lista;
         }
 
         public Clasificaciones? Modificar(Clasificaciones? entidad)

@@ -6,6 +6,7 @@ namespace lib_repositorios.Interfaces
     {
         void Configurar(string cadenaConexion);
         List<Sucursales> Listar();
+        List<Sucursales> PorCiudad(Sucursales? entidad);
         Sucursales? Guardar(Sucursales? entidad);
         Sucursales? Modificar(Sucursales? entidad);
         Sucursales? Borrar(Sucursales? entidad);

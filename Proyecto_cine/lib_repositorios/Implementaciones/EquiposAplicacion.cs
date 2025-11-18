@@ -54,6 +54,23 @@ namespace lib_repositorios.Implementaciones
             });
             return lista;
         }
+
+        public List<Equipos> PorMarca(Equipos? entidad)
+        {
+            var lista = this.IConexion!.Equipos!
+                            .Where(x => x.Marca!.Contains(entidad!.Marca!))
+                            .Take(50)
+                            .ToList();
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Equipos",
+                Accion = "PorMarca",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
+            return lista;
+        }
         public Equipos? Modificar(Equipos? entidad)
         {
             if (entidad == null)

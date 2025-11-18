@@ -6,6 +6,7 @@ namespace lib_repositorios.Interfaces
     {
         void Configurar(string StringConexion);
         List<Equipos> Listar();
+        List<Equipos> PorMarca(Equipos? entidad);
         Equipos? Guardar(Equipos? entidad);
         Equipos? Modificar(Equipos? entidad);
         Equipos? Borrar(Equipos? entidad);

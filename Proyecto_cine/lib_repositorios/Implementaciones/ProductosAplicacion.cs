@@ -62,6 +62,23 @@ namespace lib_repositorios.Implementaciones
             });
             return lista;
         }
+
+        public List<Productos> PorNombre(Productos? entidad)
+        {
+            var lista = this.IConexion!.Productos!
+                            .Where(x => x.Nombre!.Contains(entidad!.Nombre!))
+                            .Take(50)
+                            .ToList();
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Productos",
+                Accion = "PorNombre",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
+            return lista;
+        }
         public Productos? Modificar(Productos? entidad)
         {
             if (entidad == null)

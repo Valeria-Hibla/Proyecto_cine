@@ -65,6 +65,23 @@ namespace lib_repositorios.Implementaciones
             });
             return lista;
         }
+
+        public List<Sucursales> PorCiudad(Sucursales? entidad)
+        {
+            var lista = this.IConexion!.Sucursales!
+                            .Where(x => x.Ciudad!.Contains(entidad!.Ciudad!))
+                            .Take(50)
+                            .ToList();
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Sucursales",
+                Accion = "PorCiudad",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
+            return lista;
+        }
         public Sucursales? Modificar(Sucursales? entidad)
         {
             if (entidad == null)

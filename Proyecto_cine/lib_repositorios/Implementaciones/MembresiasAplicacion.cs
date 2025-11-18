@@ -54,6 +54,23 @@ namespace lib_repositorios.Implementaciones
             });
             return lista;
         }
+
+        public List<Membresias> PorNombre(Membresias? entidad)
+        {
+            var lista = this.IConexion!.Membresias!
+                            .Where(x => x.Nombre!.Contains(entidad!.Nombre!))
+                            .Take(50)
+                            .ToList();
+
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Membresias",
+                Accion = "PorNombre",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
+            return lista;
+        }
         public Membresias? Modificar(Membresias? entidad)
         {
             if (entidad == null)

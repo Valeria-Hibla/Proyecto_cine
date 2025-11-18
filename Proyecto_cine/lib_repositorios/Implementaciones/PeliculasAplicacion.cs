@@ -47,8 +47,23 @@ namespace lib_repositorios.Implementaciones
                     .ToList();
 
             }
+            return lista;
+        }
 
+        public List<Peliculas> PorGenero(Peliculas? entidad)
+        {
+            var lista = this.IConexion!.Peliculas!
+                            .Where(x => x.Genero!.Contains(entidad!.Genero!))
+                            .Take(50)
+                            .ToList();
 
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Peliculas",
+                Accion = "PorGenero",
+                Fecha = DateTime.Now
+            });
+            this.IConexion.SaveChanges();
             return lista;
         }
         public Peliculas? Modificar(Peliculas? entidad)
