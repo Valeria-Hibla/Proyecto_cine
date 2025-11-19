@@ -63,6 +63,7 @@ namespace lib_repositorios.Implementaciones
                 Accion = "PorGenero",
                 Fecha = DateTime.Now
             });
+
             this.IConexion.SaveChanges();
             return lista;
         }
@@ -94,10 +95,6 @@ namespace lib_repositorios.Implementaciones
             if ((entidad.Duracion.TotalHours > 5))
                 throw new Exception("lbDuracionExcedida");
 
-            if (entidad.IdPelicula == 0)
-            {
-                throw new Exception("lbProveedorNoExiste");
-            }
             if (entidad.IdPelicula != 0)
                 throw new Exception("lbYaSeGuardo");
 

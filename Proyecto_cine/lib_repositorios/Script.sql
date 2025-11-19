@@ -349,3 +349,6 @@ INSERT INTO Tecnicos (Cedula, Nombre, Especialidad, IdEquipo) VALUES
 (400500600, 'Mariana Torres', 'Pantallas y Sistemas Visuales', 4),
 (500600700, 'Jorge Castillo', 'Climatización y Refrigeración', 5)
 GO
+
+INSERT INTO Usuarios VALUES
+('usuario#1', 'JHGjkhtu6387456yssdf')
