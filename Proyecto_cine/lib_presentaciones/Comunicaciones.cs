@@ -79,7 +79,7 @@ namespace lib_presentaciones
                 temp["Entidad"] = new Dictionary<string, object>()
                 {
                     { "Nombre", "usuario#1" },
-                    { "Contraseña", "JHGjkhtu6387456yssdf" }
+                    { "Contrasena", "JHGjkhtu6387456yssdf" }
                 };
                 var stringData = JsonConversor.ConvertirAString(temp);
 

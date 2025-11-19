@@ -42,7 +42,7 @@ namespace asp_presentacion.Pages.Ventanas
                 //    return;
                 //}
 
-                Filtro!.Genero= Filtro!.Genero ?? "";
+                Filtro!.Genero = Filtro!.Genero ?? "";
                 Accion = Enumerables.Ventanas.Listas;
                 var task = this.iPresentacion!.PorGenero(Filtro!);
                 task.Wait();
@@ -61,7 +61,6 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 Accion = Enumerables.Ventanas.Editar;
                 Actual = new Peliculas();
-                Actual.Genero= "Nuevo";
             }
             catch (Exception ex)
             {

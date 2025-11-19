@@ -13,7 +13,7 @@
                 <h3>Peliculas</h3>
             </div>
 
-            <div align="left"
+            <div ali    gn="left"
                  class="bt_panel_buttons">
                 <input type="submit"
                        value="Refrescar"
@@ -58,15 +58,15 @@
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
-                    <h3>Instrumento</h3>
+                    <h3>Pelicula</h3>
 
                     <div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Nombre
+                                Titulo
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmNombre"
+                                <input id="nmTitulo"
                                        class="cts_forms form-control"
                                        asp-for="@Model.Actual!.Titulo" />
                             </div>
@@ -161,10 +161,10 @@
                                 Titulo
                             </th>
                             <th>
-                                Duracion
+                                Genero
                             </th>
                             <th class="cl_hidden">
-                                Genero
+                                Duracion
                             </th>
                             <th class="cl_hidden">
                                 IdClasificacion
@@ -182,14 +182,15 @@
                                         @elemento.Titulo
                                     </td>
                                     <td>
+                                        @elemento.Genero
+                                    </td> 
+                                    <td class="cl_hidden">
                                         @elemento.Duracion
                                     </td>
                                     <td class="cl_hidden">
-                                        @elemento.Genero
-                                    </td>
-                                    <td>
                                         @elemento.IdClasificacion
                                     </td>
+
                                     <td>
                                         <input type="submit"
                                                value="Modicar"
