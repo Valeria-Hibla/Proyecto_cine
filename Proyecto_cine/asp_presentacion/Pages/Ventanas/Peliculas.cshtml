@@ -10,7 +10,7 @@
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Instrumentos</h3>
+                <h3>Peliculas</h3>
             </div>
 
             <div align="left"
@@ -73,20 +73,20 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Precio
+                                Duracion
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmPrecio"
+                                <input id="nmDuracion"
                                        class="cts_forms form-control"
                                        asp-for="@Model.Actual!.Duracion" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Tipo
+                                Genero
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmTipo"
+                                <input id="nmGenero"
                                        class="cts_forms form-control"
                                        asp-for="@Model.Actual!.Genero" />
                             </div>
@@ -94,10 +94,10 @@
                         
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Fecha
+                                IdClasificacion
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmFecha"
+                                <input id="nmIdClasificacion"
                                        class="cts_forms form-control"
                                        asp-for="@Model.Actual!.IdClasificacion" />
                             </div>
@@ -146,10 +146,10 @@
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Listas ||
                  Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
-                <input id="flTipo"
+                <input id="flGenero"
                        class="cts_forms form-control"
                        asp-for="@Model.Filtro!.Genero"
-                       placeholder="Tipo" />
+                       placeholder="Genero" />
                 <br />
 
                 <div class="containers_vn panel panel-default">
