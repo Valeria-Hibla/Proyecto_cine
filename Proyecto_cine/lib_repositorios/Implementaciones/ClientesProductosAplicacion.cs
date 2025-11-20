@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdClienteProducto == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.ClientesProductos!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -51,6 +52,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdClienteProducto == 0)
                 throw new Exception("lbNoSeGuardo");
+
             var entry = this.IConexion!.Entry<ClientesProductos>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion!.Auditorias!.Add(new Auditorias()
@@ -67,11 +69,9 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad.IdCliente == 0)
-                throw new Exception("lbNoExisteLaFactura");
+            if (entidad.IdClienteProducto != 0)
+                throw new Exception("lbYaSeGuardo");
 
-            if ((entidad.IdProducto) == 0)
-                throw new Exception("lbNoExisteLaFactura");
 
             if (entidad.Monto <= 0)
                 throw new Exception("lbNoExisteLaFactura");

@@ -24,6 +24,8 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdClasificacion == 0)
                 throw new Exception("lbNoSeGuardo");
+
+
             this.IConexion!.Clasificaciones!.Remove(entidad);
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
@@ -82,6 +84,8 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdClasificacion == 0)
                 throw new Exception("lbNoSeGuardo");
+
+
             var entry = this.IConexion!.Entry<Clasificaciones>(entidad);
             entry.State = EntityState.Modified;
 
@@ -99,11 +103,12 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad.EdadMinima < 0)
-                throw new Exception("lbNoExisteLaClasificacion");
+            if (entidad.IdClasificacion != 0)
+                throw new Exception("lbYaSeGuardo");
 
-            if ((entidad.Categoria!.Equals("PG-13") && entidad.EdadMinima < 13))
-                throw new Exception("lbNoEstaPermitido");
+            if (entidad.EdadMinima < 0)
+                throw new Exception("lb La edad minima no puede ser menor de 0");
+
 
             this.IConexion!.Clasificaciones!.Add(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()

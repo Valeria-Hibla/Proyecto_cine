@@ -41,7 +41,7 @@ namespace lib_repositorios.Implementaciones
 
             foreach (var elemento in lista)
             {
-                //Bolettos
+                //Boletos
                 elemento.Boletos = this.IConexion!.Boletos!
                     .Where(x => x.IdSala == elemento.IdSalas)
                     .ToList();

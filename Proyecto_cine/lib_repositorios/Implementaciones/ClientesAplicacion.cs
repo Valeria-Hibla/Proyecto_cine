@@ -24,6 +24,8 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdCliente == 0)
                 throw new Exception("lbNoSeGuardo");
+
+
             this.IConexion!.Clientes!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -41,6 +43,8 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad.IdCliente != 0)
                 throw new Exception("lbYaSeGuardo");
+
+
             this.IConexion!.Clientes!.Add(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -53,13 +57,14 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Clientes> Listar()
         {
-            // FALTA LA LISTA DE CLIENTES_PRODUCTOS
+            
             var lista = this.IConexion!.Clientes!
                 .Take(50).ToList();
 
+
             foreach (var elemento in lista)
             {
-                //Boletos
+                // Boletos
                 elemento.Boletos = this.IConexion!.Boletos!
                     .Where(x => x.IdCliente == elemento.IdCliente)
                     .ToList();
@@ -68,8 +73,9 @@ namespace lib_repositorios.Implementaciones
                 elemento.ClientesProductos = this.IConexion!.ClientesProductos!
                     .Where(x => x.IdCliente == elemento.IdCliente)
                     .ToList();
-
             }
+            
+
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Clientes",
@@ -99,8 +105,9 @@ namespace lib_repositorios.Implementaciones
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
-            if (entidad!.IdCliente == 0)
-                throw new Exception("lbNoSeGuardo");
+            if (entidad!.IdCliente != 0)
+                throw new Exception("lbYaSeGuardo");
+
             var entry = this.IConexion!.Entry<Clientes>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion!.Auditorias!.Add(new Auditorias()

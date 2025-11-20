@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdEquipos == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.Equipos!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -77,6 +78,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdEquipos == 0)
                 throw new Exception("lbNoSeGuardo");
+
             var entry = this.IConexion!.Entry<Equipos>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion!.Auditorias!.Add(new Auditorias()
@@ -93,8 +95,8 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad.IdSucursal == 0)
-                throw new Exception("lbNoExisteElEquipo");
+            if (entidad.IdEquipos != 0)
+                throw new Exception("lbYaSeGuardo");
 
             this.IConexion!.Equipos!.Add(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()

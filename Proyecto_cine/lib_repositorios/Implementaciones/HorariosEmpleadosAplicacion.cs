@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdHorariosEmpleados == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.HorariosEmpleados!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -61,6 +62,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdHorariosEmpleados == 0)
                 throw new Exception("lbNoSeGuardo");
+
             var entry = this.IConexion!.Entry<HorariosEmpleados>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion!.Auditorias!.Add(new Auditorias()
@@ -77,9 +79,9 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
+            if (entidad.IdHorariosEmpleados != 0)
+                throw new Exception("lbYaSeGuardo");
 
-            if ((entidad.HoraInicio.Hour) < 8)
-                throw new Exception("lbHorarioNoExiste");
 
             this.IConexion!.HorariosEmpleados!.Add(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()

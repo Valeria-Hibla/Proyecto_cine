@@ -119,7 +119,8 @@ namespace lib_presentaciones
 
         private string Replace(string resp)
         {
-            return resp.Replace("\\\\r\\\\n", "")
+            return resp
+           .Replace("\\\\r\\\\n", "")
             .Replace("\\r\\n", "")
             .Replace("\\", "")
             .Replace("\\\"", "\"")
@@ -132,10 +133,8 @@ namespace lib_presentaciones
             .Replace("}'", "}")
             .Replace("\\n", "")
             .Replace("\\r", "")
-            .Replace(" ", "")
             .Replace("'{", "{")
             .Replace("\"", "")
-            .Replace(" ", "")
             .Replace("null", "''");
         }
     }

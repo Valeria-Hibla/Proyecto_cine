@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdEmpleado == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.Empleados!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -68,6 +69,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdEmpleado == 0)
                 throw new Exception("lbNoSeGuardo");
+
             var entry = this.IConexion!.Entry<Empleados>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion!.Auditorias!.Add(new Auditorias()
@@ -84,11 +86,11 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad.IdSucursal == 0)
-                throw new Exception("lbNoExisteElEmpleado");
+            if (entidad.IdEmpleado != 0)
+                throw new Exception("lbYaSeGuardo");
 
             if (entidad.FechaContratacion > DateTime.Now)
-                throw new Exception("lbNoExisteElEmpleado");
+                throw new Exception("lbLa fecha de contratacion no puede ser mayor a la fecha de hoy");
 
             this.IConexion!.Empleados!.Add(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()

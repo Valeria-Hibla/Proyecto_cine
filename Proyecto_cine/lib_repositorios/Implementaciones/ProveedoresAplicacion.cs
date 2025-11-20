@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdProveedor == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.Proveedores!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -41,6 +42,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad.IdProveedor != 0)
                 throw new Exception("lbYaSeGuardo");
+
             this.IConexion!.Proveedores!.Add(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {

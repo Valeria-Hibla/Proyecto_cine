@@ -23,8 +23,9 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad!.IdMembresias != 0)
+            if (entidad!.IdMembresias == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.Membresias!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -96,6 +97,7 @@ namespace lib_repositorios.Implementaciones
 
             if (string.IsNullOrWhiteSpace(entidad.Nombre))
                 throw new Exception("lbNombreRequerido");
+
             if (entidad.IdMembresias != 0)
                 throw new Exception("lbYaSeGuardo");
 

@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdPelicula == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.Peliculas!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {

@@ -24,6 +24,8 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdBoletos == 0)
                 throw new Exception("lbNoSeGuardo");
+
+
             this.IConexion!.Boletos!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -52,6 +54,8 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdBoletos == 0)
                 throw new Exception("lbNoSeGuardo");
+
+
             var entry = this.IConexion!.Entry<Boletos>(entidad);
             entry.State = EntityState.Modified;
 
@@ -69,14 +73,11 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if (entidad.IdSala == 0)
-                throw new Exception("lbNoExistenLosBoletos");
-
-            if ((entidad.IdCliente) == 0)
-                throw new Exception("lbNoExistenLosBoletos");
+            if (entidad.IdBoletos != 0)
+                throw new Exception("lbYaSeGuardo");
 
             if (entidad.Precio <= 0)
-                throw new Exception("lbNoExistenLosBoletos");
+                throw new Exception("lb El Precio no puede ser negativo");
 
             this.IConexion!.Boletos!.Add(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()

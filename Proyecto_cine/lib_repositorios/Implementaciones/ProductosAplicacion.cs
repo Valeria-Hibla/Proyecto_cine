@@ -37,7 +37,6 @@ namespace lib_repositorios.Implementaciones
         public List<Productos> Listar()
         {
 
-            // FALTA LA LISTA DE CLIENTES_PRODUCTOS
             var lista = this.IConexion!.Productos!
                 .Take(50).ToList();
 

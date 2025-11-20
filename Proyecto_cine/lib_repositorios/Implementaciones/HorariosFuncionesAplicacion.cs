@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdHorariosFuncion == 0)
                 throw new Exception("lbNoSeGuardo");
+
             this.IConexion!.HorariosFunciones!.Remove(entidad);
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -51,6 +52,7 @@ namespace lib_repositorios.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.IdHorariosFuncion == 0)
                 throw new Exception("lbNoSeGuardo");
+
             var entry = this.IConexion!.Entry<HorariosFunciones>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion!.Auditorias!.Add(new Auditorias()
@@ -67,13 +69,7 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
-            if ((entidad.IdPelicula) == 0)
-                throw new Exception("lbNoExisteLaFuncion");
-
-            if (entidad.IdSala == 0)
-                throw new Exception("lbNoExisteLaFuncion");
-
-            if (entidad.IdHorariosFuncion != 0)
+            if(entidad.IdHorariosFuncion != 0)
                 throw new Exception("lbYaSeGuardo");
 
             this.IConexion!.HorariosFunciones!.Add(entidad);

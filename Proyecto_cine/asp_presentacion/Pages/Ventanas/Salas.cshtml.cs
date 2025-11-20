@@ -43,11 +43,11 @@ namespace asp_presentacion.Pages.Ventanas
                 //}
 
                 //Filtro!.Nombre = Filtro!.Nombre ?? "";
-                //Accion = Enumerables.Ventanas.Listas;
+                Accion = Enumerables.Ventanas.Listas;
                 //var task = this.iPresentacion!.PorNombre(Filtro!);
-                //task.Wait();
+                ////task.Wait();
                 //Lista = task.Result;
-                //Actual = null;
+                Actual = null;
             }
             catch (Exception ex)
             {
