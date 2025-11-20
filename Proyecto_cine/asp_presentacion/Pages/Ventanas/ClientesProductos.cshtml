@@ -1,5 +1,5 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.SalasModel
+@model asp_presentacion.Pages.Ventanas.ClientesProductosModel
 @{
     ViewData["Titulo"] = "";
 }
@@ -10,7 +10,7 @@
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Salas</h3>
+                <h3>Facturas</h3>
             </div>
 
             <div ali    gn="left"
@@ -41,18 +41,18 @@
                         Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.IdSalas" />
+                       asp-for="@Model.Actual!.IdClienteProducto" />
             }
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.NumeroSala" />
+                       asp-for="@Model.Actual!.FechaCompra" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Capacidad" />
+                       asp-for="@Model.Actual!.Monto" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Estado" />
+                       asp-for="@Model.Actual!.IdProducto" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.IdSucursal" />
+                       asp-for="@Model.Actual!.IdCliente" />
             }
 
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Editar)
@@ -63,42 +63,42 @@
                     <div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                NumeroSala
+                                Fecha de la compra
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmNumeroSala"
+                                <input id="nmFechaCompra"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.NumeroSala" />
+                                       asp-for="@Model.Actual!.FechaCompra" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Capacidad
+                                Monto
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmCapacidad"
+                                <input id="nmMonto"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Capacidad" />
+                                       asp-for="@Model.Actual!.Monto" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Estado
+                                Producto
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmEstado"
+                                <input id="nmProducto"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Estado" />
+                                       asp-for="@Model.Actual!.IdProducto" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                IdSucursal
+                                Cliente
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmIdSucursal"
+                                <input id="nmCliente"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.IdSucursal" />
+                                       asp-for="@Model.Actual!.IdCliente" />
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                 Desea borrar la entidad?
                             </h4>
                             <h6 align="left">
-                                @Model.Actual!.NumeroSala
+                                @Model.Actual!.FechaCompra
                             </h6>
                             <br />
                             <br />
@@ -152,16 +152,16 @@
                     <table class="tb_data table table-striped table-bordered tablehover">
                         <tr>
                             <th>
-                                NumeroSala
+                                Fecha
                             </th>
                             <th>
-                                Capacidad
+                                Monto
                             </th>
                             <th>
-                                Estado
+                                Producto
                             </th>
                             <th class="cl_hidden">
-                                IdSucursal
+                                Cliente
                             </th>
                             <th class="cl_actions">
                                 Accion
@@ -173,28 +173,28 @@
                             {
                                 <tr>
                                     <td>
-                                        @elemento.NumeroSala
+                                        @elemento.FechaCompra
                                     </td>
                                     <td>
-                                        @elemento.Capacidad
+                                        @elemento.Monto
                                     </td> 
                                     <td>
-                                        @elemento.Estado
+                                        @elemento.IdProducto
                                     </td> 
                                     <td class="cl_hidden">
-                                         @elemento.IdSucursal
+                                         @elemento.IdCliente
                                     </td>
                                     <td>
                                         <input type="submit"
                                                value="Modicar"
                                                asp-page-handler="BtModificar"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdClienteProducto" />
                                         <input type="submit"
                                                value="Borrar"
                                                asp-page-handler="BtBorrarVal"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdClienteProducto" />
                                     </td>
                                 </tr>
                             }

@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace asp_presentacion.Pages.Ventanas
 {
-    public class SalasModel : PageModel
+    public class TecnicosModel : PageModel
     {
-        private ISalasPresentacion? iPresentacion = null;
+        private ITecnicosPresentacion? iPresentacion = null;
 
-        public SalasModel(ISalasPresentacion iPresentacion)
+        public TecnicosModel(ITecnicosPresentacion iPresentacion)
         {
             try
             {
                 this.iPresentacion = iPresentacion;
-                Filtro = new Salas();
+                Filtro = new Tecnicos();
             }
             catch (Exception ex)
             {
@@ -25,13 +25,13 @@ namespace asp_presentacion.Pages.Ventanas
 
         public IFormFile? FormFile { get; set; }
         [BindProperty] public Enumerables.Ventanas Accion { get; set; }
-        [BindProperty] public Salas? Actual { get; set; }
-        [BindProperty] public Salas? Filtro { get; set; }
-        [BindProperty] public List<Salas>? Lista { get; set; }
+        [BindProperty] public Tecnicos? Actual { get; set; }
+        [BindProperty] public Tecnicos? Filtro { get; set; }
+        [BindProperty] public List<Tecnicos>? Lista { get; set; }
 
         public virtual void OnGet() { OnPostBtRefrescar(); }
 
-        public void OnPostBtRefrescar() // Sino se pone el "OnPost no se llama al servicio"
+        public void OnPostBtRefrescar()
         {
             try
             {
@@ -42,7 +42,9 @@ namespace asp_presentacion.Pages.Ventanas
                 //    return;
                 //}
 
-                var task = this.iPresentacion!.Listar();  
+                Filtro!.Cedula = Filtro!.Cedula ?? "";
+                Accion = Enumerables.Ventanas.Listas;
+                var task = this.iPresentacion!.PorCedula(Filtro!);
                 task.Wait();
                 Lista = task.Result;
                 Actual = null;
@@ -58,7 +60,7 @@ namespace asp_presentacion.Pages.Ventanas
             try
             {
                 Accion = Enumerables.Ventanas.Editar;
-                Actual = new Salas();
+                Actual = new Tecnicos();
             }
             catch (Exception ex)
             {
@@ -72,7 +74,7 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 OnPostBtRefrescar();
                 Accion = Enumerables.Ventanas.Editar;
-                Actual = Lista!.FirstOrDefault(x => x.IdSalas.ToString() == data);
+                Actual = Lista!.FirstOrDefault(x => x.IdTecnicos.ToString() == data);
             }
             catch (Exception ex)
 
@@ -88,8 +90,8 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 Accion = Enumerables.Ventanas.Editar;
 
-                Task<Salas>? task = null;
-                if (Actual!.IdSalas == 0)
+                Task<Tecnicos>? task = null;
+                if (Actual!.IdTecnicos == 0)
                     task = this.iPresentacion!.Guardar(Actual!)!;
                 else
                     task = this.iPresentacion!.Modificar(Actual!)!;
@@ -110,7 +112,7 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 OnPostBtRefrescar();
                 Accion = Enumerables.Ventanas.Borrar;
-                Actual = Lista!.FirstOrDefault(x => x.IdSalas.ToString() == data);
+                Actual = Lista!.FirstOrDefault(x => x.IdTecnicos.ToString() == data);
             }
             catch (Exception ex)
             {

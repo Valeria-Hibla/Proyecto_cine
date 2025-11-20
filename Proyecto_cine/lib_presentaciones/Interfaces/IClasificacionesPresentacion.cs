@@ -6,7 +6,7 @@ namespace lib_presentaciones.Interfaces
     public interface IClasificacionesPresentacion
     {
         Task<List<Clasificaciones>> Listar();
-        Task<List<Clasificaciones>> PorClasificacion(Clasificaciones? entidad);
+        Task<List<Clasificaciones>> PorCategoria(Clasificaciones? entidad);
         Task<Clasificaciones?> Guardar(Clasificaciones? entidad);
         Task<Clasificaciones?> Modificar(Clasificaciones? entidad);
         Task<Clasificaciones?> Borrar(Clasificaciones? entidad);

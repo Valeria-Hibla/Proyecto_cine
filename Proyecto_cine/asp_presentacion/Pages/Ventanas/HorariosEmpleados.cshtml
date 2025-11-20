@@ -1,5 +1,5 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.SalasModel
+@model asp_presentacion.Pages.Ventanas.HorariosEmpleadosModel
 @{
     ViewData["Titulo"] = "";
 }
@@ -10,7 +10,7 @@
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Salas</h3>
+                <h3>Horarios de empleados</h3>
             </div>
 
             <div ali    gn="left"
@@ -41,64 +41,52 @@
                         Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.IdSalas" />
+                       asp-for="@Model.Actual!.IdHorariosEmpleados" />
             }
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.NumeroSala" />
+                       asp-for="@Model.Actual!.Fecha" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Capacidad" />
+                       asp-for="@Model.Actual!.HoraInicio" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Estado" />
-                <input type="hidden"
-                       asp-for="@Model.Actual!.IdSucursal" />
+                       asp-for="@Model.Actual!.HoraFin" />
             }
 
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
-                    <h3>Sala</h3>
+                    <h3>Horario de empleado</h3>
 
                     <div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                NumeroSala
+                                Fecha
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmNumeroSala"
+                                <input id="nmFecha"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.NumeroSala" />
+                                       asp-for="@Model.Actual!.Fecha" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Capacidad
+                                Hora de inicio
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmCapacidad"
+                                <input id="nmHoraInicio"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Capacidad" />
+                                       asp-for="@Model.Actual!.HoraInicio" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Estado
+                                Hora final
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmEstado"
+                                <input id="nmHoraFin"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Estado" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label">
-                                IdSucursal
-                            </label>
-                            <div class="col-lg-6">
-                                <input id="nmIdSucursal"
-                                       class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.IdSucursal" />
+                                       asp-for="@Model.Actual!.HoraFin" />
                             </div>
                         </div>
                     </div>
@@ -125,7 +113,7 @@
                                 Desea borrar la entidad?
                             </h4>
                             <h6 align="left">
-                                @Model.Actual!.NumeroSala
+                                @Model.Actual!.Fecha
                             </h6>
                             <br />
                             <br />
@@ -152,16 +140,13 @@
                     <table class="tb_data table table-striped table-bordered tablehover">
                         <tr>
                             <th>
-                                NumeroSala
+                                Fecha
                             </th>
                             <th>
-                                Capacidad
+                                Hora de inicio
                             </th>
                             <th>
-                                Estado
-                            </th>
-                            <th class="cl_hidden">
-                                IdSucursal
+                                Hora final
                             </th>
                             <th class="cl_actions">
                                 Accion
@@ -173,28 +158,25 @@
                             {
                                 <tr>
                                     <td>
-                                        @elemento.NumeroSala
+                                        @elemento.Fecha
                                     </td>
                                     <td>
-                                        @elemento.Capacidad
+                                        @elemento.HoraInicio
                                     </td> 
                                     <td>
-                                        @elemento.Estado
+                                        @elemento.HoraFin
                                     </td> 
-                                    <td class="cl_hidden">
-                                         @elemento.IdSucursal
-                                    </td>
                                     <td>
                                         <input type="submit"
                                                value="Modicar"
                                                asp-page-handler="BtModificar"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdHorariosEmpleados" />
                                         <input type="submit"
                                                value="Borrar"
                                                asp-page-handler="BtBorrarVal"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdHorariosEmpleados" />
                                     </td>
                                 </tr>
                             }

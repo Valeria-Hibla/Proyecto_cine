@@ -1,5 +1,5 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.SalasModel
+@model asp_presentacion.Pages.Ventanas.TecnicosModel
 @{
     ViewData["Titulo"] = "";
 }
@@ -10,7 +10,7 @@
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Salas</h3>
+                <h3>Tecnicos</h3>
             </div>
 
             <div ali    gn="left"
@@ -41,64 +41,64 @@
                         Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.IdSalas" />
+                       asp-for="@Model.Actual!.IdTecnicos" />
             }
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.NumeroSala" />
+                       asp-for="@Model.Actual!.Cedula" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Capacidad" />
+                       asp-for="@Model.Actual!.Nombre" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Estado" />
+                       asp-for="@Model.Actual!.Especialidad" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.IdSucursal" />
+                       asp-for="@Model.Actual!.IdEquipo" />
             }
 
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
-                    <h3>Sala</h3>
+                    <h3>Empleado</h3>
 
                     <div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                NumeroSala
+                                Cedula
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmNumeroSala"
+                                <input id="nmCedula"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.NumeroSala" />
+                                       asp-for="@Model.Actual!.Cedula" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Capacidad
+                                Nombre
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmCapacidad"
+                                <input id="nmNombre"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Capacidad" />
+                                       asp-for="@Model.Actual!.Nombre" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Estado
+                                Especialidad
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmEstado"
+                                <input id="nmEspecialidad"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Estado" />
+                                       asp-for="@Model.Actual!.Especialidad" />
                             </div>
                         </div>
-                        <div class="form-group">
+                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                IdSucursal
+                                Equipo
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmIdSucursal"
+                                <input id="nmEquipo"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.IdSucursal" />
+                                       asp-for="@Model.Actual!.IdEquipo" />
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                 Desea borrar la entidad?
                             </h4>
                             <h6 align="left">
-                                @Model.Actual!.NumeroSala
+                                @Model.Actual!.Nombre
                             </h6>
                             <br />
                             <br />
@@ -145,6 +145,11 @@
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Listas ||
                  Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
+                <input id="flCedula"
+                       class="cts_forms form-control"
+                       asp-for="@Model.Filtro!.Cedula"
+                       placeholder="Cedula" />
+                <br />
 
                 <div class="containers_vn panel panel-default">
 
@@ -152,16 +157,16 @@
                     <table class="tb_data table table-striped table-bordered tablehover">
                         <tr>
                             <th>
-                                NumeroSala
+                                Cedula
                             </th>
                             <th>
-                                Capacidad
+                                Nombre
                             </th>
                             <th>
-                                Estado
+                                Especialidad
                             </th>
                             <th class="cl_hidden">
-                                IdSucursal
+                                Equipo
                             </th>
                             <th class="cl_actions">
                                 Accion
@@ -173,28 +178,28 @@
                             {
                                 <tr>
                                     <td>
-                                        @elemento.NumeroSala
+                                        @elemento.Cedula
                                     </td>
                                     <td>
-                                        @elemento.Capacidad
+                                        @elemento.Nombre
                                     </td> 
                                     <td>
-                                        @elemento.Estado
+                                        @elemento.Especialidad
                                     </td> 
                                     <td class="cl_hidden">
-                                         @elemento.IdSucursal
+                                        @elemento.IdEquipo
                                     </td>
                                     <td>
                                         <input type="submit"
                                                value="Modicar"
                                                asp-page-handler="BtModificar"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdTecnicos" />
                                         <input type="submit"
                                                value="Borrar"
                                                asp-page-handler="BtBorrarVal"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdTecnicos" />
                                     </td>
                                 </tr>
                             }
@@ -204,4 +209,4 @@
             }
         </form>
     </div>
-</center>
+</center> 

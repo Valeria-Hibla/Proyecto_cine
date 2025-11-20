@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - asp_presentacion</title>
+    <title>@ViewData["Title"] - Cine</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/asp_presentacion.styles.css" asp-append-version="true" />
@@ -12,39 +12,36 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">asp_presentacion</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-page="/Index" style="white-space: nowrap; margin-right: 2rem; font-size: 1.6rem; font-weight: bold;"> Cine</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Ventanas/Peliculas">Peliculas</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Ventanas/Sucursales">Sucursales</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Ventanas/Clientes">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Ventanas/Productos">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Ventanas/Membresias">Membresias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Ventanas/Proveedores">Proveedores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Ventanas/Salas">Salas</a>
-                        </li>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
+                    <ul class="navbar-nav flex-grow-1" style="flex-wrap: wrap;">
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Peliculas">Peliculas</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Sucursales">Sucursales</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Clientes">Clientes</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Productos">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Membresias">Membresias</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Proveedores">Proveedores</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Salas">Salas</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Empleados">Empleados</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Equipos">Equipos</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Tecnicos">Tecnicos</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Clasificaciones">Clasificaciones</a></li>
+                        @* segunda fila *@
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/HorariosEmpleados">Horarios de empleados</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/HorariosFunciones">Horarios de funciones</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/Boletos">Boletos</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Ventanas/ClientesProductos">Facturas</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

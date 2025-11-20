@@ -1,5 +1,5 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.SalasModel
+@model asp_presentacion.Pages.Ventanas.ClasificacionesModel
 @{
     ViewData["Titulo"] = "";
 }
@@ -10,7 +10,7 @@
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Salas</h3>
+                <h3>Clasificaciones</h3>
             </div>
 
             <div ali    gn="left"
@@ -41,64 +41,52 @@
                         Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.IdSalas" />
+                       asp-for="@Model.Actual!.IdClasificacion" />
             }
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.NumeroSala" />
+                       asp-for="@Model.Actual!.Categoria" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Capacidad" />
+                       asp-for="@Model.Actual!.EdadMinima" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Estado" />
-                <input type="hidden"
-                       asp-for="@Model.Actual!.IdSucursal" />
+                       asp-for="@Model.Actual!.Descripcion" />
             }
 
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
-                    <h3>Sala</h3>
+                    <h3>Clasificacion</h3>
 
                     <div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                NumeroSala
+                                Categoria
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmNumeroSala"
+                                <input id="nmCategoria"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.NumeroSala" />
+                                       asp-for="@Model.Actual!.Categoria" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Capacidad
+                                Edad minima
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmCapacidad"
+                                <input id="nmEdadMinima"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Capacidad" />
+                                       asp-for="@Model.Actual!.EdadMinima" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Estado
+                                Descripcion
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmEstado"
+                                <input id="nmDescripcion"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Estado" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label">
-                                IdSucursal
-                            </label>
-                            <div class="col-lg-6">
-                                <input id="nmIdSucursal"
-                                       class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.IdSucursal" />
+                                       asp-for="@Model.Actual!.Descripcion" />
                             </div>
                         </div>
                     </div>
@@ -125,7 +113,7 @@
                                 Desea borrar la entidad?
                             </h4>
                             <h6 align="left">
-                                @Model.Actual!.NumeroSala
+                                @Model.Actual!.Categoria
                             </h6>
                             <br />
                             <br />
@@ -145,6 +133,11 @@
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Listas ||
                  Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
             {
+                <input id="flCategoria"
+                       class="cts_forms form-control"
+                       asp-for="@Model.Filtro!.Categoria"
+                       placeholder="Categoria" />
+                <br />
 
                 <div class="containers_vn panel panel-default">
 
@@ -152,16 +145,13 @@
                     <table class="tb_data table table-striped table-bordered tablehover">
                         <tr>
                             <th>
-                                NumeroSala
+                                Categoria
                             </th>
                             <th>
-                                Capacidad
+                                Edad minima
                             </th>
                             <th>
-                                Estado
-                            </th>
-                            <th class="cl_hidden">
-                                IdSucursal
+                                Descripcion
                             </th>
                             <th class="cl_actions">
                                 Accion
@@ -173,28 +163,25 @@
                             {
                                 <tr>
                                     <td>
-                                        @elemento.NumeroSala
+                                        @elemento.Categoria
                                     </td>
                                     <td>
-                                        @elemento.Capacidad
+                                        @elemento.EdadMinima
                                     </td> 
                                     <td>
-                                        @elemento.Estado
+                                        @elemento.Descripcion
                                     </td> 
-                                    <td class="cl_hidden">
-                                         @elemento.IdSucursal
-                                    </td>
                                     <td>
                                         <input type="submit"
                                                value="Modicar"
                                                asp-page-handler="BtModificar"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdClasificacion" />
                                         <input type="submit"
                                                value="Borrar"
                                                asp-page-handler="BtBorrarVal"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.IdSalas" />
+                                               asp-route-data="@elemento.IdClasificacion" />
                                     </td>
                                 </tr>
                             }
@@ -204,4 +191,4 @@
             }
         </form>
     </div>
-</center>
+</center> 

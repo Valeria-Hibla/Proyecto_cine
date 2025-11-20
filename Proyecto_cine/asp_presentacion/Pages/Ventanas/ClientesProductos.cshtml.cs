@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace asp_presentacion.Pages.Ventanas
 {
-    public class SalasModel : PageModel
+    public class ClientesProductosModel : PageModel
     {
-        private ISalasPresentacion? iPresentacion = null;
+        private IClientesProductosPresentacion? iPresentacion = null;
 
-        public SalasModel(ISalasPresentacion iPresentacion)
+        public ClientesProductosModel(IClientesProductosPresentacion iPresentacion)
         {
             try
             {
                 this.iPresentacion = iPresentacion;
-                Filtro = new Salas();
+                Filtro = new ClientesProductos();
             }
             catch (Exception ex)
             {
@@ -25,9 +25,9 @@ namespace asp_presentacion.Pages.Ventanas
 
         public IFormFile? FormFile { get; set; }
         [BindProperty] public Enumerables.Ventanas Accion { get; set; }
-        [BindProperty] public Salas? Actual { get; set; }
-        [BindProperty] public Salas? Filtro { get; set; }
-        [BindProperty] public List<Salas>? Lista { get; set; }
+        [BindProperty] public ClientesProductos? Actual { get; set; }
+        [BindProperty] public ClientesProductos? Filtro { get; set; }
+        [BindProperty] public List<ClientesProductos>? Lista { get; set; }
 
         public virtual void OnGet() { OnPostBtRefrescar(); }
 
@@ -42,7 +42,7 @@ namespace asp_presentacion.Pages.Ventanas
                 //    return;
                 //}
 
-                var task = this.iPresentacion!.Listar();  
+                var task = this.iPresentacion!.Listar();
                 task.Wait();
                 Lista = task.Result;
                 Actual = null;
@@ -58,7 +58,7 @@ namespace asp_presentacion.Pages.Ventanas
             try
             {
                 Accion = Enumerables.Ventanas.Editar;
-                Actual = new Salas();
+                Actual = new ClientesProductos();
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 OnPostBtRefrescar();
                 Accion = Enumerables.Ventanas.Editar;
-                Actual = Lista!.FirstOrDefault(x => x.IdSalas.ToString() == data);
+                Actual = Lista!.FirstOrDefault(x => x.IdClienteProducto.ToString() == data);
             }
             catch (Exception ex)
 
@@ -88,8 +88,8 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 Accion = Enumerables.Ventanas.Editar;
 
-                Task<Salas>? task = null;
-                if (Actual!.IdSalas == 0)
+                Task<ClientesProductos>? task = null;
+                if (Actual!.IdClienteProducto == 0)
                     task = this.iPresentacion!.Guardar(Actual!)!;
                 else
                     task = this.iPresentacion!.Modificar(Actual!)!;
@@ -110,7 +110,7 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 OnPostBtRefrescar();
                 Accion = Enumerables.Ventanas.Borrar;
-                Actual = Lista!.FirstOrDefault(x => x.IdSalas.ToString() == data);
+                Actual = Lista!.FirstOrDefault(x => x.IdClienteProducto.ToString() == data);
             }
             catch (Exception ex)
             {

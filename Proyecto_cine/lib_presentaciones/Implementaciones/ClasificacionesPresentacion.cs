@@ -28,14 +28,14 @@ namespace lib_presentaciones.Implementaciones
         }
 
 
-        public async Task<List<Clasificaciones>> PorClasificacion(Clasificaciones? entidad)
+        public async Task<List<Clasificaciones>> PorCategoria(Clasificaciones? entidad)
         {
             var lista = new List<Clasificaciones>();
             var datos = new Dictionary<string, object>();
             datos["Entidad"] = entidad!;
 
             comunicaciones = new Comunicaciones();
-            datos = comunicaciones.ConstruirUrl(datos, "Clasificaciones/PorClasificacion");
+            datos = comunicaciones.ConstruirUrl(datos, "Clasificaciones/PorCategoria");
             var respuesta = await comunicaciones!.Ejecutar(datos);
 
             if (respuesta.ContainsKey("Error"))
