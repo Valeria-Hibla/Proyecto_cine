@@ -46,7 +46,7 @@ namespace asp_presentacion.Pages
                     return;
                 }
 
-                if ("admin.123" != Email + "." + Contrasena)
+                if ("usuario#1.JHGjkhtu6387456yssdf" != Email + "." + Contrasena)
                 {
                     OnPostBtClean();
                     return;

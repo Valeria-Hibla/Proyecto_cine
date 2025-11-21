@@ -326,12 +326,12 @@ INSERT INTO Peliculas (Titulo, Duracion, Genero, IdClasificacion) VALUES
 ('50 Sombras', '02:05:00', 'Romance', 5)
 GO
 
-INSERT INTO HorariosFunciones (IdSala, IdPelicula) VALUES
-(1, 1),  
-(2, 2),  
-(1, 3),  
-(2, 4),  
-(1, 5)
+INSERT INTO HorariosFunciones (Fecha, Hora, IdSala, IdPelicula) VALUES
+('2025-11-21 14:00', '14:00', 1, 3),
+('2025-11-21 16:30', '16:30', 2, 5),
+('2025-11-21 18:15', '18:15', 1, 2),
+('2025-11-21 20:00', '20:00', 3, 4),
+('2025-11-21 22:45', '22:45', 2, 1);
 GO
 
 INSERT INTO Equipos (Tipo, Marca, Estado, IdSucursal) VALUES
