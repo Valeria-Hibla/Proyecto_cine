@@ -51,6 +51,7 @@ namespace asp_presentacion.Pages
                     OnPostBtClean();
                     return;
                 }
+
                 ViewData["Logged"] = true;
                 HttpContext.Session.SetString("Usuario", Email!);
                 EstaLogueado = true;
