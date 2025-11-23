@@ -39,7 +39,8 @@ CREATE TABLE Productos
 	IdProductos INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	Nombre NVARCHAR(40) NOT NULL,
 	Descripcion NVARCHAR(40),
-	Precio DECIMAL(6, 2) NOT NULL
+	Precio DECIMAL(6, 2) NOT NULL,
+	Imagen VARBINARY(MAX)
 )
 GO
 
@@ -261,12 +262,44 @@ INSERT INTO Clientes (Cedula, Nombre, Edad, IdMembresia) VALUES
 (1023456789, 'Luis Rodríguez', 41, 5)
 GO
 
-INSERT INTO Productos (Nombre, Descripcion, Precio) VALUES
-('Crispetas', 'Crispetas saladas', 2000.00),
-('Vaso', 'Vaso de Superman', 1500.50),
-('Gaseosa', 'Bebida tamaño mediano', 3500.00),
-('Nachos', 'Nachos con queso', 5000.00),
-('Chocolate', 'Barra de chocolate', 2500.00)
+INSERT INTO Productos (Nombre, Descripcion, Precio, Imagen) SELECT 
+'Crispetas', 'Crispetas saladas', 2000.00, BulkColumn
+FROM OPENROWSET(
+        BULK 'C:\Temp\Crispetas.png',
+        SINGLE_BLOB
+    ) AS img;
+GO
+
+INSERT INTO Productos (Nombre, Descripcion, Precio, Imagen) SELECT 
+'Perros', 'Perro con gaseosa', 1500.50, BulkColumn
+FROM OPENROWSET(
+        BULK 'C:\Temp\Perros.png',
+        SINGLE_BLOB
+    ) AS img;
+GO
+
+INSERT INTO Productos (Nombre, Descripcion, Precio, Imagen) SELECT 
+'Gaseosa', 'Bebida tamaño mediano', 3500.00, BulkColumn
+FROM OPENROWSET(
+        BULK 'C:\Temp\Gaseosa.png',
+        SINGLE_BLOB
+    ) AS img;
+GO
+
+INSERT INTO Productos (Nombre, Descripcion, Precio, Imagen) SELECT 
+'Nachos', 'Nachos con queso', 5000.00, BulkColumn
+FROM OPENROWSET(
+        BULK 'C:\Temp\Nachos.png',
+        SINGLE_BLOB
+    ) AS img;
+GO
+
+INSERT INTO Productos (Nombre, Descripcion, Precio, Imagen) SELECT 
+'Chocolate', 'Barra de chocolate', 2500.00, BulkColumn
+FROM OPENROWSET(
+        BULK 'C:\Temp\Chocolate.png',
+        SINGLE_BLOB
+    ) AS img;
 GO
 
 INSERT INTO Empleados (Cedula, Nombre, IdSucursal, IdHorarioEmpleado) VALUES

@@ -90,6 +90,15 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 Accion = Enumerables.Ventanas.Editar;
 
+                if (FormFile != null)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        FormFile.CopyTo(ms);
+                        Actual!.Imagen = ms.ToArray();
+                    }
+                }
+
                 Task<Productos>? task = null;
                 if (Actual!.IdProductos == 0)
                     task = this.iPresentacion!.Guardar(Actual!)!;

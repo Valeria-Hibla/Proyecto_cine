@@ -10,6 +10,7 @@ namespace lib_dominio.Entidades
         public string? Nombre { get; set; }
         public string? Descripcion { get; set; }
         public decimal Precio { get; set; }
+        public byte[]? Imagen { get; set; }
         [NotMapped] public List<Proveedores>? Proveedores;
         [NotMapped] public List<ClientesProductos>? ClientesProductos;
     }
