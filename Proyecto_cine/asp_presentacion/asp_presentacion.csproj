@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\asp_servicios\asp_servicios.csproj" />
     <ProjectReference Include="..\lib_presentaciones\lib_presentaciones.csproj" />
     <ProjectReference Include="..\lid_dominio\lib_dominio.csproj" />
   </ItemGroup>
