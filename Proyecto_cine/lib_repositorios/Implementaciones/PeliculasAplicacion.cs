@@ -37,26 +37,60 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Peliculas> Listar()
         {
-            var lista = this.IConexion!.Peliculas!
-                .Take(50).ToList();
+            this.IConexion!.Auditorias!.Add(new Auditorias()
+            {
+                Controlador = "Peliculas",
+                Accion = "Listar",
+                Fecha = DateTime.Now
+            });
 
+            var lista = this.IConexion!.Peliculas!
+                .Include(p => p._IdClasificacion)
+                .Take(50)
+                .ToList();
 
             foreach (var elemento in lista)
             {
                 elemento.HorariosFunciones = this.IConexion!.HorariosFunciones!
                     .Where(x => x.IdPelicula == elemento.IdPelicula)
                     .ToList();
-
             }
-            return lista;
+
+            return lista;   
         }
+
+        //public List<Peliculas> PorGenero(Peliculas? entidad)
+        //{
+        //    var lista = this.IConexion!.Peliculas!
+        //                    .Where(x => x.Genero!.Contains(entidad!.Genero!))
+        //                    .Take(50)
+        //                    .ToList();
+
+        //    this.IConexion!.Auditorias!.Add(new Auditorias()
+        //    {
+        //        Controlador = "Peliculas",
+        //        Accion = "PorGenero",
+        //        Fecha = DateTime.Now
+        //    });
+
+        //    this.IConexion.SaveChanges();
+        //    return lista;
+        //}
 
         public List<Peliculas> PorGenero(Peliculas? entidad)
         {
             var lista = this.IConexion!.Peliculas!
-                            .Where(x => x.Genero!.Contains(entidad!.Genero!))
-                            .Take(50)
-                            .ToList();
+                        .Include(p => p._IdClasificacion)     
+                        .Where(x => x.Genero!.Contains(entidad!.Genero!))
+                        .Take(50)
+                        .ToList();
+
+            foreach (var elemento in lista)
+            {
+                elemento.HorariosFunciones = this.IConexion!.HorariosFunciones!
+                    .Where(x => x.IdPelicula == elemento.IdPelicula)
+                    .ToList();
+            }
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
@@ -68,6 +102,7 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return lista;
         }
+
         public Peliculas? Modificar(Peliculas? entidad)
         {
             if (entidad == null)

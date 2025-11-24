@@ -187,8 +187,11 @@
                                     <td class="cl_hidden">
                                         @elemento.Duracion
                                     </td>
+                                    @* <td class="cl_hidden">
+                                        @elemento._IdClasificacion!.Categoria
+                                    </td> *@
                                     <td class="cl_hidden">
-                                        @elemento.IdClasificacion
+                                        @(elemento._IdClasificacion?.Categoria ?? "Sin clasificación")
                                     </td>
 
                                     <td>

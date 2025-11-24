@@ -36,18 +36,23 @@ namespace lib_repositorios.Implementaciones
             this.IConexion.SaveChanges();
             return entidad;
         }
+
         public List<Boletos> Listar()
         {
-
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Boletos",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Boletos!.Take(20).ToList();
 
+            return this.IConexion!.Boletos!
+                .Include(b => b._IdCliente)
+                .Include(b => b._IdSala)
+                .Take(20)
+                .ToList();
         }
+
         public Boletos? Modificar(Boletos? entidad)
         {
             if (entidad == null)

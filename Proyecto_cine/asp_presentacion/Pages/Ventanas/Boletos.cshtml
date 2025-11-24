@@ -50,9 +50,9 @@
                 <input type="hidden"
                        asp-for="@Model.Actual!.Precio" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!._IdCliente!.Nombre" />
+                       asp-for="@Model.Actual!.IdCliente" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!._IdSala!.NumeroSala" />
+                       asp-for="@Model.Actual!.IdSala" />
             }
 
             @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Editar)
@@ -88,7 +88,7 @@
                             <div class="col-lg-6">
                                 <input id="nmCliente"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!._IdCliente!.Nombre" />
+                                       asp-for="@Model.Actual!.IdCliente" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -98,7 +98,7 @@
                             <div class="col-lg-6">
                                 <input id="nmSala"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!._IdSala!.NumeroSala" />
+                                       asp-for="@Model.Actual!.IdSala" />
                             </div>
                         </div>
                     </div>
@@ -180,9 +180,9 @@
                                     </td> 
                                     <td>
                                         @elemento._IdCliente!.Nombre
-                                    </td> 
-                                    <td class="cl_hidden">
-                                         @elemento._IdSala!.NumeroSala
+                                    </td>
+                                    <td>
+                                        @elemento._IdSala!.NumeroSala
                                     </td>
                                     <td>
                                         <input type="submit"
