@@ -187,7 +187,7 @@
                                         @elemento.Edad
                                     </td> 
                                     <td class="cl_hidden">
-                                        @elemento.IdMembresia
+                                        @(elemento._IdMembresia?.Nombre ?? "Sin membresia")
                                     </td>
                                     <td>
                                         <input type="submit"

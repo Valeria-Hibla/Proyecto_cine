@@ -37,7 +37,9 @@ namespace lib_repositorios.Implementaciones
         public List<Salas> Listar()
         {
             var lista = this.IConexion!.Salas!
-                .Take(50).ToList();
+                .Include(p => p._IdSucursal)
+                .Take(50)
+                .ToList();
 
             foreach (var elemento in lista)
             {

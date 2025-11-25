@@ -55,21 +55,26 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Proveedores> Listar()
         {
+            var lista = this.IConexion!.Proveedores!
+                .Include(p => p._Producto)
+                .Take(50)
+                .ToList();
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Proveedores",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Proveedores!.Take(20).ToList();
+            return lista;
         }
 
         public List<Proveedores> PorCedula(Proveedores? entidad)
         {
             var lista = this.IConexion!.Proveedores!
-                            .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
-                            .Take(50)
-                            .ToList();
+                        .Include(p => p._Producto)
+                        .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
+                        .Take(50)
+                        .ToList();
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {

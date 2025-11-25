@@ -38,7 +38,9 @@ namespace lib_repositorios.Implementaciones
         public List<Equipos> Listar()
         {
             var lista = this.IConexion!.Equipos!
-                .Take(50).ToList();
+                .Include(p => p._IdSucursal)
+                .Take(50)
+                .ToList();
 
             foreach (var elemento in lista)
             {
@@ -59,9 +61,10 @@ namespace lib_repositorios.Implementaciones
         public List<Equipos> PorMarca(Equipos? entidad)
         {
             var lista = this.IConexion!.Equipos!
-                            .Where(x => x.Marca!.Contains(entidad!.Marca!))
-                            .Take(50)
-                            .ToList();
+                        .Include(p => p._IdSucursal)
+                        .Where(x => x.Marca!.Contains(entidad!.Marca!))
+                        .Take(50)
+                        .ToList();
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {

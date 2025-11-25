@@ -169,7 +169,7 @@
                                         @elemento.Nombre
                                     </td> 
                                     <td class="cl_hidden">
-                                         @elemento.IdProducto
+                                         @(elemento._Producto?.Nombre?? "Sin producto")
                                     </td>
                                     <td>
                                         <input type="submit"

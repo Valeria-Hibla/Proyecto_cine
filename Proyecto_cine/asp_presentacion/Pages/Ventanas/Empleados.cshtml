@@ -202,10 +202,10 @@
                                         @elemento.FechaContratacion
                                     </td> 
                                     <td class="cl_hidden">
-                                        @elemento.IdSucursal
+                                        @(elemento._IdSucursal?.Nombre ?? "Sin sucursal")
                                     </td>
                                     <td class="cl_hidden">
-                                        @elemento.IdHorarioEmpleado
+                                        @(elemento._IdHorarioEmpleado?.Fecha)
                                     </td>
                                     <td>
                                         <input type="submit"

@@ -44,7 +44,11 @@ namespace lib_repositorios.Implementaciones
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.ClientesProductos!.Take(20).ToList();
+            return this.IConexion!.ClientesProductos!
+                .Include(p => p._IdProducto)
+                .Include(p => p._IdCliente)
+                .Take(50)
+                .ToList();
         }
         public ClientesProductos? Modificar(ClientesProductos? entidad)
         {

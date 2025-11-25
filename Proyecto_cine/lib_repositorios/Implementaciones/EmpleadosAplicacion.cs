@@ -43,15 +43,20 @@ namespace lib_repositorios.Implementaciones
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Empleados!.Take(20).ToList();
+            return this.IConexion!.Empleados!
+                .Include(p => p._IdSucursal)
+                .Include(p => p._IdHorarioEmpleado)
+                .Take(50)
+                .ToList();
         }
 
         public List<Empleados> PorCedula(Empleados? entidad)
         {
             var lista = this.IConexion!.Empleados!
-                            .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
-                            .Take(50)
-                            .ToList();
+                        .Include(p => p._IdSucursal)
+                        .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
+                        .Take(50)
+                        .ToList();
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {

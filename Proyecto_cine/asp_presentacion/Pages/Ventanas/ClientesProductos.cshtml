@@ -179,10 +179,10 @@
                                         @elemento.Monto
                                     </td> 
                                     <td>
-                                        @elemento.IdProducto
+                                        @(elemento._IdProducto?.Nombre ?? "Sin producto")
                                     </td> 
                                     <td class="cl_hidden">
-                                         @elemento.IdCliente
+                                        @(elemento._IdCliente?.Nombre ?? "Sin cliente")
                                     </td>
                                     <td>
                                         <input type="submit"

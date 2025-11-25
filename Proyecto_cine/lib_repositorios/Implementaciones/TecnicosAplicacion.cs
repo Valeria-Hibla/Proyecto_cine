@@ -60,22 +60,27 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Tecnicos> Listar()
         {
+            var lista = this.IConexion!.Tecnicos!
+                .Include(p => p._IdEquipo)
+                .Take(50)
+                .ToList();
+
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Tecnicos",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.Tecnicos!.Take(20).ToList();
+            return lista;
         }
 
         public List<Tecnicos> PorCedula(Tecnicos? entidad)
         {
             var lista = this.IConexion!.Tecnicos!
-                            .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
-                            .Take(50)
-                            .ToList();
-
+                        .Include(p => p._IdEquipo)
+                        .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
+                        .Take(50)
+                        .ToList();
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Tecnicos",

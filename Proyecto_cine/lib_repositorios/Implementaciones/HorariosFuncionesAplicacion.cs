@@ -38,13 +38,18 @@ namespace lib_repositorios.Implementaciones
 
         public List<HorariosFunciones> Listar()
         {
+            var lista = this.IConexion!.HorariosFunciones!
+                .Include(p => p._IdSala)
+                .Include(p => p._IdPelicula)
+                .Take(50)
+                .ToList();
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
                 Controlador = "Horarios-Funciones",
                 Accion = "Listar",
                 Fecha = DateTime.Now
             });
-            return this.IConexion!.HorariosFunciones!.Take(20).ToList();
+            return lista;
         }
         public HorariosFunciones? Modificar(HorariosFunciones? entidad)
         {

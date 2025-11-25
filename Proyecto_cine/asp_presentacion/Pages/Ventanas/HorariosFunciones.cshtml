@@ -179,10 +179,10 @@
                                         @elemento.Hora
                                     </td> 
                                     <td>
-                                        @elemento.IdSala
+                                        @(elemento._IdSala?.NumeroSala)
                                     </td> 
                                     <td class="cl_hidden">
-                                         @elemento.IdPelicula
+                                         @(elemento._IdPelicula?.Titulo?? "Sin pelicula")
                                     </td>
                                     <td>
                                         <input type="submit"

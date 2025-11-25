@@ -57,9 +57,11 @@ namespace lib_repositorios.Implementaciones
         }
         public List<Clientes> Listar()
         {
-            
+
             var lista = this.IConexion!.Clientes!
-                .Take(50).ToList();
+                     .Include(p => p._IdMembresia)
+                     .Take(50)
+                     .ToList();
 
 
             foreach (var elemento in lista)
@@ -74,23 +76,17 @@ namespace lib_repositorios.Implementaciones
                     .Where(x => x.IdCliente == elemento.IdCliente)
                     .ToList();
             }
-            
-
-            this.IConexion!.Auditorias!.Add(new Auditorias()
-            {
-                Controlador = "Clientes",
-                Accion = "Listar",
-                Fecha = DateTime.Now
-            });
             return lista;
+
         }
 
         public List<Clientes> PorCedula(Clientes? entidad)
         {
             var lista = this.IConexion!.Clientes!
-                            .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
-                            .Take(50)
-                            .ToList();
+                        .Include(p => p._IdMembresia)
+                        .Where(x => x.Cedula!.Contains(entidad!.Cedula!))
+                        .Take(50)
+                        .ToList();
 
             this.IConexion!.Auditorias!.Add(new Auditorias()
             {
