@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace asp_presentacion.Pages.Ventanas
 {
-    [Authorize]
     public class BoletosModel : PageModel
     {
         private IBoletosPresentacion? iPresentacion = null;
