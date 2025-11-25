@@ -3,7 +3,6 @@ using lib_dominio.Nucleo;
 using lib_presentaciones.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace asp_presentacion.Pages.Ventanas
 {
@@ -29,7 +28,6 @@ namespace asp_presentacion.Pages.Ventanas
         [BindProperty] public Salas? Actual { get; set; }
         [BindProperty] public Salas? Filtro { get; set; }
         [BindProperty] public List<Salas>? Lista { get; set; }
-        [BindProperty] public Salas? ActualEstado { get; set; }
 
         public virtual void OnGet() { OnPostBtRefrescar(); }
 
@@ -161,38 +159,5 @@ namespace asp_presentacion.Pages.Ventanas
                 LogConversor.Log(ex, ViewData!);
             }
         }
-       
-
-            public List<SelectListItem> Estados { get; set; } = new();
-
-
-            public void OnGetEstado()
-            {
-                CargarEstados();
-            }
-
-            public IActionResult OnPostBtGuardarEstado()
-            {
-                if (ModelState.IsValid)
-                {
-                    // Aquí guardas en la BD
-                    return RedirectToPage("Salas");
-                }
-
-                // Si hay error, recarga la lista
-                CargarEstados();
-                return Page();
-            }
-
-            private void CargarEstados()
-            {
-                Estados = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "true", Text = "Activo" },
-                new SelectListItem { Value = "false", Text = "Inactivo" }
-            };
-            }
-        }
-
     }
-
+}
