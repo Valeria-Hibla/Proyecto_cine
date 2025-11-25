@@ -385,3 +385,28 @@ GO
 
 INSERT INTO Usuarios VALUES
 ('usuario#1', 'JHGjkhtu6387456yssdf')
+
+CREATE TABLE Roles
+(Id Int Primary Key identity(1,1),
+Nombre nvarchar(50),
+Fecha SmallDateTime,
+IdUsuario INT,
+IdPermiso INT)
+GO
+
+ALTER TABLE Roles ADD FOREIGN KEY (IdUsuario) REFERENCES Usuarios
+GO
+
+CREATE TABLE Permisos
+(Id Int Primary Key identity(1,1),
+Descripcion nvarchar(100))
+GO
+
+ALTER TABLE Roles ADD FOREIGN KEY (IdPermiso) REFERENCES Permisos
+
+
+INSERT INTO Permisos VALUES
+('Puede Acceder a todo')
+
+INSERT INTO Roles VALUES
+('Administrador', GETDATE(),1, 1)
