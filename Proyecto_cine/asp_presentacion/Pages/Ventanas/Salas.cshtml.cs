@@ -162,7 +162,9 @@ namespace asp_presentacion.Pages.Ventanas
             }
         }
        
+
             public List<SelectListItem> Estados { get; set; } = new();
+
 
             public void OnGetEstado()
             {
@@ -173,9 +175,11 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 if (ModelState.IsValid)
                 {
+                    // Aquí guardas en la BD
                     return RedirectToPage("Salas");
                 }
 
+                // Si hay error, recarga la lista
                 CargarEstados();
                 return Page();
             }
